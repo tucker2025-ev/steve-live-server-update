@@ -18,10 +18,7 @@
  */
 package de.rwth.idsg.steve.web.controller;
 
-import de.rwth.idsg.steve.service.ExtractMac;
-import de.rwth.idsg.steve.service.ManuallyStopTransaction;
-import de.rwth.idsg.steve.service.NewResponseDTO;
-import de.rwth.idsg.steve.service.ResponseDTO;
+import de.rwth.idsg.steve.service.*;
 import de.rwth.idsg.steve.web.dto.AutoChargeResponse;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import static jooq.steve.db.Tables.VEHICLE;
-import static jooq.steve.db.Tables.TRANSACTION_START;
-import static jooq.steve.db.Tables.CONNECTOR;
+import static jooq.steve.db.Tables.*;
 
 @RestController
 @RequestMapping("/api")
@@ -45,6 +40,9 @@ public class VehicleEnableAutoCharge {
     private ExtractMac extractMac;
     @Autowired
     private ManuallyStopTransaction stopTransaction;
+
+    @Autowired
+    private TestChargingData testChargingData;
 
     @GetMapping(value = "/isEnable")
     public ResponseDTO isEnableAutoCharge(@RequestParam(value = "txId", required = true) Integer transactionId,
@@ -103,7 +101,7 @@ public class VehicleEnableAutoCharge {
         } else {
             response.setData(null);
         }
-        stopTransaction.manuallyStopTransaction(retrieveChargeBoxId(transactionId),transactionId,"AutoChargeEnableStop");
+        stopTransaction.manuallyStopTransaction(retrieveChargeBoxId(transactionId), transactionId, "AutoChargeEnableStop");
         return response;
     }
 
@@ -129,7 +127,7 @@ public class VehicleEnableAutoCharge {
 
         data.setTransactionId(transactionId);
         data.setIdTag(idTag);
-        data.setVid(vid);
+
 
         var record = dslContext
                 .selectFrom(VEHICLE)
@@ -149,7 +147,7 @@ public class VehicleEnableAutoCharge {
         if (record.getIdTag().equals(idTag) && !record.getIsEnable()) {
 
             data.setReason("Auto charge allowed");
-
+            data.setVid(vid);
             response.setSuccess(true);
             response.setData(data);
 
@@ -158,8 +156,8 @@ public class VehicleEnableAutoCharge {
 
         if (!record.getIdTag().equals(idTag)) {
 
-            data.setReason("Vehicle already mapped with another idTag");
-
+            data.setReason("Vehicle already mapped with another Mobile Number");
+            data.setMobile(testChargingData.retrievePhoneUseIdTag(idTag));
             response.setSuccess(false);
             response.setData(data);
 

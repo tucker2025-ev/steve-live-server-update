@@ -23,6 +23,7 @@ import jooq.steve.db.tables.ScheduleCharging;
 import jooq.steve.db.tables.SchemaVersion;
 import jooq.steve.db.tables.Settings;
 import jooq.steve.db.tables.Transaction;
+import jooq.steve.db.tables.TransactionConnectorEnergy;
 import jooq.steve.db.tables.TransactionEnergyMismatchLog;
 import jooq.steve.db.tables.TransactionMeterValues;
 import jooq.steve.db.tables.TransactionStart;
@@ -135,6 +136,11 @@ public class Tables {
      * VIEW
      */
     public static final Transaction TRANSACTION = Transaction.TRANSACTION;
+
+    /**
+     * The table <code>stevedb.transaction_connector_energy</code>.
+     */
+    public static final TransactionConnectorEnergy TRANSACTION_CONNECTOR_ENERGY = TransactionConnectorEnergy.TRANSACTION_CONNECTOR_ENERGY;
 
     /**
      * The table <code>stevedb.transaction_energy_mismatch_log</code>.

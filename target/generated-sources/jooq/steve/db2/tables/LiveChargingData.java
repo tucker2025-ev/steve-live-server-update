@@ -6,9 +6,7 @@ package jooq.steve.db2.tables;
 
 import de.rwth.idsg.steve.utils.DateTimeConverter;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 import jooq.steve.db2.EvHistory;
 import jooq.steve.db2.Keys;
@@ -357,11 +355,6 @@ public class LiveChargingData extends TableImpl<LiveChargingDataRecord> {
     @Override
     public UniqueKey<LiveChargingDataRecord> getPrimaryKey() {
         return Keys.KEY_LIVE_CHARGING_DATA_PRIMARY;
-    }
-
-    @Override
-    public List<UniqueKey<LiveChargingDataRecord>> getUniqueKeys() {
-        return Arrays.asList(Keys.KEY_LIVE_CHARGING_DATA_TRANSACTION_ID);
     }
 
     @Override

@@ -26,4 +26,5 @@ public class AutoChargeResponse {
     private String idTag;
     private  String vid;
     private String reason;
+    private String mobile;
 }

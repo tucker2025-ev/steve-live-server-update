@@ -70,8 +70,7 @@ import static jooq.steve.db.tables.ConnectorStatus.CONNECTOR_STATUS;
 import static jooq.steve.db.tables.TransactionStart.TRANSACTION_START;
 import static jooq.steve.db.tables.TransactionStop.TRANSACTION_STOP;
 import static jooq.steve.db.tables.TransactionStopFailed.TRANSACTION_STOP_FAILED;
-import static jooq.steve.db2.Tables.LIVE_CHARGING_DATA;
-import static jooq.steve.db2.Tables.WALLET_TRACK;
+import static jooq.steve.db2.Tables.*;
 
 /**
  * This class has methods for database access that are used by the OCPP service.
@@ -404,7 +403,11 @@ public class OcppServerRepositoryImpl implements OcppServerRepository {
                     .set(CONNECTOR_METER_VALUE.LOCATION, "location")
                     .set(CONNECTOR_METER_VALUE.UNIT, "wh")
                     .execute();
-
+            Integer connectorId = ctx.select(CONNECTOR.CONNECTOR_ID)
+                    .from(CONNECTOR)
+                    .where(CONNECTOR.CONNECTOR_PK.eq(connectorPk))
+                    .execute();
+            retrieveTransactionMeterValues.insertConnectorEnergy(p.getChargeBoxId(), connectorId, p.getTransactionId(), p.getStopMeterValue(), p.getStopTimestamp());
             String idTag = ctx.select(TRANSACTION_START.ID_TAG)
                     .from(TRANSACTION_START)
                     .where(TRANSACTION_START.TRANSACTION_PK.eq(p.getTransactionId()))
@@ -412,11 +415,12 @@ public class OcppServerRepositoryImpl implements OcppServerRepository {
 
             tariffAmountCalculation.
                     sets(idTag, Double.parseDouble(p.getStopMeterValue()), p.getChargeBoxId(), p.getStopTimestamp(), p.getTransactionId(), connectorPk);
-            retrieveTransactionMeterValues.insertTran(p.getTransactionId(), connectorPk, 0.0, 0.0, Double.parseDouble(p.getStopMeterValue()), 0.0, 0.0, idTag, p.getChargeBoxId());
+            retrieveTransactionMeterValues.insertTran(p.getTransactionId(), connectorPk, Double.parseDouble(p.getStopMeterValue()), idTag, p.getChargeBoxId());
             if (isPayUser(retrieveQrPaymentIdTag(p.getTransactionId()))) {
                 updateQrPaymentActiveTransaction(p.getTransactionId(), retrieveChargedAmount(p.getTransactionId()));
             } else {
                 updateActiveTransaction(p.getTransactionId(), retrieveChargedAmount(p.getTransactionId()));
+                closeSettlementTransaction(p.getTransactionId(), retrieveChargedAmount(p.getTransactionId()));
             }
 
             if (chargerFeeExceptUserService.testChargerFeeExceptUser(idTag, p.getChargeBoxId())) {
@@ -457,6 +461,15 @@ public class OcppServerRepositoryImpl implements OcppServerRepository {
                 .execute();
     }
 
+    private void closeSettlementTransaction(Integer transactionId, double consumedAMount) {
+
+        secondary.update(WALLET_TRACK_SETTLEMENT)
+                .set(WALLET_TRACK_SETTLEMENT.IS_ACTIVE_TRANSACTION, false)
+                .set(WALLET_TRACK_SETTLEMENT.TOTAL_CONSUMED_AMOUNT, round2(consumedAMount))
+                .where(WALLET_TRACK_SETTLEMENT.TRANSACTION_ID.eq(transactionId))
+                .and(WALLET_TRACK_SETTLEMENT.IS_ACTIVE_TRANSACTION.eq(true))
+                .execute();
+    }
 
     private double retrieveChargedAmount(final Integer transaction) {
         return secondary
@@ -702,7 +715,8 @@ public class OcppServerRepositoryImpl implements OcppServerRepository {
                                                             Math.round(Double.parseDouble(value) * 1000)
                                                     );
                                                     unit = "W";
-                                                } catch (Exception ignored) {}
+                                                } catch (Exception ignored) {
+                                                }
                                             }
 
                                             if ("Energy.Active.Import.Register".equalsIgnoreCase(measurand)) {
@@ -720,7 +734,10 @@ public class OcppServerRepositoryImpl implements OcppServerRepository {
                                                     return null;
                                                 }
                                             }
-
+                                            if ("Energy.Active.Import.Register".equalsIgnoreCase(measurand)) {
+                                                retrieveTransactionMeterValues.buildTransactionMeterValues(
+                                                        list, connectorPk, transactionId, mv.getTimestamp());
+                                            }
                                             return ctx.newRecord(CONNECTOR_METER_VALUE)
                                                     .setConnectorPk(connectorPk)
                                                     .setTransactionPk(transactionId)
@@ -734,6 +751,7 @@ public class OcppServerRepositoryImpl implements OcppServerRepository {
                                                     .setLocation(location)
                                                     .setUnit(unit)
                                                     .setPhase(null);
+
                                         })
                                         .filter(Objects::nonNull)
                         )
@@ -747,8 +765,7 @@ public class OcppServerRepositoryImpl implements OcppServerRepository {
         if (!batch.isEmpty()) {
             ctx.batchInsert(batch).execute();
 
-            retrieveTransactionMeterValues.buildTransactionMeterValues(
-                    list, connectorPk, transactionId);
+
         }
     }
 
@@ -978,6 +995,7 @@ public class OcppServerRepositoryImpl implements OcppServerRepository {
 
         return payAmount != null ? payAmount : 0.0;
     }
+
     private String normalizeMeterValue(String value) {
 
         if (value == null) {

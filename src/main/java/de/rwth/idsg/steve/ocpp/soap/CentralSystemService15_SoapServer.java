@@ -57,7 +57,7 @@ import javax.xml.ws.soap.SOAPBinding;
 import java.util.concurrent.Future;
 
 /**
- * Service implementation of OCPP V1.5
+ * Service implementation of OCPP V1_2_3__update.sql.5
  *
  * @author Sevket Goekay <sevketgokay@gmail.com>
  */

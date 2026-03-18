@@ -94,6 +94,7 @@ public class TransactionRepositoryImpl implements TransactionRepository {
 
     @Override
     public TransactionDetails getDetails(int transactionPk) {
+
         // -------------------------------------------------------------------------
         // Step 1: Collect general data about transaction
         // -------------------------------------------------------------------------
@@ -103,8 +104,9 @@ public class TransactionRepositoryImpl implements TransactionRepository {
         form.setType(TransactionQueryForm.QueryType.ALL);
         form.setPeriodType(TransactionQueryForm.QueryPeriodType.ALL);
 
-        Record12<Integer, String, Integer, String, DateTime, String, DateTime, String, String, Integer, Integer, TransactionStopEventActor>
-                transaction = getInternal(form).fetchOne();
+        Record12<Integer, String, Integer, String, DateTime, String, DateTime, String,
+                String, Integer, Integer, TransactionStopEventActor> transaction =
+                getInternal(form).fetchOne();
 
         if (transaction == null) {
             throw new SteveException("There is no transaction with id '%s'", transactionPk);
@@ -112,87 +114,73 @@ public class TransactionRepositoryImpl implements TransactionRepository {
 
         DateTime startTimestamp = transaction.value5();
         DateTime stopTimestamp = transaction.value7();
-        String stopValue = transaction.value8();
         String chargeBoxId = transaction.value2();
         int connectorId = transaction.value3();
 
         // -------------------------------------------------------------------------
-        // Step 2: Collect intermediate meter values
+        // Step 2: Timestamp condition
         // -------------------------------------------------------------------------
 
         Condition timestampCondition;
-        TransactionStartRecord nextTx = null;
 
-        if (stopTimestamp == null && stopValue == null) {
-            nextTx = ctx.selectFrom(TRANSACTION_START)
-                    .where(TRANSACTION_START.CONNECTOR_PK.eq(ctx.select(CONNECTOR.CONNECTOR_PK)
-                            .from(CONNECTOR)
-                            .where(CONNECTOR.CHARGE_BOX_ID.equal(chargeBoxId))
-                            .and(CONNECTOR.CONNECTOR_ID.equal(connectorId))))
-                    .and(TRANSACTION_START.START_TIMESTAMP.greaterThan(startTimestamp))
-                    .orderBy(TRANSACTION_START.START_TIMESTAMP)
-                    .limit(1)
-                    .fetchOne();
-
-            if (nextTx == null) {
-                timestampCondition = CONNECTOR_METER_VALUE.VALUE_TIMESTAMP.greaterOrEqual(startTimestamp);
-            } else {
-                timestampCondition = CONNECTOR_METER_VALUE.VALUE_TIMESTAMP.between(startTimestamp, nextTx.getStartTimestamp());
-            }
+        if (stopTimestamp == null) {
+            timestampCondition = CONNECTOR_METER_VALUE.VALUE_TIMESTAMP.greaterOrEqual(startTimestamp);
         } else {
             timestampCondition = CONNECTOR_METER_VALUE.VALUE_TIMESTAMP.between(startTimestamp, stopTimestamp);
         }
 
         // -------------------------------------------------------------------------
-        // Step 3: Filter only energy meter values
+        // Step 3: Filter only Energy meter values
         // -------------------------------------------------------------------------
 
-        Condition energyCondition = CONNECTOR_METER_VALUE.MEASURAND.eq("Energy.Active.Import.Register");
+        Condition energyCondition =
+                CONNECTOR_METER_VALUE.MEASURAND.eq("Energy.Active.Import.Register");
 
-        Condition unitCondition = CONNECTOR_METER_VALUE.UNIT.isNull()
-                .or(CONNECTOR_METER_VALUE.UNIT.in("", UnitOfMeasure.WH.value(), UnitOfMeasure.K_WH.value()));
+        Condition unitCondition =
+                CONNECTOR_METER_VALUE.UNIT.isNull()
+                        .or(CONNECTOR_METER_VALUE.UNIT.in("", UnitOfMeasure.WH.value(), UnitOfMeasure.K_WH.value()));
 
-        SelectQuery<ConnectorMeterValueRecord> transactionQuery =
-                ctx.selectFrom(CONNECTOR_METER_VALUE)
-                        .where(CONNECTOR_METER_VALUE.TRANSACTION_PK.eq(transactionPk))
-                        .and(unitCondition)
-                        .and(energyCondition)
-                        .getQuery();
+        // -------------------------------------------------------------------------
+        // Step 4: Get connector_pk
+        // -------------------------------------------------------------------------
 
-        SelectQuery<ConnectorMeterValueRecord> timestampQuery =
-                ctx.selectFrom(CONNECTOR_METER_VALUE)
-                        .where(CONNECTOR_METER_VALUE.CONNECTOR_PK.eq(ctx.select(CONNECTOR.CONNECTOR_PK)
-                                .from(CONNECTOR)
-                                .where(CONNECTOR.CHARGE_BOX_ID.eq(chargeBoxId))
-                                .and(CONNECTOR.CONNECTOR_ID.eq(connectorId))))
-                        .and(timestampCondition)
-                        .and(unitCondition)
-                        .and(energyCondition)
-                        .getQuery();
+        Field<Integer> connectorPkField =
+                ctx.select(CONNECTOR.CONNECTOR_PK)
+                        .from(CONNECTOR)
+                        .where(CONNECTOR.CHARGE_BOX_ID.eq(chargeBoxId))
+                        .and(CONNECTOR.CONNECTOR_ID.eq(connectorId))
+                        .asField();
 
-        Table<ConnectorMeterValueRecord> t1 = transactionQuery.union(timestampQuery).asTable("t1");
-
-        DataType<DateTime> dateTimeDataType = SQLDataType.TIMESTAMP.asConvertedDataType(new DateTimeConverter());
-        Field<DateTime> dateTimeField = t1.field(2, dateTimeDataType);
+        // -------------------------------------------------------------------------
+        // Step 5: Safe query (NO UNION)
+        // -------------------------------------------------------------------------
 
         List<TransactionDetails.MeterValues> values =
                 ctx.select(
-                                dateTimeField,
-                                t1.field(3, String.class),
-                                t1.field(4, String.class),
-                                t1.field(5, String.class),
-                                t1.field(6, String.class),
-                                t1.field(7, String.class),
-                                t1.field(8, String.class),
-                                t1.field(9, String.class))
-                        .from(t1)
-                        .orderBy(dateTimeField)
+                                CONNECTOR_METER_VALUE.VALUE_TIMESTAMP,
+                                CONNECTOR_METER_VALUE.VALUE,
+                                CONNECTOR_METER_VALUE.READING_CONTEXT,
+                                CONNECTOR_METER_VALUE.FORMAT,
+                                CONNECTOR_METER_VALUE.MEASURAND,
+                                CONNECTOR_METER_VALUE.LOCATION,
+                                CONNECTOR_METER_VALUE.UNIT,
+                                CONNECTOR_METER_VALUE.PHASE)
+                        .from(CONNECTOR_METER_VALUE)
+                        .where(CONNECTOR_METER_VALUE.CONNECTOR_PK.eq(connectorPkField))
+                        .and(timestampCondition)
+                        .and(unitCondition)
+                        .and(energyCondition)
+                        .and(
+                                CONNECTOR_METER_VALUE.TRANSACTION_PK.eq(transactionPk)
+                                        .or(CONNECTOR_METER_VALUE.TRANSACTION_PK.isNull())
+                        )
+                        .orderBy(CONNECTOR_METER_VALUE.VALUE_TIMESTAMP)
                         .fetch()
                         .map(r -> {
 
-                            // Convert meter value timestamp to IST
-                            DateTime ts = r.value1() == null ? null :
-                                    r.value1().plusHours(5).plusMinutes(30);
+                            DateTime ts = r.value1() == null
+                                    ? null
+                                    : r.value1().plusHours(5).plusMinutes(30);
 
                             return TransactionDetails.MeterValues.builder()
                                     .valueTimestamp(ts)
@@ -205,7 +193,12 @@ public class TransactionRepositoryImpl implements TransactionRepository {
                                     .phase(r.value8())
                                     .build();
                         });
-        return new TransactionDetails(new TransactionMapper().map(transaction), values, nextTx);
+
+        return new TransactionDetails(
+                new TransactionMapper().map(transaction),
+                values,
+                null
+        );
     }
 
     @Override

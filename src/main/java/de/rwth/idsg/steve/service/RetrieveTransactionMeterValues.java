@@ -31,6 +31,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static jooq.steve.db.Tables.TRANSACTION_CONNECTOR_ENERGY;
 import static jooq.steve.db.Tables.TRANSACTION_METER_VALUES;
 import static jooq.steve.db.tables.Connector.CONNECTOR;
 import static jooq.steve.db.tables.TransactionStart.TRANSACTION_START;
@@ -58,7 +59,7 @@ public class RetrieveTransactionMeterValues {
     public TransactionMeterValues buildTransactionMeterValues(
             List<MeterValue> list,
             int connectorPk,
-            Integer transactionId) {
+            Integer transactionId, final DateTime valueTimestamp) {
         String chargeBoxId = dslContext.select(CONNECTOR.CHARGE_BOX_ID)
                 .from(CONNECTOR)
                 .where(CONNECTOR.CONNECTOR_PK.eq(connectorPk))
@@ -128,7 +129,7 @@ public class RetrieveTransactionMeterValues {
             }
         }
 
-        // Apply AC totals
+
         if (voltageCount > 0) tmv.setVoltage(voltageSum / voltageCount);
         if (currentSum > 0) tmv.setCurrent(currentSum);
         if (powerSum > 0) tmv.setPower(powerSum);
@@ -150,28 +151,36 @@ public class RetrieveTransactionMeterValues {
                 .set(TRANSACTION_METER_VALUES.SOC, tmv.getSoc())
                 .execute();
 
-        insertTransactionLiveData(transactionId, tmv, chargeBoxId, connectorPk, idTag);
+        insertTransactionLiveData(transactionId, tmv, chargeBoxId, connectorPk, idTag, valueTimestamp);
         return tmv;
     }
 
 
-    private void insertTransactionLiveData(final Integer transactionId, final TransactionMeterValues transactionMeterValues, final String chargeBoxId, final Integer connectorPk, final String idTag) {
+    private void insertTransactionLiveData(final Integer transactionId, final TransactionMeterValues transactionMeterValues, final String chargeBoxId, final Integer connectorPk, final String idTag, final DateTime valueTimeStamp) {
         boolean ans = isAlreadyInserted(transactionId);
-
+        Integer connectorId = dslContext.select(CONNECTOR.CONNECTOR_ID)
+                .from(CONNECTOR)
+                .where(CONNECTOR.CONNECTOR_PK.eq(connectorPk))
+                .execute();
         if (!ans) {
-            testChargingData.liveChargingDataAsync(
+
+            testChargingData.liveChargingData(
                     chargeBoxId,
-                    connectorPk,
+                    connectorId,
                     transactionId,
                     idTag
             );
+
+            insertConnectorEnergy(chargeBoxId, connectorId, transactionId, tariffAmountCalculation.retrieveStartEnergy(transactionId).toString(), valueTimeStamp);
         }
+
+        insertConnectorEnergy(chargeBoxId, connectorId, transactionId, String.valueOf(transactionMeterValues.getEnergy()), valueTimeStamp);
         try {
             Field<Double> incomingSoc = val(transactionMeterValues.getSoc());
 
             Field<Double> startEnergyCondition =
                     iif(LIVE_CHARGING_DATA.START_ENERGY.isNull(),
-                            val(transactionMeterValues.getEnergy()),
+                            val(tariffAmountCalculation.retrieveStartEnergy(transactionId)),
                             LIVE_CHARGING_DATA.START_ENERGY);
 
             Field<Double> startCurrentCondition =
@@ -224,16 +233,16 @@ public class RetrieveTransactionMeterValues {
     }
 
 
-    public void insertTran(final Integer transactionPk, final Integer connectorPk, final double voltage, final double power, final double energy, final double soc, final double current, final String idTag, final String chargerBoxId) {
+    public void insertTran(final Integer transactionPk, final Integer connectorPk, final double energy, final String idTag, final String chargerBoxId) {
         try {
             dslContext.insertInto(TRANSACTION_METER_VALUES)
                     .set(TRANSACTION_METER_VALUES.TRANSACTION_PK, transactionPk)
                     .set(TRANSACTION_METER_VALUES.CONNECTOR_PK, connectorPk)
-                    .set(TRANSACTION_METER_VALUES.VOLTAGE, voltage)
-                    .set(TRANSACTION_METER_VALUES.POWER, power)
+                    .set(TRANSACTION_METER_VALUES.VOLTAGE, retrieveCurrentTransactionPreviewsVoltage(connectorPk, transactionPk))
+                    .set(TRANSACTION_METER_VALUES.POWER, retrieveCurrentTransactionPreviewsPower(connectorPk, transactionPk))
                     .set(TRANSACTION_METER_VALUES.ENERGY, energy)
-                    .set(TRANSACTION_METER_VALUES.SOC, soc)
-                    .set(TRANSACTION_METER_VALUES.CURRENT, current)
+                    .set(TRANSACTION_METER_VALUES.SOC, retrieveCurrentTransactionPreviewsSoc(connectorPk, transactionPk))
+                    .set(TRANSACTION_METER_VALUES.CURRENT, retrieveCurrentTransactionPreviewsCurrent(connectorPk, transactionPk))
                     .set(TRANSACTION_METER_VALUES.OCPP_TAG_ID, idTag)
                     .set(TRANSACTION_METER_VALUES.CHARGE_BOX_ID, chargerBoxId)
                     .execute();
@@ -247,6 +256,89 @@ public class RetrieveTransactionMeterValues {
                 secondary.selectFrom(LIVE_CHARGING_DATA)
                         .where(LIVE_CHARGING_DATA.TRANSACTION_ID.eq(transactionId))
         );
+    }
+
+
+    public Double retrieveCurrentTransactionPreviewsVoltage(Integer connectorPk, Integer transactionPk) {
+        Double lastEnergy = dslContext
+                .select(TRANSACTION_METER_VALUES.VOLTAGE)
+                .from(TRANSACTION_METER_VALUES)
+                .where(TRANSACTION_METER_VALUES.CONNECTOR_PK.eq(connectorPk))
+                .and(TRANSACTION_METER_VALUES.TRANSACTION_PK.eq(transactionPk))
+                .orderBy(TRANSACTION_METER_VALUES.EVENT_TIMESTAMP.desc())
+                .limit(1)
+                .fetchOneInto(Double.class);
+
+        return lastEnergy;
+    }
+
+
+    public Double retrieveCurrentTransactionPreviewsPower(Integer connectorPk, Integer transactionPk) {
+        Double lastEnergy = dslContext
+                .select(TRANSACTION_METER_VALUES.POWER)
+                .from(TRANSACTION_METER_VALUES)
+                .where(TRANSACTION_METER_VALUES.CONNECTOR_PK.eq(connectorPk))
+                .and(TRANSACTION_METER_VALUES.TRANSACTION_PK.eq(transactionPk))
+                .orderBy(TRANSACTION_METER_VALUES.EVENT_TIMESTAMP.desc())
+                .limit(1)
+                .fetchOneInto(Double.class);
+
+        return lastEnergy;
+    }
+
+    public Double retrieveCurrentTransactionPreviewsSoc(Integer connectorPk, Integer transactionPk) {
+        Double lastEnergy = dslContext
+                .select(TRANSACTION_METER_VALUES.SOC)
+                .from(TRANSACTION_METER_VALUES)
+                .where(TRANSACTION_METER_VALUES.CONNECTOR_PK.eq(connectorPk))
+                .and(TRANSACTION_METER_VALUES.TRANSACTION_PK.eq(transactionPk))
+                .orderBy(TRANSACTION_METER_VALUES.EVENT_TIMESTAMP.desc())
+                .limit(1)
+                .fetchOneInto(Double.class);
+
+        return lastEnergy;
+    }
+
+    public Double retrieveCurrentTransactionPreviewsCurrent(Integer connectorPk, Integer transactionPk) {
+        Double lastEnergy = dslContext
+                .select(TRANSACTION_METER_VALUES.CURRENT)
+                .from(TRANSACTION_METER_VALUES)
+                .where(TRANSACTION_METER_VALUES.CONNECTOR_PK.eq(connectorPk))
+                .and(TRANSACTION_METER_VALUES.TRANSACTION_PK.eq(transactionPk))
+                .orderBy(TRANSACTION_METER_VALUES.EVENT_TIMESTAMP.desc())
+                .limit(1)
+                .fetchOneInto(Double.class);
+
+        return lastEnergy;
+    }
+
+    public void insertConnectorEnergy(final String chargeBoxId, final Integer connectorId, final Integer transactionId, final String value, final DateTime valueTimeStamp) {
+        try {
+            dslContext.insertInto(TRANSACTION_CONNECTOR_ENERGY)
+                    .set(TRANSACTION_CONNECTOR_ENERGY.CHARGE_BOX_ID, chargeBoxId)
+                    .set(TRANSACTION_CONNECTOR_ENERGY.CONNECTOR_ID, connectorId)
+                    .set(TRANSACTION_CONNECTOR_ENERGY.TRANSACTION_ID, transactionId)
+                    .set(TRANSACTION_CONNECTOR_ENERGY.ENERGY_VALUE, normalizeMeterValue(value))
+                    .set(TRANSACTION_CONNECTOR_ENERGY.VALUE_TIMESTAMP, valueTimeStamp)
+                    .execute();
+        } catch (Exception e) {
+            log.error("Exception Occur In  insertConnectorEnergy {}", e.getMessage());
+        }
+    }
+
+    private String normalizeMeterValue(String value) {
+
+        if (value == null) {
+            return "0";
+        }
+
+        double d = Double.parseDouble(value);
+
+        if (d == (long) d) {
+            return String.valueOf((long) d);
+        }
+
+        return String.valueOf(d);
     }
 
 }

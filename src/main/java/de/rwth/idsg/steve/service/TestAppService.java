@@ -643,7 +643,7 @@ public class TestAppService {
             final Integer connectorId) {
 
         return "TYPE6".equalsIgnoreCase(
-                liveChargingData.isType6Charger(
+                testChargingData.isType6Charger(
                         chargeBoxId, connectorId));
     }
 

@@ -141,9 +141,11 @@ jooq\steve\db2\Keys.class
 de\rwth\idsg\steve\SteveConfiguration$DB.class
 de\rwth\idsg\steve\utils\ConnectorStatusFilter$Strategy$2.class
 de\rwth\idsg\steve\ocpp\ws\ocpp15\Ocpp15JacksonModule.class
+jooq\steve\db\tables\records\TransactionConnectorEnergyRecord.class
 de\rwth\idsg\steve\web\dto\ocpp\SingleChargePointSelect.class
 de\rwth\idsg\steve\ocpp\task\ChangeAvailabilityTask.class
 de\rwth\idsg\steve\web\controller\PaymentController$2.class
+de\rwth\idsg\steve\service\WalletTrackSettlementService.class
 jooq\steve\db\tables\ConnectorStatus$ConnectorStatusPath.class
 jooq\steve\db\tables\SchemaVersion.class
 de\rwth\idsg\steve\repository\dto\User.class
@@ -227,6 +229,7 @@ de\rwth\idsg\steve\repository\impl\UserRepositoryImpl.class
 de\rwth\idsg\steve\service\ExtractMac.class
 de\rwth\idsg\steve\utils\ConnectorStatusFilter.class
 de\rwth\idsg\steve\ocpp\converter\Server12to15.class
+de\rwth\idsg\steve\web\dto\ApiResponseDTO.class
 de\rwth\idsg\steve\repository\ReservationRepository.class
 de\rwth\idsg\steve\ocpp\soap\ClientProviderWithCache.class
 de\rwth\idsg\steve\web\dto\ocpp\ClearChargingProfileParams.class
@@ -311,6 +314,7 @@ de\rwth\idsg\steve\utils\ControllerHelper.class
 de\rwth\idsg\steve\web\LocalDateEditor.class
 de\rwth\idsg\steve\ocpp\ws\custom\WsSessionSelectStrategyEnum$1.class
 de\rwth\idsg\steve\service\NewResponseDTO.class
+de\rwth\idsg\steve\web\controller\WalletTrackSettlementController.class
 de\rwth\idsg\steve\repository\dto\TransactionStatusUpdate.class
 de\rwth\idsg\steve\web\dto\ocpp\DataTransferParams.class
 de\rwth\idsg\steve\ocpp\task\ClearChargingProfileTask$1.class
@@ -474,6 +478,7 @@ de\rwth\idsg\steve\ocpp\ws\pipeline\Sender.class
 de\rwth\idsg\steve\repository\ReservationStatus.class
 de\rwth\idsg\steve\externalconfig\CheckIsSessionClosedTransaction.class
 de\rwth\idsg\steve\ocpp\task\DataTransferTask$ResponseWrapper.class
+de\rwth\idsg\steve\service\dto\ChargerStationDTO.class
 de\rwth\idsg\steve\web\controller\UsersController.class
 de\rwth\idsg\steve\ocpp\ws\ocpp12\Ocpp12WebSocketEndpoint$Ocpp12CallHandler.class
 de\rwth\idsg\steve\repository\dto\InsertConnectorStatusParams$InsertConnectorStatusParamsBuilder.class
@@ -492,6 +497,7 @@ de\rwth\idsg\steve\web\dto\ocpp\GetDiagnosticsParams.class
 jooq\steve\db\tables\PaymentRequest.class
 de\rwth\idsg\steve\web\validation\IdTagValidator.class
 jooq\steve\db\tables\TransactionStart.class
+jooq\steve\db\tables\TransactionConnectorEnergy.class
 jooq\steve\db\tables\records\TransactionStartRecord.class
 de\rwth\idsg\steve\ocpp\soap\MessageIdInterceptor.class
 de\rwth\idsg\steve\repository\dto\ChargePoint.class

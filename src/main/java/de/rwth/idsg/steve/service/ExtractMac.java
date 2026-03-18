@@ -49,24 +49,24 @@ public class ExtractMac {
     }
 
     public void insertVid(final String idTag, final String vid) {
-        boolean exists = dslContext.fetchExists(
-                dslContext.selectOne()
-                        .from(VEHICLE)
-                        .where(VEHICLE.ID_TAG.eq(idTag))
-                        .and(VEHICLE.VID_NUMBER.eq(vid))
-        );
-        if (!exists) {
+
+        var record = dslContext
+                .selectFrom(VEHICLE)
+                .where(VEHICLE.VID_NUMBER.eq(vid))
+                .fetchOne();
+        System.out.println("record : " + record);
+        if (record == null) {
             dslContext.insertInto(VEHICLE)
                     .set(VEHICLE.ID_TAG, idTag)
                     .set(VEHICLE.VID_NUMBER, vid)
                     .execute();
-        } else {
+        } else if (!record.getIsEnable()) {
             dslContext.update(VEHICLE)
                     .set(VEHICLE.ID_TAG, idTag)
                     .where(VEHICLE.VID_NUMBER.eq(vid))
-                    .and(VEHICLE.IS_ENABLE_AUTO_CHARGING.eq(false))
                     .execute();
         }
+
     }
 
 

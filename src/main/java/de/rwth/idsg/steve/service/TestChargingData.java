@@ -97,7 +97,7 @@ public class TestChargingData {
     private static final Field<byte[]> VEHICLE_HUB_IMAGE = DSL.field("user_image", byte[].class).as("hubImage");
 
 
-    public void liveChargingDataAsync(String chargeBoxId,
+    public void liveChargingData(String chargeBoxId,
                                       Integer connectorId,
                                       Integer transactionId,
                                       String idTag) {
@@ -263,6 +263,21 @@ public class TestChargingData {
                     .orElse(null);   // No record found
         } catch (Exception ex) {
             log.error("Failed to fetch charger");
+            return null;
+        }
+    }
+
+    public String retrievePhoneUseIdTag(final String idTag) {
+        try {
+            return php
+                    .select(MOBILE_NUMBER)
+                    .from(USER_AND_VEHICLE_DETAILS_VIEW)
+                    .where(IDTAG.eq(idTag))
+                    .fetchOptional(MOBILE_NUMBER)
+                    .orElse(null);   // return null if not found
+
+        } catch (Exception e) {
+            log.error("Failed to fetch phone for idTag={}", idTag, e);
             return null;
         }
     }
