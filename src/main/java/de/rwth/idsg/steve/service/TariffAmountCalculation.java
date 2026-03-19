@@ -120,7 +120,7 @@ public class TariffAmountCalculation {
                 }
 
             } else if ((totalConsumedAmount + 30) >= walletBalance) {
-                if (!chargerFeeExceptUserService.testChargerFeeExceptUser(idTag, chargeBoxId)) {
+                if (!chargerFeeExceptUserService.liveChargerFeeExceptUser(idTag, chargeBoxId)) {
                     stopTransaction.manuallyStopTransaction(chargeBoxId, transactionId, "Low Wallet");
                 }
             }
@@ -329,7 +329,7 @@ public class TariffAmountCalculation {
      */
     private TariffResponse fetchTariffResponse(String chargerId) {
         try {
-            String url = TEST_TARIFF_API_URL + chargerId;
+            String url = LIVE_TARIFF_API_URL + chargerId;
             TariffResponse response = restTemplate.getForObject(url, TariffResponse.class);
             if (response == null || response.getTariffs() == null || response.getTariffs().isEmpty()) {
                 throw new RuntimeException("No tariff data for charger: " + chargerId);
@@ -382,7 +382,7 @@ public class TariffAmountCalculation {
 
     public Double retrieveUserWalletAmount(String idTag) {
         try {
-            String url = TEST_WALLET_API_URL + idTag;
+            String url = LIVE_WALLET_API_URL + idTag;
             WalletResponse response = restTemplate.getForObject(url, WalletResponse.class);
             if (response == null) {
                 // throw new RuntimeException("No wallet data received for idTag: " + idTag);

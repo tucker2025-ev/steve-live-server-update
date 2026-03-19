@@ -423,7 +423,7 @@ public class OcppServerRepositoryImpl implements OcppServerRepository {
                 closeSettlementTransaction(p.getTransactionId(), retrieveChargedAmount(p.getTransactionId()));
             }
 
-            if (chargerFeeExceptUserService.testChargerFeeExceptUser(idTag, p.getChargeBoxId())) {
+            if (chargerFeeExceptUserService.liveChargerFeeExceptUser(idTag, p.getChargeBoxId())) {
                 updateChargeFeeExpectUserConsumedAmountUpdateZero(idTag, p.getTransactionId());
             }
             updateScheduleCharging(p.getChargeBoxId(), connectorPk, idTag, reason);

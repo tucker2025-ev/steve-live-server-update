@@ -355,7 +355,7 @@ public class CentralSystemService16_SoapServer implements CentralSystemService {
             dslContext.update(TRANSACTION_START)
                     .set(TRANSACTION_START.START_TYPE, startType)
                     .set(TRANSACTION_START.START_TAG_ID, idTag)
-                    .set(TRANSACTION_START.START_SERVER, "Test")
+                    .set(TRANSACTION_START.START_SERVER, "LIVE")
                     .where(TRANSACTION_START.TRANSACTION_PK.eq(txId))
                     .execute();
 
