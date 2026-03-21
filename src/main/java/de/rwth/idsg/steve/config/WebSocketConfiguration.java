@@ -20,6 +20,7 @@ package de.rwth.idsg.steve.config;
 
 import com.google.common.collect.Lists;
 import de.rwth.idsg.steve.ocpp.ws.OcppWebSocketHandshakeHandler;
+import de.rwth.idsg.steve.ocpp.ws.flutter.FlutterWebSocketHandler;
 import de.rwth.idsg.steve.ocpp.ws.ocpp12.Ocpp12WebSocketEndpoint;
 import de.rwth.idsg.steve.ocpp.ws.ocpp15.Ocpp15WebSocketEndpoint;
 import de.rwth.idsg.steve.ocpp.ws.ocpp16.Ocpp16WebSocketEndpoint;
@@ -54,6 +55,9 @@ public class WebSocketConfiguration implements WebSocketConfigurer {
     @Autowired
     private Ocpp16WebSocketEndpoint ocpp16WebSocketEndpoint;
 
+    @Autowired
+    private FlutterWebSocketHandler flutterWebSocketHandler;
+
     public static final String PATH_INFIX = "/tuckermotors/";
     public static final long PING_INTERVAL = TimeUnit.MINUTES.toMinutes(1);
     public static final Duration IDLE_TIMEOUT = Duration.ofHours(2);
@@ -70,6 +74,8 @@ public class WebSocketConfiguration implements WebSocketConfigurer {
 
         registry.addHandler(handshakeHandler.getDummyWebSocketHandler(), PATH_INFIX + "*")
                 .setHandshakeHandler(handshakeHandler)
+                .setAllowedOrigins("*");
+        registry.addHandler(flutterWebSocketHandler, "/flutter/*")
                 .setAllowedOrigins("*");
     }
 }

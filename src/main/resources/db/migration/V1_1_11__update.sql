@@ -1,0 +1,6 @@
+CREATE TABLE test_bench_log (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    charge_box_id VARCHAR(100) NOT NULL,
+    time_stamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    message TEXT NOT NULL
+);

@@ -423,7 +423,7 @@ public class OcppServerRepositoryImpl implements OcppServerRepository {
                 closeSettlementTransaction(p.getTransactionId(), retrieveChargedAmount(p.getTransactionId()));
             }
 
-            if (chargerFeeExceptUserService.liveChargerFeeExceptUser(idTag, p.getChargeBoxId())) {
+            if (chargerFeeExceptUserService.testChargerFeeExceptUser(idTag, p.getChargeBoxId())) {
                 updateChargeFeeExpectUserConsumedAmountUpdateZero(idTag, p.getTransactionId());
             }
             updateScheduleCharging(p.getChargeBoxId(), connectorPk, idTag, reason);
@@ -911,7 +911,7 @@ public class OcppServerRepositoryImpl implements OcppServerRepository {
         String testInvoiceURL = "http://15.207.37.132/new/inv.php?transid=" + transactionId;
 
         ctx.update(PAYMENT_REQUEST)
-                .set(PAYMENT_REQUEST.INVOICE_URL, liveInvoiceURL)
+                .set(PAYMENT_REQUEST.INVOICE_URL, testInvoiceURL)
                 .where(PAYMENT_REQUEST.RRNID.eq(payId))
                 .execute();
 

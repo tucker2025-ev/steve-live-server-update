@@ -25,6 +25,7 @@ import jooq.steve.db.tables.RfidCard;
 import jooq.steve.db.tables.ScheduleCharging;
 import jooq.steve.db.tables.SchemaVersion;
 import jooq.steve.db.tables.Settings;
+import jooq.steve.db.tables.TestBenchLog;
 import jooq.steve.db.tables.Transaction;
 import jooq.steve.db.tables.TransactionConnectorEnergy;
 import jooq.steve.db.tables.TransactionEnergyMismatchLog;
@@ -147,6 +148,11 @@ public class Stevedb extends SchemaImpl {
     public final Settings SETTINGS = Settings.SETTINGS;
 
     /**
+     * The table <code>stevedb.test_bench_log</code>.
+     */
+    public final TestBenchLog TEST_BENCH_LOG = TestBenchLog.TEST_BENCH_LOG;
+
+    /**
      * VIEW
      */
     public final Transaction TRANSACTION = Transaction.TRANSACTION;
@@ -240,6 +246,7 @@ public class Stevedb extends SchemaImpl {
             ScheduleCharging.SCHEDULE_CHARGING,
             SchemaVersion.SCHEMA_VERSION,
             Settings.SETTINGS,
+            TestBenchLog.TEST_BENCH_LOG,
             Transaction.TRANSACTION,
             TransactionConnectorEnergy.TRANSACTION_CONNECTOR_ENERGY,
             TransactionEnergyMismatchLog.TRANSACTION_ENERGY_MISMATCH_LOG,

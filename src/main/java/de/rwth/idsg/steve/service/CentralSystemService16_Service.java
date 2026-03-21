@@ -424,6 +424,9 @@ public class CentralSystemService16_Service {
                     null,
                     () -> new IdTagInfo().withStatus(AuthorizationStatus.INVALID)
             );
+            if (idTagInfo == null || idTagInfo.getStatus() == null) {
+                idTagInfo = new IdTagInfo().withStatus(AuthorizationStatus.INVALID);
+            }
 
             return new AuthorizeResponse().withIdTagInfo(idTagInfo);
 

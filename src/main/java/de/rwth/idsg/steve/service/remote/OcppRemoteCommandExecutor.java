@@ -59,7 +59,6 @@ public class OcppRemoteCommandExecutor {
             RemoteStartTransactionParams params,
             String idTag
     ) {
-
         CompletableFuture<Boolean> future = new CompletableFuture<>();
 
         ChargePointSelect select =

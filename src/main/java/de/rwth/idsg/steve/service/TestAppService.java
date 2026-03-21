@@ -580,7 +580,7 @@ public class TestAppService {
         return buildResponse(false, response);
     }
 
-    private ResponseDTO buildFinalStartResponse(
+    public ResponseDTO buildFinalStartResponse(
             final boolean started,
             final String connectorQrCode,
             final int connectorId,

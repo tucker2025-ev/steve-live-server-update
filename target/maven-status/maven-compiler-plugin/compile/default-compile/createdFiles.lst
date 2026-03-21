@@ -53,6 +53,7 @@ de\rwth\idsg\steve\ocpp\task\ChangeConfigurationTask.class
 de\rwth\idsg\steve\ocpp\ws\SessionContextStore.class
 de\rwth\idsg\steve\repository\dto\ChargePoint$Overview.class
 de\rwth\idsg\steve\repository\dto\MailSettings$MailSettingsBuilder.class
+de\rwth\idsg\steve\ocpp\ws\flutter\OcppMessageStore.class
 de\rwth\idsg\steve\repository\dto\UpdateChargeboxParams$UpdateChargeboxParamsBuilder.class
 de\rwth\idsg\steve\ocpp\task\GetCompositeScheduleTask$1.class
 de\rwth\idsg\steve\service\notification\OcppStationWebSocketConnected.class
@@ -174,6 +175,7 @@ de\rwth\idsg\steve\ocpp\task\SetChargingProfileTask$1.class
 de\rwth\idsg\steve\repository\dto\ChargePointSelect.class
 de\rwth\idsg\steve\ocpp\ws\ocpp16\Ocpp16JacksonModule.class
 de\rwth\idsg\steve\ocpp\ws\AbstractWebSocketEndpoint.class
+jooq\steve\db\tables\TestBenchLog.class
 de\rwth\idsg\steve\utils\mapper\UserFormMapper.class
 jooq\steve\db\Indexes.class
 jooq\steve\db\tables\records\ReservationRecord.class
@@ -398,6 +400,7 @@ de\rwth\idsg\steve\service\dto\UserDTO.class
 de\rwth\idsg\steve\web\controller\ChargerServerStausController.class
 de\rwth\idsg\steve\repository\impl\ReservationRepositoryImpl.class
 de\rwth\idsg\steve\web\dto\UserSex.class
+jooq\steve\db\tables\records\TestBenchLogRecord.class
 de\rwth\idsg\steve\web\dto\ocpp\AvailabilityType.class
 de\rwth\idsg\steve\utils\OcppTagActivityRecordUtils.class
 de\rwth\idsg\steve\web\dto\PaymentStartResponse.class
@@ -491,6 +494,7 @@ de\rwth\idsg\steve\repository\dto\UpdateTransactionParams$UpdateTransactionParam
 de\rwth\idsg\steve\ocpp\ws\FutureResponseContextStore.class
 de\rwth\idsg\steve\ocpp\ws\pipeline\Deserializer.class
 de\rwth\idsg\steve\service\BackgroundService.class
+de\rwth\idsg\steve\ocpp\ws\flutter\FlutterWebSocketHandler.class
 de\rwth\idsg\steve\ocpp\converter\Server12to15Impl.class
 de\rwth\idsg\steve\ocpp\ws\pipeline\Deserializer$1.class
 de\rwth\idsg\steve\web\dto\ocpp\GetDiagnosticsParams.class
@@ -562,6 +566,7 @@ de\rwth\idsg\steve\web\dto\ocpp\GetConfigurationParams.class
 de\rwth\idsg\steve\ocpp\ws\data\OcppJsonResponse.class
 de\rwth\idsg\steve\ocpp\ws\data\CommunicationContext$DummyResponse.class
 jooq\steve\db\tables\records\ConnectorMeterValueRecord.class
+de\rwth\idsg\steve\ocpp\ws\flutter\ErrorResponseDTO.class
 jooq\steve\db2\tables\ChargeboxStatus.class
 de\rwth\idsg\steve\repository\dto\InsertConnectorStatusParams.class
 de\rwth\idsg\steve\service\HomeService.class

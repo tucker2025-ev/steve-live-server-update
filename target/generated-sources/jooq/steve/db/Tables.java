@@ -22,6 +22,7 @@ import jooq.steve.db.tables.RfidCard;
 import jooq.steve.db.tables.ScheduleCharging;
 import jooq.steve.db.tables.SchemaVersion;
 import jooq.steve.db.tables.Settings;
+import jooq.steve.db.tables.TestBenchLog;
 import jooq.steve.db.tables.Transaction;
 import jooq.steve.db.tables.TransactionConnectorEnergy;
 import jooq.steve.db.tables.TransactionEnergyMismatchLog;
@@ -131,6 +132,11 @@ public class Tables {
      * The table <code>stevedb.settings</code>.
      */
     public static final Settings SETTINGS = Settings.SETTINGS;
+
+    /**
+     * The table <code>stevedb.test_bench_log</code>.
+     */
+    public static final TestBenchLog TEST_BENCH_LOG = TestBenchLog.TEST_BENCH_LOG;
 
     /**
      * VIEW
