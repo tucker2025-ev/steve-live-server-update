@@ -17,7 +17,6 @@ import jooq.steve.db.tables.ChargingFeeExemptChargebox.ChargingFeeExemptChargebo
 import jooq.steve.db.tables.OcppTag.OcppTagPath;
 import jooq.steve.db.tables.Reservation.ReservationPath;
 import jooq.steve.db.tables.RfidCard.RfidCardPath;
-import jooq.steve.db.tables.TransactionStart.TransactionStartPath;
 import jooq.steve.db.tables.User.UserPath;
 import jooq.steve.db.tables.Vehicle.VehiclePath;
 import jooq.steve.db.tables.records.OcppTagRecord;
@@ -81,12 +80,12 @@ public class OcppTag extends TableImpl<OcppTagRecord> {
     /**
      * The column <code>stevedb.ocpp_tag.parent_id_tag</code>.
      */
-    public final TableField<OcppTagRecord, String> PARENT_ID_TAG = createField(DSL.name("parent_id_tag"), SQLDataType.VARCHAR(255), this, "");
+    public final TableField<OcppTagRecord, String> PARENT_ID_TAG = createField(DSL.name("parent_id_tag"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>stevedb.ocpp_tag.expiry_date</code>.
      */
-    public final TableField<OcppTagRecord, DateTime> EXPIRY_DATE = createField(DSL.name("expiry_date"), SQLDataType.TIMESTAMP(6), this, "", new DateTimeConverter());
+    public final TableField<OcppTagRecord, DateTime> EXPIRY_DATE = createField(DSL.name("expiry_date"), SQLDataType.TIMESTAMP(6).defaultValue(DSL.inline("NULL", SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     /**
      * The column <code>stevedb.ocpp_tag.max_active_transaction_count</code>.
@@ -96,7 +95,7 @@ public class OcppTag extends TableImpl<OcppTagRecord> {
     /**
      * The column <code>stevedb.ocpp_tag.note</code>.
      */
-    public final TableField<OcppTagRecord, String> NOTE = createField(DSL.name("note"), SQLDataType.CLOB, this, "");
+    public final TableField<OcppTagRecord, String> NOTE = createField(DSL.name("note"), SQLDataType.CLOB.defaultValue(DSL.inline("NULL", SQLDataType.CLOB)), this, "");
 
     private OcppTag(Name alias, Table<OcppTagRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);
@@ -251,19 +250,6 @@ public class OcppTag extends TableImpl<OcppTagRecord> {
             _rfidCard = new RfidCardPath(this, null, Keys.FK_RFID_CARD_ID_TAG.getInverseKey());
 
         return _rfidCard;
-    }
-
-    private transient TransactionStartPath _transactionStart;
-
-    /**
-     * Get the implicit to-many join path to the
-     * <code>stevedb.transaction_start</code> table
-     */
-    public TransactionStartPath transactionStart() {
-        if (_transactionStart == null)
-            _transactionStart = new TransactionStartPath(this, null, Keys.FK_TRANSACTION_OCPP_TAG_ID_TAG.getInverseKey());
-
-        return _transactionStart;
     }
 
     private transient VehiclePath _vehicle;

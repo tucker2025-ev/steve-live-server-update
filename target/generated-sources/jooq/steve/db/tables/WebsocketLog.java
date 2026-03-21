@@ -61,37 +61,37 @@ public class WebsocketLog extends TableImpl<WebsocketLogRecord> {
     /**
      * The column <code>stevedb.websocket_log.time</code>.
      */
-    public final TableField<WebsocketLogRecord, DateTime> TIME = createField(DSL.name("time"), SQLDataType.TIMESTAMP(3), this, "", new DateTimeConverter());
+    public final TableField<WebsocketLogRecord, DateTime> TIME = createField(DSL.name("time"), SQLDataType.TIMESTAMP(3).defaultValue(DSL.inline("NULL", SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     /**
      * The column <code>stevedb.websocket_log.charge_box_id</code>.
      */
-    public final TableField<WebsocketLogRecord, String> CHARGE_BOX_ID = createField(DSL.name("charge_box_id"), SQLDataType.VARCHAR(64), this, "");
+    public final TableField<WebsocketLogRecord, String> CHARGE_BOX_ID = createField(DSL.name("charge_box_id"), SQLDataType.VARCHAR(64).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>stevedb.websocket_log.session_id</code>.
      */
-    public final TableField<WebsocketLogRecord, String> SESSION_ID = createField(DSL.name("session_id"), SQLDataType.VARCHAR(100), this, "");
+    public final TableField<WebsocketLogRecord, String> SESSION_ID = createField(DSL.name("session_id"), SQLDataType.VARCHAR(100).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>stevedb.websocket_log.transaction_id</code>.
      */
-    public final TableField<WebsocketLogRecord, String> TRANSACTION_ID = createField(DSL.name("transaction_id"), SQLDataType.VARCHAR(64), this, "");
+    public final TableField<WebsocketLogRecord, String> TRANSACTION_ID = createField(DSL.name("transaction_id"), SQLDataType.VARCHAR(64).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>stevedb.websocket_log.event</code>.
      */
-    public final TableField<WebsocketLogRecord, String> EVENT = createField(DSL.name("event"), SQLDataType.VARCHAR(100), this, "");
+    public final TableField<WebsocketLogRecord, String> EVENT = createField(DSL.name("event"), SQLDataType.VARCHAR(100).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>stevedb.websocket_log.payload</code>.
      */
-    public final TableField<WebsocketLogRecord, String> PAYLOAD = createField(DSL.name("payload"), SQLDataType.CLOB, this, "");
+    public final TableField<WebsocketLogRecord, String> PAYLOAD = createField(DSL.name("payload"), SQLDataType.CLOB.defaultValue(DSL.inline("NULL", SQLDataType.CLOB)), this, "");
 
     /**
      * The column <code>stevedb.websocket_log.direction</code>.
      */
-    public final TableField<WebsocketLogRecord, String> DIRECTION = createField(DSL.name("direction"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<WebsocketLogRecord, String> DIRECTION = createField(DSL.name("direction"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     private WebsocketLog(Name alias, Table<WebsocketLogRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);

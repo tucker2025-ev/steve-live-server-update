@@ -62,109 +62,109 @@ public class WalletTrackSettlement extends TableImpl<WalletTrackSettlementRecord
      * The column
      * <code>ev_history.wallet_track_settlement.transaction_id</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, Integer> TRANSACTION_ID = createField(DSL.name("transaction_id"), SQLDataType.INTEGER, this, "");
+    public final TableField<WalletTrackSettlementRecord, Integer> TRANSACTION_ID = createField(DSL.name("transaction_id"), SQLDataType.INTEGER.defaultValue(DSL.inline("NULL", SQLDataType.INTEGER)), this, "");
 
     /**
      * The column <code>ev_history.wallet_track_settlement.station_id</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, String> STATION_ID = createField(DSL.name("station_id"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<WalletTrackSettlementRecord, String> STATION_ID = createField(DSL.name("station_id"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.wallet_track_settlement.cpo_id</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, String> CPO_ID = createField(DSL.name("cpo_id"), SQLDataType.VARCHAR(10), this, "");
+    public final TableField<WalletTrackSettlementRecord, String> CPO_ID = createField(DSL.name("cpo_id"), SQLDataType.VARCHAR(10).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.wallet_track_settlement.station_name</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, String> STATION_NAME = createField(DSL.name("station_name"), SQLDataType.VARCHAR(100), this, "");
+    public final TableField<WalletTrackSettlementRecord, String> STATION_NAME = createField(DSL.name("station_name"), SQLDataType.VARCHAR(100).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.wallet_track_settlement.station_city</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, String> STATION_CITY = createField(DSL.name("station_city"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<WalletTrackSettlementRecord, String> STATION_CITY = createField(DSL.name("station_city"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.wallet_track_settlement.station_state</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, String> STATION_STATE = createField(DSL.name("station_state"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<WalletTrackSettlementRecord, String> STATION_STATE = createField(DSL.name("station_state"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.wallet_track_settlement.id_tag</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, String> ID_TAG = createField(DSL.name("id_tag"), SQLDataType.VARCHAR(100), this, "");
+    public final TableField<WalletTrackSettlementRecord, String> ID_TAG = createField(DSL.name("id_tag"), SQLDataType.VARCHAR(100).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.wallet_track_settlement.charger_id</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, String> CHARGER_ID = createField(DSL.name("charger_id"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<WalletTrackSettlementRecord, String> CHARGER_ID = createField(DSL.name("charger_id"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column
      * <code>ev_history.wallet_track_settlement.charger_qr_code</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, String> CHARGER_QR_CODE = createField(DSL.name("charger_qr_code"), SQLDataType.VARCHAR(100), this, "");
+    public final TableField<WalletTrackSettlementRecord, String> CHARGER_QR_CODE = createField(DSL.name("charger_qr_code"), SQLDataType.VARCHAR(100).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.wallet_track_settlement.con_no</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, Integer> CON_NO = createField(DSL.name("con_no"), SQLDataType.INTEGER, this, "");
+    public final TableField<WalletTrackSettlementRecord, Integer> CON_NO = createField(DSL.name("con_no"), SQLDataType.INTEGER.defaultValue(DSL.inline("NULL", SQLDataType.INTEGER)), this, "");
 
     /**
      * The column <code>ev_history.wallet_track_settlement.start_energy</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, Double> START_ENERGY = createField(DSL.name("start_energy"), SQLDataType.DOUBLE, this, "");
+    public final TableField<WalletTrackSettlementRecord, Double> START_ENERGY = createField(DSL.name("start_energy"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column <code>ev_history.wallet_track_settlement.tariff_amount</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, Double> TARIFF_AMOUNT = createField(DSL.name("tariff_amount"), SQLDataType.DOUBLE, this, "");
+    public final TableField<WalletTrackSettlementRecord, Double> TARIFF_AMOUNT = createField(DSL.name("tariff_amount"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column
      * <code>ev_history.wallet_track_settlement.gst_with_tariff_amount</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, Double> GST_WITH_TARIFF_AMOUNT = createField(DSL.name("gst_with_tariff_amount"), SQLDataType.DOUBLE, this, "");
+    public final TableField<WalletTrackSettlementRecord, Double> GST_WITH_TARIFF_AMOUNT = createField(DSL.name("gst_with_tariff_amount"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column <code>ev_history.wallet_track_settlement.last_energy</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, Double> LAST_ENERGY = createField(DSL.name("last_energy"), SQLDataType.DOUBLE, this, "");
+    public final TableField<WalletTrackSettlementRecord, Double> LAST_ENERGY = createField(DSL.name("last_energy"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column <code>ev_history.wallet_track_settlement.wallet_amount</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, Double> WALLET_AMOUNT = createField(DSL.name("wallet_amount"), SQLDataType.DOUBLE, this, "");
+    public final TableField<WalletTrackSettlementRecord, Double> WALLET_AMOUNT = createField(DSL.name("wallet_amount"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column
      * <code>ev_history.wallet_track_settlement.consumed_energy</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, Double> CONSUMED_ENERGY = createField(DSL.name("consumed_energy"), SQLDataType.DOUBLE, this, "");
+    public final TableField<WalletTrackSettlementRecord, Double> CONSUMED_ENERGY = createField(DSL.name("consumed_energy"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column
      * <code>ev_history.wallet_track_settlement.consumed_amount</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, Double> CONSUMED_AMOUNT = createField(DSL.name("consumed_amount"), SQLDataType.DOUBLE, this, "");
+    public final TableField<WalletTrackSettlementRecord, Double> CONSUMED_AMOUNT = createField(DSL.name("consumed_amount"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column
      * <code>ev_history.wallet_track_settlement.total_consumed_amount</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, Double> TOTAL_CONSUMED_AMOUNT = createField(DSL.name("total_consumed_amount"), SQLDataType.DOUBLE, this, "");
+    public final TableField<WalletTrackSettlementRecord, Double> TOTAL_CONSUMED_AMOUNT = createField(DSL.name("total_consumed_amount"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column
      * <code>ev_history.wallet_track_settlement.start_timestamp</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, DateTime> START_TIMESTAMP = createField(DSL.name("start_timestamp"), SQLDataType.TIMESTAMP(6), this, "", new DateTimeConverter());
+    public final TableField<WalletTrackSettlementRecord, DateTime> START_TIMESTAMP = createField(DSL.name("start_timestamp"), SQLDataType.TIMESTAMP(6).defaultValue(DSL.inline("NULL", SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     /**
      * The column
      * <code>ev_history.wallet_track_settlement.stop_timestamp</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, DateTime> STOP_TIMESTAMP = createField(DSL.name("stop_timestamp"), SQLDataType.TIMESTAMP(6), this, "", new DateTimeConverter());
+    public final TableField<WalletTrackSettlementRecord, DateTime> STOP_TIMESTAMP = createField(DSL.name("stop_timestamp"), SQLDataType.TIMESTAMP(6).defaultValue(DSL.inline("NULL", SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     /**
      * The column
@@ -176,25 +176,25 @@ public class WalletTrackSettlement extends TableImpl<WalletTrackSettlementRecord
      * The column
      * <code>ev_history.wallet_track_settlement.dealer_unit_cost</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, Double> DEALER_UNIT_COST = createField(DSL.name("dealer_unit_cost"), SQLDataType.DOUBLE, this, "");
+    public final TableField<WalletTrackSettlementRecord, Double> DEALER_UNIT_COST = createField(DSL.name("dealer_unit_cost"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column
      * <code>ev_history.wallet_track_settlement.dealer_total_amount</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, Double> DEALER_TOTAL_AMOUNT = createField(DSL.name("dealer_total_amount"), SQLDataType.DOUBLE, this, "");
+    public final TableField<WalletTrackSettlementRecord, Double> DEALER_TOTAL_AMOUNT = createField(DSL.name("dealer_total_amount"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column
      * <code>ev_history.wallet_track_settlement.customer_share_amount</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, Double> CUSTOMER_SHARE_AMOUNT = createField(DSL.name("customer_share_amount"), SQLDataType.DOUBLE, this, "");
+    public final TableField<WalletTrackSettlementRecord, Double> CUSTOMER_SHARE_AMOUNT = createField(DSL.name("customer_share_amount"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column
      * <code>ev_history.wallet_track_settlement.total_share_amount</code>.
      */
-    public final TableField<WalletTrackSettlementRecord, Double> TOTAL_SHARE_AMOUNT = createField(DSL.name("total_share_amount"), SQLDataType.DOUBLE, this, "");
+    public final TableField<WalletTrackSettlementRecord, Double> TOTAL_SHARE_AMOUNT = createField(DSL.name("total_share_amount"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     private WalletTrackSettlement(Name alias, Table<WalletTrackSettlementRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);

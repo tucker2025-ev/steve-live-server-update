@@ -6,7 +6,9 @@ package jooq.steve.db2.tables;
 
 import de.rwth.idsg.steve.utils.DateTimeConverter;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import jooq.steve.db2.EvHistory;
 import jooq.steve.db2.Keys;
@@ -61,255 +63,255 @@ public class LiveChargingData extends TableImpl<LiveChargingDataRecord> {
     /**
      * The column <code>ev_history.live_charging_data.id_tag</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> ID_TAG = createField(DSL.name("id_tag"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<LiveChargingDataRecord, String> ID_TAG = createField(DSL.name("id_tag"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.transaction_id</code>.
      */
-    public final TableField<LiveChargingDataRecord, Integer> TRANSACTION_ID = createField(DSL.name("transaction_id"), SQLDataType.INTEGER, this, "");
+    public final TableField<LiveChargingDataRecord, Integer> TRANSACTION_ID = createField(DSL.name("transaction_id"), SQLDataType.INTEGER.defaultValue(DSL.inline("NULL", SQLDataType.INTEGER)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.charge_box_id</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> CHARGE_BOX_ID = createField(DSL.name("charge_box_id"), SQLDataType.VARCHAR(30), this, "");
+    public final TableField<LiveChargingDataRecord, String> CHARGE_BOX_ID = createField(DSL.name("charge_box_id"), SQLDataType.VARCHAR(30).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.connector_id</code>.
      */
-    public final TableField<LiveChargingDataRecord, Integer> CONNECTOR_ID = createField(DSL.name("connector_id"), SQLDataType.INTEGER, this, "");
+    public final TableField<LiveChargingDataRecord, Integer> CONNECTOR_ID = createField(DSL.name("connector_id"), SQLDataType.INTEGER.defaultValue(DSL.inline("NULL", SQLDataType.INTEGER)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.charger_qr_code</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> CHARGER_QR_CODE = createField(DSL.name("charger_qr_code"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<LiveChargingDataRecord, String> CHARGER_QR_CODE = createField(DSL.name("charger_qr_code"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.station_id</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> STATION_ID = createField(DSL.name("station_id"), SQLDataType.VARCHAR(20), this, "");
+    public final TableField<LiveChargingDataRecord, String> STATION_ID = createField(DSL.name("station_id"), SQLDataType.VARCHAR(20).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.station_name</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> STATION_NAME = createField(DSL.name("station_name"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<LiveChargingDataRecord, String> STATION_NAME = createField(DSL.name("station_name"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.station_mobile</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> STATION_MOBILE = createField(DSL.name("station_mobile"), SQLDataType.VARCHAR(20), this, "");
+    public final TableField<LiveChargingDataRecord, String> STATION_MOBILE = createField(DSL.name("station_mobile"), SQLDataType.VARCHAR(20).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.station_invoice</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> STATION_INVOICE = createField(DSL.name("station_invoice"), SQLDataType.VARCHAR(255), this, "");
+    public final TableField<LiveChargingDataRecord, String> STATION_INVOICE = createField(DSL.name("station_invoice"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.station_latitude</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> STATION_LATITUDE = createField(DSL.name("station_latitude"), SQLDataType.VARCHAR(20), this, "");
+    public final TableField<LiveChargingDataRecord, String> STATION_LATITUDE = createField(DSL.name("station_latitude"), SQLDataType.VARCHAR(20).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.station_longitude</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> STATION_LONGITUDE = createField(DSL.name("station_longitude"), SQLDataType.VARCHAR(20), this, "");
+    public final TableField<LiveChargingDataRecord, String> STATION_LONGITUDE = createField(DSL.name("station_longitude"), SQLDataType.VARCHAR(20).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.master_id</code>.
      */
-    public final TableField<LiveChargingDataRecord, Integer> MASTER_ID = createField(DSL.name("master_id"), SQLDataType.INTEGER, this, "");
+    public final TableField<LiveChargingDataRecord, Integer> MASTER_ID = createField(DSL.name("master_id"), SQLDataType.INTEGER.defaultValue(DSL.inline("NULL", SQLDataType.INTEGER)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.parent_id</code>.
      */
-    public final TableField<LiveChargingDataRecord, Integer> PARENT_ID = createField(DSL.name("parent_id"), SQLDataType.INTEGER, this, "");
+    public final TableField<LiveChargingDataRecord, Integer> PARENT_ID = createField(DSL.name("parent_id"), SQLDataType.INTEGER.defaultValue(DSL.inline("NULL", SQLDataType.INTEGER)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.cpo_id</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> CPO_ID = createField(DSL.name("cpo_id"), SQLDataType.VARCHAR(20), this, "");
+    public final TableField<LiveChargingDataRecord, String> CPO_ID = createField(DSL.name("cpo_id"), SQLDataType.VARCHAR(20).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column
      * <code>ev_history.live_charging_data.station_address_one</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> STATION_ADDRESS_ONE = createField(DSL.name("station_address_one"), SQLDataType.VARCHAR(255), this, "");
+    public final TableField<LiveChargingDataRecord, String> STATION_ADDRESS_ONE = createField(DSL.name("station_address_one"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column
      * <code>ev_history.live_charging_data.station_address_two</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> STATION_ADDRESS_TWO = createField(DSL.name("station_address_two"), SQLDataType.VARCHAR(255), this, "");
+    public final TableField<LiveChargingDataRecord, String> STATION_ADDRESS_TWO = createField(DSL.name("station_address_two"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.station_pincode</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> STATION_PINCODE = createField(DSL.name("station_pincode"), SQLDataType.VARCHAR(6), this, "");
+    public final TableField<LiveChargingDataRecord, String> STATION_PINCODE = createField(DSL.name("station_pincode"), SQLDataType.VARCHAR(6).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.station_state</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> STATION_STATE = createField(DSL.name("station_state"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<LiveChargingDataRecord, String> STATION_STATE = createField(DSL.name("station_state"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.station_country</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> STATION_COUNTRY = createField(DSL.name("station_country"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<LiveChargingDataRecord, String> STATION_COUNTRY = createField(DSL.name("station_country"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.user_name</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> USER_NAME = createField(DSL.name("user_name"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<LiveChargingDataRecord, String> USER_NAME = createField(DSL.name("user_name"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.user_cms_id</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> USER_CMS_ID = createField(DSL.name("user_cms_id"), SQLDataType.VARCHAR(20), this, "");
+    public final TableField<LiveChargingDataRecord, String> USER_CMS_ID = createField(DSL.name("user_cms_id"), SQLDataType.VARCHAR(20).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.user_email</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> USER_EMAIL = createField(DSL.name("user_email"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<LiveChargingDataRecord, String> USER_EMAIL = createField(DSL.name("user_email"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.user_mobile_no</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> USER_MOBILE_NO = createField(DSL.name("user_mobile_no"), SQLDataType.VARCHAR(15), this, "");
+    public final TableField<LiveChargingDataRecord, String> USER_MOBILE_NO = createField(DSL.name("user_mobile_no"), SQLDataType.VARCHAR(15).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.user_wallet_amount</code>.
      */
-    public final TableField<LiveChargingDataRecord, Double> USER_WALLET_AMOUNT = createField(DSL.name("user_wallet_amount"), SQLDataType.DOUBLE, this, "");
+    public final TableField<LiveChargingDataRecord, Double> USER_WALLET_AMOUNT = createField(DSL.name("user_wallet_amount"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.user_address_one</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> USER_ADDRESS_ONE = createField(DSL.name("user_address_one"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<LiveChargingDataRecord, String> USER_ADDRESS_ONE = createField(DSL.name("user_address_one"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.user_address_two</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> USER_ADDRESS_TWO = createField(DSL.name("user_address_two"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<LiveChargingDataRecord, String> USER_ADDRESS_TWO = createField(DSL.name("user_address_two"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.user_city</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> USER_CITY = createField(DSL.name("user_city"), SQLDataType.VARCHAR(25), this, "");
+    public final TableField<LiveChargingDataRecord, String> USER_CITY = createField(DSL.name("user_city"), SQLDataType.VARCHAR(25).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.user_state</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> USER_STATE = createField(DSL.name("user_state"), SQLDataType.VARCHAR(30), this, "");
+    public final TableField<LiveChargingDataRecord, String> USER_STATE = createField(DSL.name("user_state"), SQLDataType.VARCHAR(30).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.user_country</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> USER_COUNTRY = createField(DSL.name("user_country"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<LiveChargingDataRecord, String> USER_COUNTRY = createField(DSL.name("user_country"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column
      * <code>ev_history.live_charging_data.charging_vehicle_name</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> CHARGING_VEHICLE_NAME = createField(DSL.name("charging_vehicle_name"), SQLDataType.VARCHAR(75), this, "");
+    public final TableField<LiveChargingDataRecord, String> CHARGING_VEHICLE_NAME = createField(DSL.name("charging_vehicle_name"), SQLDataType.VARCHAR(75).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column
      * <code>ev_history.live_charging_data.charging_vehicle_number</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> CHARGING_VEHICLE_NUMBER = createField(DSL.name("charging_vehicle_number"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<LiveChargingDataRecord, String> CHARGING_VEHICLE_NUMBER = createField(DSL.name("charging_vehicle_number"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column
      * <code>ev_history.live_charging_data.charging_vehicle_model</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> CHARGING_VEHICLE_MODEL = createField(DSL.name("charging_vehicle_model"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<LiveChargingDataRecord, String> CHARGING_VEHICLE_MODEL = createField(DSL.name("charging_vehicle_model"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column
      * <code>ev_history.live_charging_data.charging_vehicle_type</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> CHARGING_VEHICLE_TYPE = createField(DSL.name("charging_vehicle_type"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<LiveChargingDataRecord, String> CHARGING_VEHICLE_TYPE = createField(DSL.name("charging_vehicle_type"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column
      * <code>ev_history.live_charging_data.charging_VEHICLE_IMG_URL</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> CHARGING_VEHICLE_IMG_URL = createField(DSL.name("charging_VEHICLE_IMG_URL"), SQLDataType.VARCHAR(100), this, "");
+    public final TableField<LiveChargingDataRecord, String> CHARGING_VEHICLE_IMG_URL = createField(DSL.name("charging_VEHICLE_IMG_URL"), SQLDataType.VARCHAR(100).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column
      * <code>ev_history.live_charging_data.charging_VEHICLE_HUB_IMAGE</code>.
      */
-    public final TableField<LiveChargingDataRecord, byte[]> CHARGING_VEHICLE_HUB_IMAGE = createField(DSL.name("charging_VEHICLE_HUB_IMAGE"), SQLDataType.BLOB, this, "");
+    public final TableField<LiveChargingDataRecord, byte[]> CHARGING_VEHICLE_HUB_IMAGE = createField(DSL.name("charging_VEHICLE_HUB_IMAGE"), SQLDataType.BLOB.defaultValue(DSL.inline("NULL", SQLDataType.BLOB)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.start_type</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> START_TYPE = createField(DSL.name("start_type"), SQLDataType.VARCHAR(25), this, "");
+    public final TableField<LiveChargingDataRecord, String> START_TYPE = createField(DSL.name("start_type"), SQLDataType.VARCHAR(25).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.stop_reason</code>.
      */
-    public final TableField<LiveChargingDataRecord, String> STOP_REASON = createField(DSL.name("stop_reason"), SQLDataType.VARCHAR(30), this, "");
+    public final TableField<LiveChargingDataRecord, String> STOP_REASON = createField(DSL.name("stop_reason"), SQLDataType.VARCHAR(30).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.start_energy</code>.
      */
-    public final TableField<LiveChargingDataRecord, Double> START_ENERGY = createField(DSL.name("start_energy"), SQLDataType.DOUBLE, this, "");
+    public final TableField<LiveChargingDataRecord, Double> START_ENERGY = createField(DSL.name("start_energy"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.end_energy</code>.
      */
-    public final TableField<LiveChargingDataRecord, Double> END_ENERGY = createField(DSL.name("end_energy"), SQLDataType.DOUBLE, this, "");
+    public final TableField<LiveChargingDataRecord, Double> END_ENERGY = createField(DSL.name("end_energy"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.start_power</code>.
      */
-    public final TableField<LiveChargingDataRecord, Double> START_POWER = createField(DSL.name("start_power"), SQLDataType.DOUBLE, this, "");
+    public final TableField<LiveChargingDataRecord, Double> START_POWER = createField(DSL.name("start_power"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.end_power</code>.
      */
-    public final TableField<LiveChargingDataRecord, Double> END_POWER = createField(DSL.name("end_power"), SQLDataType.DOUBLE, this, "");
+    public final TableField<LiveChargingDataRecord, Double> END_POWER = createField(DSL.name("end_power"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.start_soc</code>.
      */
-    public final TableField<LiveChargingDataRecord, Double> START_SOC = createField(DSL.name("start_soc"), SQLDataType.DOUBLE, this, "");
+    public final TableField<LiveChargingDataRecord, Double> START_SOC = createField(DSL.name("start_soc"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.end_soc</code>.
      */
-    public final TableField<LiveChargingDataRecord, Double> END_SOC = createField(DSL.name("end_soc"), SQLDataType.DOUBLE, this, "");
+    public final TableField<LiveChargingDataRecord, Double> END_SOC = createField(DSL.name("end_soc"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.start_voltage</code>.
      */
-    public final TableField<LiveChargingDataRecord, Double> START_VOLTAGE = createField(DSL.name("start_voltage"), SQLDataType.DOUBLE, this, "");
+    public final TableField<LiveChargingDataRecord, Double> START_VOLTAGE = createField(DSL.name("start_voltage"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.end_voltage</code>.
      */
-    public final TableField<LiveChargingDataRecord, Double> END_VOLTAGE = createField(DSL.name("end_voltage"), SQLDataType.DOUBLE, this, "");
+    public final TableField<LiveChargingDataRecord, Double> END_VOLTAGE = createField(DSL.name("end_voltage"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.start_current</code>.
      */
-    public final TableField<LiveChargingDataRecord, Double> START_CURRENT = createField(DSL.name("start_current"), SQLDataType.DOUBLE, this, "");
+    public final TableField<LiveChargingDataRecord, Double> START_CURRENT = createField(DSL.name("start_current"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.end_current</code>.
      */
-    public final TableField<LiveChargingDataRecord, Double> END_CURRENT = createField(DSL.name("end_current"), SQLDataType.DOUBLE, this, "");
+    public final TableField<LiveChargingDataRecord, Double> END_CURRENT = createField(DSL.name("end_current"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
 
     /**
      * The column <code>ev_history.live_charging_data.start_timestamp</code>.
      */
-    public final TableField<LiveChargingDataRecord, DateTime> START_TIMESTAMP = createField(DSL.name("start_timestamp"), SQLDataType.TIMESTAMP(6), this, "", new DateTimeConverter());
+    public final TableField<LiveChargingDataRecord, DateTime> START_TIMESTAMP = createField(DSL.name("start_timestamp"), SQLDataType.TIMESTAMP(6).defaultValue(DSL.inline("NULL", SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     /**
      * The column <code>ev_history.live_charging_data.stop_timestamp</code>.
      */
-    public final TableField<LiveChargingDataRecord, DateTime> STOP_TIMESTAMP = createField(DSL.name("stop_timestamp"), SQLDataType.TIMESTAMP(6), this, "", new DateTimeConverter());
+    public final TableField<LiveChargingDataRecord, DateTime> STOP_TIMESTAMP = createField(DSL.name("stop_timestamp"), SQLDataType.TIMESTAMP(6).defaultValue(DSL.inline("NULL", SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     private LiveChargingData(Name alias, Table<LiveChargingDataRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);
@@ -355,6 +357,11 @@ public class LiveChargingData extends TableImpl<LiveChargingDataRecord> {
     @Override
     public UniqueKey<LiveChargingDataRecord> getPrimaryKey() {
         return Keys.KEY_LIVE_CHARGING_DATA_PRIMARY;
+    }
+
+    @Override
+    public List<UniqueKey<LiveChargingDataRecord>> getUniqueKeys() {
+        return Arrays.asList(Keys.KEY_LIVE_CHARGING_DATA_UNIQUE_TRANSACTION_ID);
     }
 
     @Override

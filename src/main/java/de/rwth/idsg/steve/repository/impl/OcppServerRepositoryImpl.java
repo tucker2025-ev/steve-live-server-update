@@ -70,7 +70,9 @@ import static jooq.steve.db.tables.ConnectorStatus.CONNECTOR_STATUS;
 import static jooq.steve.db.tables.TransactionStart.TRANSACTION_START;
 import static jooq.steve.db.tables.TransactionStop.TRANSACTION_STOP;
 import static jooq.steve.db.tables.TransactionStopFailed.TRANSACTION_STOP_FAILED;
-import static jooq.steve.db2.Tables.*;
+import static jooq.steve.db2.Tables.LIVE_CHARGING_DATA;
+import static jooq.steve.db2.Tables.WALLET_TRACK_SETTLEMENT;
+import static jooq.steve.db2.Tables.WALLET_TRACK;
 
 /**
  * This class has methods for database access that are used by the OCPP service.
@@ -459,6 +461,24 @@ public class OcppServerRepositoryImpl implements OcppServerRepository {
                 .set(WALLET_TRACK.TOTAL_CONSUMED_AMOUNT, round2(consumedAMount))
                 .where(WALLET_TRACK.TRANSACTION_ID.eq(transactionId))
                 .execute();
+
+        try {
+            String idTag = ctx.select(TRANSACTION_START.ID_TAG)
+                    .from(TRANSACTION_START)
+                    .where(TRANSACTION_START.TRANSACTION_PK.eq(transactionId))
+                    .fetchOne(TRANSACTION_START.ID_TAG);
+
+            String chargeBoxId = ctx.select(CONNECTOR.CHARGE_BOX_ID)
+                    .from(CONNECTOR)
+                    .join(TRANSACTION_START)
+                    .on(CONNECTOR.CONNECTOR_PK.eq(TRANSACTION_START.CONNECTOR_PK))
+                    .where(TRANSACTION_START.TRANSACTION_PK.eq(transactionId))
+                    .fetchOne(CONNECTOR.CHARGE_BOX_ID);
+
+            retrieveTransactionMeterValues.transactionEnergyValues(transactionId, idTag, chargeBoxId, null);
+        } catch (Exception e) {
+            log.error("Exception Occur Ocpp Repo Implement {}", e.getMessage());
+        }
     }
 
     private void closeSettlementTransaction(Integer transactionId, double consumedAMount) {

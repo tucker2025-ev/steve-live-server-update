@@ -63,31 +63,31 @@ public class TransactionConnectorEnergy extends TableImpl<TransactionConnectorEn
      * The column
      * <code>stevedb.transaction_connector_energy.transaction_id</code>.
      */
-    public final TableField<TransactionConnectorEnergyRecord, Integer> TRANSACTION_ID = createField(DSL.name("transaction_id"), SQLDataType.INTEGER, this, "");
+    public final TableField<TransactionConnectorEnergyRecord, Integer> TRANSACTION_ID = createField(DSL.name("transaction_id"), SQLDataType.INTEGER.defaultValue(DSL.inline("NULL", SQLDataType.INTEGER)), this, "");
 
     /**
      * The column
      * <code>stevedb.transaction_connector_energy.charge_box_id</code>.
      */
-    public final TableField<TransactionConnectorEnergyRecord, String> CHARGE_BOX_ID = createField(DSL.name("charge_box_id"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<TransactionConnectorEnergyRecord, String> CHARGE_BOX_ID = createField(DSL.name("charge_box_id"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column
      * <code>stevedb.transaction_connector_energy.connector_id</code>.
      */
-    public final TableField<TransactionConnectorEnergyRecord, Integer> CONNECTOR_ID = createField(DSL.name("connector_id"), SQLDataType.INTEGER, this, "");
+    public final TableField<TransactionConnectorEnergyRecord, Integer> CONNECTOR_ID = createField(DSL.name("connector_id"), SQLDataType.INTEGER.defaultValue(DSL.inline("NULL", SQLDataType.INTEGER)), this, "");
 
     /**
      * The column
      * <code>stevedb.transaction_connector_energy.energy_value</code>.
      */
-    public final TableField<TransactionConnectorEnergyRecord, String> ENERGY_VALUE = createField(DSL.name("energy_value"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<TransactionConnectorEnergyRecord, String> ENERGY_VALUE = createField(DSL.name("energy_value"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column
      * <code>stevedb.transaction_connector_energy.value_timestamp</code>.
      */
-    public final TableField<TransactionConnectorEnergyRecord, DateTime> VALUE_TIMESTAMP = createField(DSL.name("value_timestamp"), SQLDataType.TIMESTAMP(6), this, "", new DateTimeConverter());
+    public final TableField<TransactionConnectorEnergyRecord, DateTime> VALUE_TIMESTAMP = createField(DSL.name("value_timestamp"), SQLDataType.TIMESTAMP(6).defaultValue(DSL.inline("NULL", SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     private TransactionConnectorEnergy(Name alias, Table<TransactionConnectorEnergyRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);

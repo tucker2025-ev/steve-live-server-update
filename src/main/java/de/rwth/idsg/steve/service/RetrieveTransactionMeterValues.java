@@ -25,6 +25,7 @@ import ocpp.cs._2015._10.SampledValue;
 import org.joda.time.DateTime;
 import org.jooq.DSLContext;
 import org.jooq.Field;
+import org.jooq.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ import static jooq.steve.db.Tables.TRANSACTION_CONNECTOR_ENERGY;
 import static jooq.steve.db.Tables.TRANSACTION_METER_VALUES;
 import static jooq.steve.db.tables.Connector.CONNECTOR;
 import static jooq.steve.db.tables.TransactionStart.TRANSACTION_START;
-import static jooq.steve.db2.Tables.LIVE_CHARGING_DATA;
+import static jooq.steve.db2.Tables.*;
 import static org.jooq.impl.DSL.iif;
 import static org.jooq.impl.DSL.val;
 
@@ -152,6 +153,11 @@ public class RetrieveTransactionMeterValues {
                 .execute();
 
         insertTransactionLiveData(transactionId, tmv, chargeBoxId, connectorPk, idTag, valueTimestamp);
+        try {
+            transactionEnergyValues(transactionId, idTag, chargeBoxId, tmv);
+        } catch (Exception e) {
+            log.error("Exception Occur RetrieveTransactionMeterValues Class{}", e.getMessage());
+        }
         return tmv;
     }
 
@@ -339,6 +345,126 @@ public class RetrieveTransactionMeterValues {
         }
 
         return String.valueOf(d);
+    }
+
+
+    public void transactionEnergyValues(Integer transactionId,
+                                        String idTag,
+                                        String chargeBoxId,
+                                        TransactionMeterValues tmv) {
+
+        // Fetch latest WALLET_TRACK row
+        Record record = secondary.select(
+                        WALLET_TRACK.START_ENERGY,
+                        WALLET_TRACK.TARIFF_AMOUNT,
+                        WALLET_TRACK.LAST_ENERGY,
+                        WALLET_TRACK.WALLET_AMOUNT,
+                        WALLET_TRACK.CONSUMED_ENERGY,
+                        WALLET_TRACK.CONSUMED_AMOUNT,
+                        WALLET_TRACK.TOTAL_CONSUMED_AMOUNT,
+                        WALLET_TRACK.START_TIMESTAMP,
+                        WALLET_TRACK.STOP_TIMESTAMP,
+                        WALLET_TRACK.IS_ACTIVE_TRANSACTION
+                )
+                .from(WALLET_TRACK)
+                .where(WALLET_TRACK.TRANSACTION_ID.eq(transactionId))
+                .orderBy(WALLET_TRACK.START_TIMESTAMP.desc())
+                .limit(1)
+                .fetchOne();
+
+        if (record == null) return;
+
+        boolean isStopFlow = (tmv == null);
+
+        // Fetch as Double / Boolean / DateTime explicitly
+        Double newTariff = record.get(WALLET_TRACK.TARIFF_AMOUNT, Double.class);
+        DateTime newStartTs = record.get(WALLET_TRACK.START_TIMESTAMP, DateTime.class);
+
+        // STEP 1: Get latest existing row in TRANSACTION_ENERGY_VALUES
+        Record lastRow = secondary.select()
+                .from(TRANSACTION_ENERGY_VALUES)
+                .where(TRANSACTION_ENERGY_VALUES.TRANSACTION_ID.eq(transactionId))
+                .orderBy(TRANSACTION_ENERGY_VALUES.START_TIMESTAMP.desc())
+                .limit(1)
+                .fetchOne();
+
+        boolean insertNewRow = false;
+
+        if (lastRow == null) {
+            insertNewRow = true;
+        } else {
+            Double lastTariff = lastRow.get(TRANSACTION_ENERGY_VALUES.TARIFF_AMOUNT, Double.class);
+            if (lastTariff == null || !lastTariff.equals(newTariff)) {
+                insertNewRow = true;
+            } else {
+                newStartTs = lastRow.get(TRANSACTION_ENERGY_VALUES.START_TIMESTAMP, DateTime.class);
+            }
+        }
+
+        if (insertNewRow) {
+            if (lastRow != null) {
+                DateTime lastStartTs = lastRow.get(TRANSACTION_ENERGY_VALUES.START_TIMESTAMP, DateTime.class);
+
+                secondary.update(TRANSACTION_ENERGY_VALUES)
+                        .set(TRANSACTION_ENERGY_VALUES.IS_ACTIVE_TRANSACTION, false)
+                        .set(TRANSACTION_ENERGY_VALUES.STOP_TIMESTAMP, record.get(WALLET_TRACK.STOP_TIMESTAMP, DateTime.class))
+                        .where(TRANSACTION_ENERGY_VALUES.TRANSACTION_ID.eq(transactionId))
+                        .and(TRANSACTION_ENERGY_VALUES.START_TIMESTAMP.eq(lastStartTs))
+                        .execute();
+            }
+
+            var insert = secondary.insertInto(TRANSACTION_ENERGY_VALUES)
+                    .set(TRANSACTION_ENERGY_VALUES.TRANSACTION_ID, transactionId)
+                    .set(TRANSACTION_ENERGY_VALUES.ID_TAG, idTag)
+                    .set(TRANSACTION_ENERGY_VALUES.CHARGE_BOX_ID, chargeBoxId)
+
+                    // Energy / tariff / wallet fields
+                    .set(TRANSACTION_ENERGY_VALUES.START_ENERGY, record.get(WALLET_TRACK.START_ENERGY, Double.class))
+                    .set(TRANSACTION_ENERGY_VALUES.TARIFF_AMOUNT, newTariff)
+                    .set(TRANSACTION_ENERGY_VALUES.LAST_ENERGY, record.get(WALLET_TRACK.LAST_ENERGY, Double.class))
+                    .set(TRANSACTION_ENERGY_VALUES.WALLET_AMOUNT, record.get(WALLET_TRACK.WALLET_AMOUNT, Double.class))
+                    .set(TRANSACTION_ENERGY_VALUES.CONSUMED_ENERGY, record.get(WALLET_TRACK.CONSUMED_ENERGY, Double.class))
+                    .set(TRANSACTION_ENERGY_VALUES.CONSUMED_AMOUNT, record.get(WALLET_TRACK.CONSUMED_AMOUNT, Double.class))
+                    .set(TRANSACTION_ENERGY_VALUES.TOTAL_CONSUMED_AMOUNT, record.get(WALLET_TRACK.TOTAL_CONSUMED_AMOUNT, Double.class))
+
+                    // Timestamps and flags
+                    .set(TRANSACTION_ENERGY_VALUES.START_TIMESTAMP, newStartTs)
+                    .set(TRANSACTION_ENERGY_VALUES.STOP_TIMESTAMP, record.get(WALLET_TRACK.STOP_TIMESTAMP, DateTime.class))
+                    .set(TRANSACTION_ENERGY_VALUES.IS_ACTIVE_TRANSACTION, true);
+
+            if (!isStopFlow) {
+                insert.set(TRANSACTION_ENERGY_VALUES.LATEST_SOC, tmv.getSoc())
+                        .set(TRANSACTION_ENERGY_VALUES.LAST_POWER, tmv.getPower())
+                        .set(TRANSACTION_ENERGY_VALUES.LAST_CURRENT, tmv.getCurrent())
+                        .set(TRANSACTION_ENERGY_VALUES.LAST_VOLTAGE, tmv.getVoltage())
+                        .set(TRANSACTION_ENERGY_VALUES.LAST_ENERGY_VALUE, tmv.getEnergy());
+            }
+
+            insert.execute();
+            return;
+        }
+
+        // STEP 3: UPDATE CURRENT ROW
+        var update = secondary.update(TRANSACTION_ENERGY_VALUES)
+                .set(TRANSACTION_ENERGY_VALUES.LAST_ENERGY, record.get(WALLET_TRACK.LAST_ENERGY, Double.class))
+                .set(TRANSACTION_ENERGY_VALUES.WALLET_AMOUNT, record.get(WALLET_TRACK.WALLET_AMOUNT, Double.class))
+                .set(TRANSACTION_ENERGY_VALUES.CONSUMED_ENERGY, record.get(WALLET_TRACK.CONSUMED_ENERGY, Double.class))
+                .set(TRANSACTION_ENERGY_VALUES.CONSUMED_AMOUNT, record.get(WALLET_TRACK.CONSUMED_AMOUNT, Double.class))
+                .set(TRANSACTION_ENERGY_VALUES.TOTAL_CONSUMED_AMOUNT, record.get(WALLET_TRACK.TOTAL_CONSUMED_AMOUNT, Double.class))
+                .set(TRANSACTION_ENERGY_VALUES.STOP_TIMESTAMP, record.get(WALLET_TRACK.STOP_TIMESTAMP, DateTime.class))
+                .set(TRANSACTION_ENERGY_VALUES.IS_ACTIVE_TRANSACTION, record.get(WALLET_TRACK.IS_ACTIVE_TRANSACTION, Boolean.class));
+
+        if (!isStopFlow) {
+            update.set(TRANSACTION_ENERGY_VALUES.LATEST_SOC, tmv.getSoc())
+                    .set(TRANSACTION_ENERGY_VALUES.LAST_POWER, tmv.getPower())
+                    .set(TRANSACTION_ENERGY_VALUES.LAST_CURRENT, tmv.getCurrent())
+                    .set(TRANSACTION_ENERGY_VALUES.LAST_VOLTAGE, tmv.getVoltage())
+                    .set(TRANSACTION_ENERGY_VALUES.LAST_ENERGY_VALUE, tmv.getEnergy());
+        }
+
+        update.where(TRANSACTION_ENERGY_VALUES.TRANSACTION_ID.eq(transactionId))
+                .and(TRANSACTION_ENERGY_VALUES.START_TIMESTAMP.eq(newStartTs))
+                .execute();
     }
 
 }

@@ -93,7 +93,7 @@ public class PaymentRequest extends TableImpl<PaymentRequestRecord> {
     /**
      * The column <code>stevedb.payment_request.invoice_url</code>.
      */
-    public final TableField<PaymentRequestRecord, String> INVOICE_URL = createField(DSL.name("invoice_url"), SQLDataType.VARCHAR(255), this, "");
+    public final TableField<PaymentRequestRecord, String> INVOICE_URL = createField(DSL.name("invoice_url"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>stevedb.payment_request.is_started</code>.
@@ -103,22 +103,22 @@ public class PaymentRequest extends TableImpl<PaymentRequestRecord> {
     /**
      * The column <code>stevedb.payment_request.created_at</code>.
      */
-    public final TableField<PaymentRequestRecord, DateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.TIMESTAMP(0).defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
+    public final TableField<PaymentRequestRecord, DateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.TIMESTAMP(0).defaultValue(DSL.field(DSL.raw("current_timestamp()"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     /**
      * The column <code>stevedb.payment_request.updated_at</code>.
      */
-    public final TableField<PaymentRequestRecord, DateTime> UPDATED_AT = createField(DSL.name("updated_at"), SQLDataType.TIMESTAMP(0).defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
+    public final TableField<PaymentRequestRecord, DateTime> UPDATED_AT = createField(DSL.name("updated_at"), SQLDataType.TIMESTAMP(0).defaultValue(DSL.field(DSL.raw("current_timestamp()"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     /**
      * The column <code>stevedb.payment_request.upiId</code>.
      */
-    public final TableField<PaymentRequestRecord, String> UPIID = createField(DSL.name("upiId"), SQLDataType.VARCHAR(255), this, "");
+    public final TableField<PaymentRequestRecord, String> UPIID = createField(DSL.name("upiId"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>stevedb.payment_request.rrnId</code>.
      */
-    public final TableField<PaymentRequestRecord, String> RRNID = createField(DSL.name("rrnId"), SQLDataType.VARCHAR(255), this, "");
+    public final TableField<PaymentRequestRecord, String> RRNID = createField(DSL.name("rrnId"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     private PaymentRequest(Name alias, Table<PaymentRequestRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);

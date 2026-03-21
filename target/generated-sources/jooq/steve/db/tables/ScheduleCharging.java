@@ -91,7 +91,7 @@ public class ScheduleCharging extends TableImpl<ScheduleChargingRecord> {
     /**
      * The column <code>stevedb.schedule_charging.day</code>.
      */
-    public final TableField<ScheduleChargingRecord, String> DAY = createField(DSL.name("day"), SQLDataType.VARCHAR(255), this, "");
+    public final TableField<ScheduleChargingRecord, String> DAY = createField(DSL.name("day"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>stevedb.schedule_charging.is_start</code>.

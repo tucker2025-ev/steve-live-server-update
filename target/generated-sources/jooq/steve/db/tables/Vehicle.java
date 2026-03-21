@@ -75,7 +75,7 @@ public class Vehicle extends TableImpl<VehicleRecord> {
     /**
      * The column <code>stevedb.vehicle.vehicle_number</code>.
      */
-    public final TableField<VehicleRecord, String> VEHICLE_NUMBER = createField(DSL.name("vehicle_number"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<VehicleRecord, String> VEHICLE_NUMBER = createField(DSL.name("vehicle_number"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>stevedb.vehicle.is_enable_auto_charging</code>.
@@ -85,7 +85,7 @@ public class Vehicle extends TableImpl<VehicleRecord> {
     /**
      * The column <code>stevedb.vehicle.vehicle_image</code>.
      */
-    public final TableField<VehicleRecord, byte[]> VEHICLE_IMAGE = createField(DSL.name("vehicle_image"), SQLDataType.BLOB, this, "");
+    public final TableField<VehicleRecord, byte[]> VEHICLE_IMAGE = createField(DSL.name("vehicle_image"), SQLDataType.BLOB.defaultValue(DSL.inline("NULL", SQLDataType.BLOB)), this, "");
 
     /**
      * The column <code>stevedb.vehicle.is_enable</code>.

@@ -66,7 +66,7 @@ public class TestBenchLog extends TableImpl<TestBenchLogRecord> {
     /**
      * The column <code>stevedb.test_bench_log.time_stamp</code>.
      */
-    public final TableField<TestBenchLogRecord, DateTime> TIME_STAMP = createField(DSL.name("time_stamp"), SQLDataType.TIMESTAMP(0).defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
+    public final TableField<TestBenchLogRecord, DateTime> TIME_STAMP = createField(DSL.name("time_stamp"), SQLDataType.TIMESTAMP(0).defaultValue(DSL.field(DSL.raw("current_timestamp()"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     /**
      * The column <code>stevedb.test_bench_log.message</code>.

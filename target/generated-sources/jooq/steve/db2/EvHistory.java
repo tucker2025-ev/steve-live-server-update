@@ -12,7 +12,9 @@ import jooq.steve.db2.tables.ChargerConnectorStatusLog;
 import jooq.steve.db2.tables.ChargerStatus;
 import jooq.steve.db2.tables.DealerSettlementSlab;
 import jooq.steve.db2.tables.LiveChargingData;
+import jooq.steve.db2.tables.LiveFullDetails;
 import jooq.steve.db2.tables.SchemaVersion2;
+import jooq.steve.db2.tables.TransactionEnergyValues;
 import jooq.steve.db2.tables.WalletTrack;
 import jooq.steve.db2.tables.WalletTrackSettlement;
 
@@ -60,9 +62,19 @@ public class EvHistory extends SchemaImpl {
     public final LiveChargingData LIVE_CHARGING_DATA = LiveChargingData.LIVE_CHARGING_DATA;
 
     /**
+     * VIEW
+     */
+    public final LiveFullDetails LIVE_FULL_DETAILS = LiveFullDetails.LIVE_FULL_DETAILS;
+
+    /**
      * The table <code>ev_history.schema_version2</code>.
      */
     public final SchemaVersion2 SCHEMA_VERSION2 = SchemaVersion2.SCHEMA_VERSION2;
+
+    /**
+     * The table <code>ev_history.transaction_energy_values</code>.
+     */
+    public final TransactionEnergyValues TRANSACTION_ENERGY_VALUES = TransactionEnergyValues.TRANSACTION_ENERGY_VALUES;
 
     /**
      * The table <code>ev_history.wallet_track</code>.
@@ -95,7 +107,9 @@ public class EvHistory extends SchemaImpl {
             ChargerStatus.CHARGER_STATUS,
             DealerSettlementSlab.DEALER_SETTLEMENT_SLAB,
             LiveChargingData.LIVE_CHARGING_DATA,
+            LiveFullDetails.LIVE_FULL_DETAILS,
             SchemaVersion2.SCHEMA_VERSION2,
+            TransactionEnergyValues.TRANSACTION_ENERGY_VALUES,
             WalletTrack.WALLET_TRACK,
             WalletTrackSettlement.WALLET_TRACK_SETTLEMENT
         );
