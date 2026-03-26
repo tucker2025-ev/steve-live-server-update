@@ -70,9 +70,7 @@ import static jooq.steve.db.tables.ConnectorStatus.CONNECTOR_STATUS;
 import static jooq.steve.db.tables.TransactionStart.TRANSACTION_START;
 import static jooq.steve.db.tables.TransactionStop.TRANSACTION_STOP;
 import static jooq.steve.db.tables.TransactionStopFailed.TRANSACTION_STOP_FAILED;
-import static jooq.steve.db2.Tables.LIVE_CHARGING_DATA;
-import static jooq.steve.db2.Tables.WALLET_TRACK_SETTLEMENT;
-import static jooq.steve.db2.Tables.WALLET_TRACK;
+import static jooq.steve.db2.Tables.*;
 
 /**
  * This class has methods for database access that are used by the OCPP service.
@@ -114,6 +112,7 @@ public class OcppServerRepositoryImpl implements OcppServerRepository {
 
     @Autowired
     private RestTemplate restTemplate;
+
 
     @Override
     public void updateChargebox(UpdateChargeboxParams p) {

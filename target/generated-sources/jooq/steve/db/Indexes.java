@@ -8,7 +8,6 @@ import jooq.steve.db.tables.ChargeBox;
 import jooq.steve.db.tables.ChargingFeeExemptChargebox;
 import jooq.steve.db.tables.ConnectorMeterValue;
 import jooq.steve.db.tables.ConnectorStatus;
-import jooq.steve.db.tables.Leads;
 import jooq.steve.db.tables.OcppTag;
 import jooq.steve.db.tables.Reservation;
 import jooq.steve.db.tables.SchemaVersion;
@@ -37,7 +36,6 @@ public class Indexes {
     public static final Index TRANSACTION_METER_VALUES_CONNECTOR_PK = Internal.createIndex(DSL.name("connector_pk"), TransactionMeterValues.TRANSACTION_METER_VALUES, new OrderField[] { TransactionMeterValues.TRANSACTION_METER_VALUES.CONNECTOR_PK }, false);
     public static final Index TRANSACTION_START_CONNECTOR_PK_IDX = Internal.createIndex(DSL.name("connector_pk_idx"), TransactionStart.TRANSACTION_START, new OrderField[] { TransactionStart.TRANSACTION_START.CONNECTOR_PK }, false);
     public static final Index CONNECTOR_STATUS_CONNECTOR_STATUS_CPK_ST_IDX = Internal.createIndex(DSL.name("connector_status_cpk_st_idx"), ConnectorStatus.CONNECTOR_STATUS, new OrderField[] { ConnectorStatus.CONNECTOR_STATUS.CONNECTOR_PK, ConnectorStatus.CONNECTOR_STATUS.STATUS_TIMESTAMP }, false);
-    public static final Index LEADS_CUSTOMER_TYPE_ID = Internal.createIndex(DSL.name("customer_type_id"), Leads.LEADS, new OrderField[] { Leads.LEADS.CUSTOMER_TYPE_ID }, false);
     public static final Index CONNECTOR_METER_VALUE_FK_CM_PK_IDX = Internal.createIndex(DSL.name("FK_cm_pk_idx"), ConnectorMeterValue.CONNECTOR_METER_VALUE, new OrderField[] { ConnectorMeterValue.CONNECTOR_METER_VALUE.CONNECTOR_PK }, false);
     public static final Index RESERVATION_FK_CONNECTOR_PK_RESERV_IDX = Internal.createIndex(DSL.name("FK_connector_pk_reserv_idx"), Reservation.RESERVATION, new OrderField[] { Reservation.RESERVATION.CONNECTOR_PK }, false);
     public static final Index CONNECTOR_STATUS_FK_CS_PK_IDX = Internal.createIndex(DSL.name("FK_cs_pk_idx"), ConnectorStatus.CONNECTOR_STATUS, new OrderField[] { ConnectorStatus.CONNECTOR_STATUS.CONNECTOR_PK }, false);
@@ -52,8 +50,6 @@ public class Indexes {
     public static final Index RESERVATION_RESERVATION_START_IDX = Internal.createIndex(DSL.name("reservation_start_idx"), Reservation.RESERVATION, new OrderField[] { Reservation.RESERVATION.START_DATETIME }, false);
     public static final Index RESERVATION_RESERVATION_STATUS_IDX = Internal.createIndex(DSL.name("reservation_status_idx"), Reservation.RESERVATION, new OrderField[] { Reservation.RESERVATION.STATUS }, false);
     public static final Index SCHEMA_VERSION_SCHEMA_VERSION_S_IDX = Internal.createIndex(DSL.name("schema_version_s_idx"), SchemaVersion.SCHEMA_VERSION, new OrderField[] { SchemaVersion.SCHEMA_VERSION.SUCCESS }, false);
-    public static final Index LEADS_SOURCE_ID = Internal.createIndex(DSL.name("source_id"), Leads.LEADS, new OrderField[] { Leads.LEADS.SOURCE_ID }, false);
-    public static final Index LEADS_STATUS_ID = Internal.createIndex(DSL.name("status_id"), Leads.LEADS, new OrderField[] { Leads.LEADS.STATUS_ID }, false);
     public static final Index TRANSACTION_START_TRANSACTION_START_IDX = Internal.createIndex(DSL.name("transaction_start_idx"), TransactionStart.TRANSACTION_START, new OrderField[] { TransactionStart.TRANSACTION_START.START_TIMESTAMP }, false);
     public static final Index OCPP_TAG_USER_EXPIRYDATE_IDX = Internal.createIndex(DSL.name("user_expiryDate_idx"), OcppTag.OCPP_TAG, new OrderField[] { OcppTag.OCPP_TAG.EXPIRY_DATE }, false);
 }

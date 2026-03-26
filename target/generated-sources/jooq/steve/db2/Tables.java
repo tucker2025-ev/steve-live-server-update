@@ -9,7 +9,6 @@ import jooq.steve.db2.tables.ChargerConnectorStatusLog;
 import jooq.steve.db2.tables.ChargerStatus;
 import jooq.steve.db2.tables.DealerSettlementSlab;
 import jooq.steve.db2.tables.LiveChargingData;
-import jooq.steve.db2.tables.LiveFullDetails;
 import jooq.steve.db2.tables.SchemaVersion2;
 import jooq.steve.db2.tables.TransactionEnergyValues;
 import jooq.steve.db2.tables.WalletTrack;
@@ -46,11 +45,6 @@ public class Tables {
      * The table <code>ev_history.live_charging_data</code>.
      */
     public static final LiveChargingData LIVE_CHARGING_DATA = LiveChargingData.LIVE_CHARGING_DATA;
-
-    /**
-     * VIEW
-     */
-    public static final LiveFullDetails LIVE_FULL_DETAILS = LiveFullDetails.LIVE_FULL_DETAILS;
 
     /**
      * The table <code>ev_history.schema_version2</code>.

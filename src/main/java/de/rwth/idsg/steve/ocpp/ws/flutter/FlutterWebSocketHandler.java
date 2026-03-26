@@ -152,7 +152,7 @@ public class FlutterWebSocketHandler extends TextWebSocketHandler {
 
             Integer transactionId = parseInteger(data.get("transactionId"), "transactionId", session, payload);
             if (transactionId == null && data.get("transactionId") != null) return;
-
+            ocpp16WebSocketEndpoint.sendToFlutter(action, chargeBoxId, payload);
             switch (action) {
 
                 case "RemoteStartTransaction":
@@ -176,7 +176,8 @@ public class FlutterWebSocketHandler extends TextWebSocketHandler {
                                     started, connectorQrCode, connectorId, chargeBoxId);
 
                     // ✅ FULL RESPONSE SEND
-                    sendResponse(session, startResponse);
+                    //sendResponse(session, startResponse);
+                    ocpp16WebSocketEndpoint.sendToFlutter(action, chargeBoxId, payload);
                     break;
 
                 case "RemoteStopTransaction":
@@ -190,7 +191,8 @@ public class FlutterWebSocketHandler extends TextWebSocketHandler {
                     ResponseDTO stopResponse =
                             testAppService.stopTransaction(transactionId, "Mobile");
 
-                    sendResponse(session, stopResponse);
+                    //sendResponse(session, stopResponse);
+                    ocpp16WebSocketEndpoint.sendToFlutter(action, chargeBoxId, payload);
                     break;
 
                 default:

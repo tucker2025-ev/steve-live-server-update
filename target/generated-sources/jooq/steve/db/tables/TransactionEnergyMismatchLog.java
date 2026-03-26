@@ -97,25 +97,25 @@ public class TransactionEnergyMismatchLog extends TableImpl<TransactionEnergyMis
      * The column
      * <code>stevedb.transaction_energy_mismatch_log.charge_box_id</code>.
      */
-    public final TableField<TransactionEnergyMismatchLogRecord, String> CHARGE_BOX_ID = createField(DSL.name("charge_box_id"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<TransactionEnergyMismatchLogRecord, String> CHARGE_BOX_ID = createField(DSL.name("charge_box_id"), SQLDataType.VARCHAR(50), this, "");
 
     /**
      * The column
      * <code>stevedb.transaction_energy_mismatch_log.connector_pk</code>.
      */
-    public final TableField<TransactionEnergyMismatchLogRecord, Integer> CONNECTOR_PK = createField(DSL.name("connector_pk"), SQLDataType.INTEGER.defaultValue(DSL.inline("NULL", SQLDataType.INTEGER)), this, "");
+    public final TableField<TransactionEnergyMismatchLogRecord, Integer> CONNECTOR_PK = createField(DSL.name("connector_pk"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column
      * <code>stevedb.transaction_energy_mismatch_log.created_at</code>.
      */
-    public final TableField<TransactionEnergyMismatchLogRecord, DateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.TIMESTAMP(0).defaultValue(DSL.field(DSL.raw("current_timestamp()"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
+    public final TableField<TransactionEnergyMismatchLogRecord, DateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.TIMESTAMP(0).defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     /**
      * The column
      * <code>stevedb.transaction_energy_mismatch_log.updated_at</code>.
      */
-    public final TableField<TransactionEnergyMismatchLogRecord, DateTime> UPDATED_AT = createField(DSL.name("updated_at"), SQLDataType.TIMESTAMP(0).defaultValue(DSL.field(DSL.raw("current_timestamp()"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
+    public final TableField<TransactionEnergyMismatchLogRecord, DateTime> UPDATED_AT = createField(DSL.name("updated_at"), SQLDataType.TIMESTAMP(0).defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     private TransactionEnergyMismatchLog(Name alias, Table<TransactionEnergyMismatchLogRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);

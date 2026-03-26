@@ -54,7 +54,7 @@ public class ExtractMac {
                 .selectFrom(VEHICLE)
                 .where(VEHICLE.VID_NUMBER.eq(vid))
                 .fetchOne();
-        System.out.println("record : " + record);
+
         if (record == null) {
             dslContext.insertInto(VEHICLE)
                     .set(VEHICLE.ID_TAG, idTag)

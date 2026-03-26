@@ -58,18 +58,18 @@ public class DealerSettlementSlab extends TableImpl<DealerSettlementSlabRecord> 
     /**
      * The column <code>ev_history.dealer_settlement_slab.min_tariff</code>.
      */
-    public final TableField<DealerSettlementSlabRecord, Double> MIN_TARIFF = createField(DSL.name("min_tariff"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
+    public final TableField<DealerSettlementSlabRecord, Double> MIN_TARIFF = createField(DSL.name("min_tariff"), SQLDataType.DOUBLE, this, "");
 
     /**
      * The column <code>ev_history.dealer_settlement_slab.max_tariff</code>.
      */
-    public final TableField<DealerSettlementSlabRecord, Double> MAX_TARIFF = createField(DSL.name("max_tariff"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
+    public final TableField<DealerSettlementSlabRecord, Double> MAX_TARIFF = createField(DSL.name("max_tariff"), SQLDataType.DOUBLE, this, "");
 
     /**
      * The column
      * <code>ev_history.dealer_settlement_slab.dealer_unit_cost</code>.
      */
-    public final TableField<DealerSettlementSlabRecord, Double> DEALER_UNIT_COST = createField(DSL.name("dealer_unit_cost"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
+    public final TableField<DealerSettlementSlabRecord, Double> DEALER_UNIT_COST = createField(DSL.name("dealer_unit_cost"), SQLDataType.DOUBLE, this, "");
 
     private DealerSettlementSlab(Name alias, Table<DealerSettlementSlabRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);

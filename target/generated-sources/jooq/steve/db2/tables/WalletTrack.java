@@ -6,19 +6,14 @@ package jooq.steve.db2.tables;
 
 import de.rwth.idsg.steve.utils.DateTimeConverter;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 import jooq.steve.db2.EvHistory;
-import jooq.steve.db2.Indexes;
-import jooq.steve.db2.Keys;
 import jooq.steve.db2.tables.records.WalletTrackRecord;
 
 import org.joda.time.DateTime;
 import org.jooq.Condition;
 import org.jooq.Field;
-import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.PlainSQL;
 import org.jooq.QueryPart;
@@ -29,7 +24,6 @@ import org.jooq.Stringly;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
-import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
@@ -59,7 +53,7 @@ public class WalletTrack extends TableImpl<WalletTrackRecord> {
     /**
      * The column <code>ev_history.wallet_track.transaction_id</code>.
      */
-    public final TableField<WalletTrackRecord, Integer> TRANSACTION_ID = createField(DSL.name("transaction_id"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<WalletTrackRecord, Integer> TRANSACTION_ID = createField(DSL.name("transaction_id"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>ev_history.wallet_track.id_tag</code>.
@@ -69,47 +63,47 @@ public class WalletTrack extends TableImpl<WalletTrackRecord> {
     /**
      * The column <code>ev_history.wallet_track.start_energy</code>.
      */
-    public final TableField<WalletTrackRecord, Double> START_ENERGY = createField(DSL.name("start_energy"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
+    public final TableField<WalletTrackRecord, Double> START_ENERGY = createField(DSL.name("start_energy"), SQLDataType.DOUBLE, this, "");
 
     /**
      * The column <code>ev_history.wallet_track.tariff_amount</code>.
      */
-    public final TableField<WalletTrackRecord, Double> TARIFF_AMOUNT = createField(DSL.name("tariff_amount"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
+    public final TableField<WalletTrackRecord, Double> TARIFF_AMOUNT = createField(DSL.name("tariff_amount"), SQLDataType.DOUBLE, this, "");
 
     /**
      * The column <code>ev_history.wallet_track.last_energy</code>.
      */
-    public final TableField<WalletTrackRecord, Double> LAST_ENERGY = createField(DSL.name("last_energy"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
+    public final TableField<WalletTrackRecord, Double> LAST_ENERGY = createField(DSL.name("last_energy"), SQLDataType.DOUBLE, this, "");
 
     /**
      * The column <code>ev_history.wallet_track.wallet_amount</code>.
      */
-    public final TableField<WalletTrackRecord, Double> WALLET_AMOUNT = createField(DSL.name("wallet_amount"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
+    public final TableField<WalletTrackRecord, Double> WALLET_AMOUNT = createField(DSL.name("wallet_amount"), SQLDataType.DOUBLE, this, "");
 
     /**
      * The column <code>ev_history.wallet_track.consumed_energy</code>.
      */
-    public final TableField<WalletTrackRecord, Double> CONSUMED_ENERGY = createField(DSL.name("consumed_energy"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
+    public final TableField<WalletTrackRecord, Double> CONSUMED_ENERGY = createField(DSL.name("consumed_energy"), SQLDataType.DOUBLE, this, "");
 
     /**
      * The column <code>ev_history.wallet_track.consumed_amount</code>.
      */
-    public final TableField<WalletTrackRecord, Double> CONSUMED_AMOUNT = createField(DSL.name("consumed_amount"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
+    public final TableField<WalletTrackRecord, Double> CONSUMED_AMOUNT = createField(DSL.name("consumed_amount"), SQLDataType.DOUBLE, this, "");
 
     /**
      * The column <code>ev_history.wallet_track.total_consumed_amount</code>.
      */
-    public final TableField<WalletTrackRecord, Double> TOTAL_CONSUMED_AMOUNT = createField(DSL.name("total_consumed_amount"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
+    public final TableField<WalletTrackRecord, Double> TOTAL_CONSUMED_AMOUNT = createField(DSL.name("total_consumed_amount"), SQLDataType.DOUBLE, this, "");
 
     /**
      * The column <code>ev_history.wallet_track.start_timestamp</code>.
      */
-    public final TableField<WalletTrackRecord, DateTime> START_TIMESTAMP = createField(DSL.name("start_timestamp"), SQLDataType.TIMESTAMP(6).nullable(false), this, "", new DateTimeConverter());
+    public final TableField<WalletTrackRecord, DateTime> START_TIMESTAMP = createField(DSL.name("start_timestamp"), SQLDataType.TIMESTAMP(6), this, "", new DateTimeConverter());
 
     /**
      * The column <code>ev_history.wallet_track.stop_timestamp</code>.
      */
-    public final TableField<WalletTrackRecord, DateTime> STOP_TIMESTAMP = createField(DSL.name("stop_timestamp"), SQLDataType.TIMESTAMP(6).defaultValue(DSL.inline("NULL", SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
+    public final TableField<WalletTrackRecord, DateTime> STOP_TIMESTAMP = createField(DSL.name("stop_timestamp"), SQLDataType.TIMESTAMP(6), this, "", new DateTimeConverter());
 
     /**
      * The column <code>ev_history.wallet_track.is_active_transaction</code>.
@@ -148,16 +142,6 @@ public class WalletTrack extends TableImpl<WalletTrackRecord> {
     @Override
     public Schema getSchema() {
         return aliased() ? null : EvHistory.EV_HISTORY;
-    }
-
-    @Override
-    public List<Index> getIndexes() {
-        return Arrays.asList(Indexes.WALLET_TRACK_IDX_WALLET_ACTIVE, Indexes.WALLET_TRACK_IDX_WALLET_TXID);
-    }
-
-    @Override
-    public UniqueKey<WalletTrackRecord> getPrimaryKey() {
-        return Keys.KEY_WALLET_TRACK_PRIMARY;
     }
 
     @Override

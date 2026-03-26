@@ -121,7 +121,7 @@ public class TransactionEnergyValues extends TableImpl<TransactionEnergyValuesRe
      * The column
      * <code>ev_history.transaction_energy_values.stop_timestamp</code>.
      */
-    public final TableField<TransactionEnergyValuesRecord, DateTime> STOP_TIMESTAMP = createField(DSL.name("stop_timestamp"), SQLDataType.TIMESTAMP(0).defaultValue(DSL.inline("NULL", SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
+    public final TableField<TransactionEnergyValuesRecord, DateTime> STOP_TIMESTAMP = createField(DSL.name("stop_timestamp"), SQLDataType.TIMESTAMP(0), this, "", new DateTimeConverter());
 
     /**
      * The column

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<licensePluginReport goal="CHECK" timestamp="1774088395632">
+<licensePluginReport goal="CHECK" timestamp="1774502632846">
     <module artifactId="steve" groupId="de.rwth.idsg" version="3.7.0"/>
     <files>
         <file path="src\main\java\de\rwth\idsg\steve\Application.java" result="PRESENT"/>
@@ -180,7 +180,9 @@
         <file path="src\main\java\de\rwth\idsg\steve\service\ChargePointService15_Client.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\service\ChargePointService16_Client.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\service\ChargerFeeExceptUserService.java" result="PRESENT"/>
+        <file path="src\main\java\de\rwth\idsg\steve\service\ChargerMetricsService.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\service\ChargerPointAvailableStatusService.java" result="PRESENT"/>
+        <file path="src\main\java\de\rwth\idsg\steve\service\ChargerStatusSchedulerService.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\service\ChargerStatusService.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\service\DummyReleaseCheckService.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\service\ExtractMac.java" result="PRESENT"/>
@@ -208,13 +210,16 @@
         <file path="src\main\java\de\rwth\idsg\steve\service\WalletTrackSettlementService.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\service\WebSocketLogParser.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\service\dto\ChargePointDTO.java" result="PRESENT"/>
+        <file path="src\main\java\de\rwth\idsg\steve\service\dto\ChargerMetricsResponse.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\service\dto\ChargerStationDTO.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\service\dto\CityDTO.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\service\dto\Contents.java" result="PRESENT"/>
+        <file path="src\main\java\de\rwth\idsg\steve\service\dto\DateRange.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\service\dto\EnhancedReserveNowParams.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\service\dto\EnhancedSetChargingProfileParams.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\service\dto\FareBreakdownDTO.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\service\dto\LiveTransactionDTO.java" result="PRESENT"/>
+        <file path="src\main\java\de\rwth\idsg\steve\service\dto\RangeType.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\service\dto\RefundAmountAfterTransactionSend.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\service\dto\RefundAmountAfterTransactionSendResponse.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\service\dto\RefundAmountDTO.java" result="PRESENT"/>
@@ -272,6 +277,7 @@
         <file path="src\main\java\de\rwth\idsg\steve\web\controller\AboutSettingsController.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\web\controller\AjaxCallController.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\web\controller\ChargePointsController.java" result="PRESENT"/>
+        <file path="src\main\java\de\rwth\idsg\steve\web\controller\ChargerMetricsController.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\web\controller\ChargerServerStausController.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\web\controller\ChargingProfilesController.java" result="PRESENT"/>
         <file path="src\main\java\de\rwth\idsg\steve\web\controller\HomeController.java" result="PRESENT"/>

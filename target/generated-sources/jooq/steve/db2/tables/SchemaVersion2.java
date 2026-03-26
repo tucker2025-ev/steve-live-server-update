@@ -64,7 +64,7 @@ public class SchemaVersion2 extends TableImpl<SchemaVersion2Record> {
     /**
      * The column <code>ev_history.schema_version2.version</code>.
      */
-    public final TableField<SchemaVersion2Record, String> VERSION = createField(DSL.name("version"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<SchemaVersion2Record, String> VERSION = createField(DSL.name("version"), SQLDataType.VARCHAR(50), this, "");
 
     /**
      * The column <code>ev_history.schema_version2.description</code>.
@@ -84,7 +84,7 @@ public class SchemaVersion2 extends TableImpl<SchemaVersion2Record> {
     /**
      * The column <code>ev_history.schema_version2.checksum</code>.
      */
-    public final TableField<SchemaVersion2Record, Integer> CHECKSUM = createField(DSL.name("checksum"), SQLDataType.INTEGER.defaultValue(DSL.inline("NULL", SQLDataType.INTEGER)), this, "");
+    public final TableField<SchemaVersion2Record, Integer> CHECKSUM = createField(DSL.name("checksum"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>ev_history.schema_version2.installed_by</code>.
@@ -94,7 +94,7 @@ public class SchemaVersion2 extends TableImpl<SchemaVersion2Record> {
     /**
      * The column <code>ev_history.schema_version2.installed_on</code>.
      */
-    public final TableField<SchemaVersion2Record, DateTime> INSTALLED_ON = createField(DSL.name("installed_on"), SQLDataType.TIMESTAMP(0).nullable(false).defaultValue(DSL.field(DSL.raw("current_timestamp()"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
+    public final TableField<SchemaVersion2Record, DateTime> INSTALLED_ON = createField(DSL.name("installed_on"), SQLDataType.TIMESTAMP(0).nullable(false).defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     /**
      * The column <code>ev_history.schema_version2.execution_time</code>.

@@ -11,7 +11,6 @@ import jooq.steve.db2.tables.DealerSettlementSlab;
 import jooq.steve.db2.tables.LiveChargingData;
 import jooq.steve.db2.tables.SchemaVersion2;
 import jooq.steve.db2.tables.TransactionEnergyValues;
-import jooq.steve.db2.tables.WalletTrack;
 import jooq.steve.db2.tables.WalletTrackSettlement;
 import jooq.steve.db2.tables.records.ChargeboxStatusRecord;
 import jooq.steve.db2.tables.records.ChargerConnectorStatusLogRecord;
@@ -20,7 +19,6 @@ import jooq.steve.db2.tables.records.DealerSettlementSlabRecord;
 import jooq.steve.db2.tables.records.LiveChargingDataRecord;
 import jooq.steve.db2.tables.records.SchemaVersion2Record;
 import jooq.steve.db2.tables.records.TransactionEnergyValuesRecord;
-import jooq.steve.db2.tables.records.WalletTrackRecord;
 import jooq.steve.db2.tables.records.WalletTrackSettlementRecord;
 
 import org.jooq.TableField;
@@ -46,9 +44,7 @@ public class Keys {
     public static final UniqueKey<ChargerStatusRecord> KEY_CHARGER_STATUS_PRIMARY = Internal.createUniqueKey(ChargerStatus.CHARGER_STATUS, DSL.name("KEY_charger_status_PRIMARY"), new TableField[] { ChargerStatus.CHARGER_STATUS.ID }, true);
     public static final UniqueKey<DealerSettlementSlabRecord> KEY_DEALER_SETTLEMENT_SLAB_PRIMARY = Internal.createUniqueKey(DealerSettlementSlab.DEALER_SETTLEMENT_SLAB, DSL.name("KEY_dealer_settlement_slab_PRIMARY"), new TableField[] { DealerSettlementSlab.DEALER_SETTLEMENT_SLAB.ID }, true);
     public static final UniqueKey<LiveChargingDataRecord> KEY_LIVE_CHARGING_DATA_PRIMARY = Internal.createUniqueKey(LiveChargingData.LIVE_CHARGING_DATA, DSL.name("KEY_live_charging_data_PRIMARY"), new TableField[] { LiveChargingData.LIVE_CHARGING_DATA.ID }, true);
-    public static final UniqueKey<LiveChargingDataRecord> KEY_LIVE_CHARGING_DATA_UNIQUE_TRANSACTION_ID = Internal.createUniqueKey(LiveChargingData.LIVE_CHARGING_DATA, DSL.name("KEY_live_charging_data_unique_transaction_id"), new TableField[] { LiveChargingData.LIVE_CHARGING_DATA.TRANSACTION_ID }, true);
     public static final UniqueKey<SchemaVersion2Record> KEY_SCHEMA_VERSION2_PRIMARY = Internal.createUniqueKey(SchemaVersion2.SCHEMA_VERSION2, DSL.name("KEY_schema_version2_PRIMARY"), new TableField[] { SchemaVersion2.SCHEMA_VERSION2.INSTALLED_RANK }, true);
     public static final UniqueKey<TransactionEnergyValuesRecord> KEY_TRANSACTION_ENERGY_VALUES_PRIMARY = Internal.createUniqueKey(TransactionEnergyValues.TRANSACTION_ENERGY_VALUES, DSL.name("KEY_transaction_energy_values_PRIMARY"), new TableField[] { TransactionEnergyValues.TRANSACTION_ENERGY_VALUES.TRANSACTION_ID, TransactionEnergyValues.TRANSACTION_ENERGY_VALUES.START_TIMESTAMP }, true);
-    public static final UniqueKey<WalletTrackRecord> KEY_WALLET_TRACK_PRIMARY = Internal.createUniqueKey(WalletTrack.WALLET_TRACK, DSL.name("KEY_wallet_track_PRIMARY"), new TableField[] { WalletTrack.WALLET_TRACK.TRANSACTION_ID, WalletTrack.WALLET_TRACK.START_TIMESTAMP }, true);
     public static final UniqueKey<WalletTrackSettlementRecord> KEY_WALLET_TRACK_SETTLEMENT_PRIMARY = Internal.createUniqueKey(WalletTrackSettlement.WALLET_TRACK_SETTLEMENT, DSL.name("KEY_wallet_track_settlement_PRIMARY"), new TableField[] { WalletTrackSettlement.WALLET_TRACK_SETTLEMENT.ID }, true);
 }

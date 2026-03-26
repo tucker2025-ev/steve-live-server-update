@@ -70,52 +70,52 @@ public class TransactionMeterValues extends TableImpl<TransactionMeterValuesReco
     /**
      * The column <code>stevedb.transaction_meter_values.ocpp_tag_id</code>.
      */
-    public final TableField<TransactionMeterValuesRecord, String> OCPP_TAG_ID = createField(DSL.name("ocpp_tag_id"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<TransactionMeterValuesRecord, String> OCPP_TAG_ID = createField(DSL.name("ocpp_tag_id"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>stevedb.transaction_meter_values.charge_box_id</code>.
      */
-    public final TableField<TransactionMeterValuesRecord, String> CHARGE_BOX_ID = createField(DSL.name("charge_box_id"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<TransactionMeterValuesRecord, String> CHARGE_BOX_ID = createField(DSL.name("charge_box_id"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>stevedb.transaction_meter_values.transaction_pk</code>.
      */
-    public final TableField<TransactionMeterValuesRecord, Integer> TRANSACTION_PK = createField(DSL.name("transaction_pk"), SQLDataType.INTEGER.defaultValue(DSL.inline("NULL", SQLDataType.INTEGER)), this, "");
+    public final TableField<TransactionMeterValuesRecord, Integer> TRANSACTION_PK = createField(DSL.name("transaction_pk"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>stevedb.transaction_meter_values.connector_pk</code>.
      */
-    public final TableField<TransactionMeterValuesRecord, Integer> CONNECTOR_PK = createField(DSL.name("connector_pk"), SQLDataType.INTEGER.defaultValue(DSL.inline("NULL", SQLDataType.INTEGER)), this, "");
+    public final TableField<TransactionMeterValuesRecord, Integer> CONNECTOR_PK = createField(DSL.name("connector_pk"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>stevedb.transaction_meter_values.event_timestamp</code>.
      */
-    public final TableField<TransactionMeterValuesRecord, DateTime> EVENT_TIMESTAMP = createField(DSL.name("event_timestamp"), SQLDataType.TIMESTAMP(6).nullable(false).defaultValue(DSL.field(DSL.raw("current_timestamp(6)"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
+    public final TableField<TransactionMeterValuesRecord, DateTime> EVENT_TIMESTAMP = createField(DSL.name("event_timestamp"), SQLDataType.TIMESTAMP(6).nullable(false).defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP(6)"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     /**
      * The column <code>stevedb.transaction_meter_values.voltage</code>.
      */
-    public final TableField<TransactionMeterValuesRecord, Double> VOLTAGE = createField(DSL.name("voltage"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
+    public final TableField<TransactionMeterValuesRecord, Double> VOLTAGE = createField(DSL.name("voltage"), SQLDataType.DOUBLE, this, "");
 
     /**
      * The column <code>stevedb.transaction_meter_values.current</code>.
      */
-    public final TableField<TransactionMeterValuesRecord, Double> CURRENT = createField(DSL.name("current"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
+    public final TableField<TransactionMeterValuesRecord, Double> CURRENT = createField(DSL.name("current"), SQLDataType.DOUBLE, this, "");
 
     /**
      * The column <code>stevedb.transaction_meter_values.power</code>.
      */
-    public final TableField<TransactionMeterValuesRecord, Double> POWER = createField(DSL.name("power"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
+    public final TableField<TransactionMeterValuesRecord, Double> POWER = createField(DSL.name("power"), SQLDataType.DOUBLE, this, "");
 
     /**
      * The column <code>stevedb.transaction_meter_values.energy</code>.
      */
-    public final TableField<TransactionMeterValuesRecord, Double> ENERGY = createField(DSL.name("energy"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
+    public final TableField<TransactionMeterValuesRecord, Double> ENERGY = createField(DSL.name("energy"), SQLDataType.DOUBLE, this, "");
 
     /**
      * The column <code>stevedb.transaction_meter_values.soc</code>.
      */
-    public final TableField<TransactionMeterValuesRecord, Double> SOC = createField(DSL.name("soc"), SQLDataType.DOUBLE.defaultValue(DSL.inline("NULL", SQLDataType.DOUBLE)), this, "");
+    public final TableField<TransactionMeterValuesRecord, Double> SOC = createField(DSL.name("soc"), SQLDataType.DOUBLE, this, "");
 
     private TransactionMeterValues(Name alias, Table<TransactionMeterValuesRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);

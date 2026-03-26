@@ -93,7 +93,7 @@ public class UserSessionAudit extends TableImpl<UserSessionAuditRecord> {
     /**
      * The column <code>stevedb.user_session_audit.signout_time</code>.
      */
-    public final TableField<UserSessionAuditRecord, DateTime> SIGNOUT_TIME = createField(DSL.name("signout_time"), SQLDataType.TIMESTAMP(0).defaultValue(DSL.inline("NULL", SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
+    public final TableField<UserSessionAuditRecord, DateTime> SIGNOUT_TIME = createField(DSL.name("signout_time"), SQLDataType.TIMESTAMP(0), this, "", new DateTimeConverter());
 
     private UserSessionAudit(Name alias, Table<UserSessionAuditRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);

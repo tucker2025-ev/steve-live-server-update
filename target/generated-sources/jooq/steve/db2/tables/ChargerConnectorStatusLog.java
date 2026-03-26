@@ -74,31 +74,31 @@ public class ChargerConnectorStatusLog extends TableImpl<ChargerConnectorStatusL
     /**
      * The column <code>ev_history.charger_connector_status_log.status</code>.
      */
-    public final TableField<ChargerConnectorStatusLogRecord, String> STATUS = createField(DSL.name("status"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<ChargerConnectorStatusLogRecord, String> STATUS = createField(DSL.name("status"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column
      * <code>ev_history.charger_connector_status_log.error_code</code>.
      */
-    public final TableField<ChargerConnectorStatusLogRecord, String> ERROR_CODE = createField(DSL.name("error_code"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<ChargerConnectorStatusLogRecord, String> ERROR_CODE = createField(DSL.name("error_code"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column
      * <code>ev_history.charger_connector_status_log.error_info</code>.
      */
-    public final TableField<ChargerConnectorStatusLogRecord, String> ERROR_INFO = createField(DSL.name("error_info"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<ChargerConnectorStatusLogRecord, String> ERROR_INFO = createField(DSL.name("error_info"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column
      * <code>ev_history.charger_connector_status_log.vendor_id</code>.
      */
-    public final TableField<ChargerConnectorStatusLogRecord, String> VENDOR_ID = createField(DSL.name("vendor_id"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<ChargerConnectorStatusLogRecord, String> VENDOR_ID = createField(DSL.name("vendor_id"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column
      * <code>ev_history.charger_connector_status_log.vendor_error_code</code>.
      */
-    public final TableField<ChargerConnectorStatusLogRecord, String> VENDOR_ERROR_CODE = createField(DSL.name("vendor_error_code"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<ChargerConnectorStatusLogRecord, String> VENDOR_ERROR_CODE = createField(DSL.name("vendor_error_code"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column
@@ -110,13 +110,13 @@ public class ChargerConnectorStatusLog extends TableImpl<ChargerConnectorStatusL
      * The column
      * <code>ev_history.charger_connector_status_log.error_occur_timestamp</code>.
      */
-    public final TableField<ChargerConnectorStatusLogRecord, DateTime> ERROR_OCCUR_TIMESTAMP = createField(DSL.name("error_occur_timestamp"), SQLDataType.TIMESTAMP(0).defaultValue(DSL.field(DSL.raw("current_timestamp()"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
+    public final TableField<ChargerConnectorStatusLogRecord, DateTime> ERROR_OCCUR_TIMESTAMP = createField(DSL.name("error_occur_timestamp"), SQLDataType.TIMESTAMP(0).defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     /**
      * The column
      * <code>ev_history.charger_connector_status_log.error_resolved_timestamp</code>.
      */
-    public final TableField<ChargerConnectorStatusLogRecord, DateTime> ERROR_RESOLVED_TIMESTAMP = createField(DSL.name("error_resolved_timestamp"), SQLDataType.TIMESTAMP(0).defaultValue(DSL.inline("NULL", SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
+    public final TableField<ChargerConnectorStatusLogRecord, DateTime> ERROR_RESOLVED_TIMESTAMP = createField(DSL.name("error_resolved_timestamp"), SQLDataType.TIMESTAMP(0), this, "", new DateTimeConverter());
 
     private ChargerConnectorStatusLog(Name alias, Table<ChargerConnectorStatusLogRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);

@@ -19,6 +19,11 @@ Automatically created by Apache Tomcat JspC.
 
 
     <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002dfooter_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views._00_002dfooter_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
         <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002dcontext_jsp</servlet-name>
         <servlet-class>org.apache.jsp.WEB_002dINF.views._00_002dcontext_jsp</servlet-class>
     </servlet>
@@ -29,13 +34,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002dheader_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views._00_002dheader_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002dcp_002dsingle_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views._00_002dcp_002dsingle_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman._00_002docppTag_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman._00_002docppTag_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -44,33 +44,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002dcp_002dmultiple_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views._00_002dcp_002dmultiple_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002dfooter_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views._00_002dfooter_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman._00_002dcp_002dmisc_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman._00_002dcp_002dmisc_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002derror_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views._00_002derror_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.chargePointStatusList_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.chargePointStatusList_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.about_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.about_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002dcp_002dsingle_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views._00_002dcp_002dsingle_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -79,13 +54,38 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman._00_002docppTag_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman._00_002docppTag_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002derror_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views._00_002derror_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002dcp_002dmultiple_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views._00_002dcp_002dmultiple_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002dheader_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views._00_002dheader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.chargePointStatusList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.chargePointStatusList_jsp</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>org.apache.jsp.WEB_002dINF.views.chargepointStatus_jsp</servlet-name>
         <servlet-class>org.apache.jsp.WEB_002dINF.views.chargepointStatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman._00_002dcp_002dmisc_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman._00_002dcp_002dmisc_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.about_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.about_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -109,23 +109,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfileAssignments_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfileAssignments_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.ocppTagAdd_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.ocppTagAdd_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
         <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.transactionDetails_jsp</servlet-name>
         <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.transactionDetails_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargepoints_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.chargepoints_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -134,38 +119,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfileAdd_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfileAdd_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.userAdd_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.userAdd_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
         <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.ocppTags_jsp</servlet-name>
         <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.ocppTags_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfiles_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfiles_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.transactions_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.transactions_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfileDetails_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfileDetails_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargepointDetails_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.chargepointDetails_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -174,13 +129,43 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargepointAdd_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.chargepointAdd_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.ocppTagAdd_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.ocppTagAdd_jsp</servlet-class>
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.users_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.users_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfileAssignments_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfileAssignments_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargepoints_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.chargepoints_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.transactions_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.transactions_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.userAdd_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.userAdd_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfiles_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfiles_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfileDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfileDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfileAdd_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfileAdd_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -189,8 +174,13 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.CancelReservationForm_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.CancelReservationForm_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargepointDetails_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.chargepointDetails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.home_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.home_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -209,8 +199,13 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.DataTransferForm_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.DataTransferForm_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.ChangeConfigurationForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.ChangeConfigurationForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.users_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.users_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -219,18 +214,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.home_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.home_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.ChangeConfigurationForm_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.ChangeConfigurationForm_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.GetDiagnosticsForm_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.GetDiagnosticsForm_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargepointAdd_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.data_002dman.chargepointAdd_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -239,13 +224,13 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.ClearChargingProfileForm_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.ClearChargingProfileForm_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.DataTransferForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.DataTransferForm_jsp</servlet-class>
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.GetLocalListForm_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.GetLocalListForm_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.ClearChargingProfileForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.ClearChargingProfileForm_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -254,8 +239,13 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.ResetForm_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.ResetForm_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.GetLocalListForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.GetLocalListForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.CancelReservationForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.CancelReservationForm_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -264,18 +254,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.SendLocalListForm_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.SendLocalListForm_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.RemoteStartTransactionForm_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.RemoteStartTransactionForm_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.UnlockConnectorForm_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.UnlockConnectorForm_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.GetDiagnosticsForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.GetDiagnosticsForm_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -289,8 +269,13 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.UpdateFirmwareForm_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.UpdateFirmwareForm_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.ResetForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.ResetForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.SendLocalListForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.SendLocalListForm_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -299,8 +284,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.RemoteStopTransaction_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op12.RemoteStopTransaction_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.RemoteStartTransactionForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.RemoteStartTransactionForm_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -309,18 +294,18 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.UpdateFirmwareForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.UpdateFirmwareForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.UnlockConnectorForm_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op_002dforms.UnlockConnectorForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
         <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.ChangeAvailability_jsp</servlet-name>
         <servlet-class>org.apache.jsp.WEB_002dINF.views.op12.ChangeAvailability_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.ChangeConfiguration_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op12.ChangeConfiguration_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.GetDiagnostics_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op12.GetDiagnostics_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -329,23 +314,13 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.UnlockConnector_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op12.UnlockConnector_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
         <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.RemoteStartTransaction_jsp</servlet-name>
         <servlet-class>org.apache.jsp.WEB_002dINF.views.op12.RemoteStartTransaction_jsp</servlet-class>
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.CancelReservation_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op15.CancelReservation_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.UpdateFirmware_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op12.UpdateFirmware_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.ChangeConfiguration_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op12.ChangeConfiguration_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -354,8 +329,28 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.ClearCache_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op15.ClearCache_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.UnlockConnector_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op12.UnlockConnector_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.UpdateFirmware_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op12.UpdateFirmware_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.GetDiagnostics_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op12.GetDiagnostics_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.CancelReservation_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op15.CancelReservation_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.RemoteStopTransaction_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op12.RemoteStopTransaction_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -364,13 +359,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.DataTransfer_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op15.DataTransfer_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.GetDiagnostics_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op15.GetDiagnostics_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.ClearCache_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op15.ClearCache_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -389,28 +379,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.RemoteStartTransaction_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op15.RemoteStartTransaction_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.Reset_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op15.Reset_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.SendLocalList_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op15.SendLocalList_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.ReserveNow_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op15.ReserveNow_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.CancelReservation_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.CancelReservation_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.DataTransfer_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op15.DataTransfer_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -419,13 +389,38 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.Reset_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op15.Reset_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.RemoteStartTransaction_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op15.RemoteStartTransaction_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
         <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.UpdateFirmware_jsp</servlet-name>
         <servlet-class>org.apache.jsp.WEB_002dINF.views.op15.UpdateFirmware_jsp</servlet-class>
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.ChangeAvailability_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.ChangeAvailability_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.GetDiagnostics_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op15.GetDiagnostics_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.SendLocalList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op15.SendLocalList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.CancelReservation_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.CancelReservation_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.ReserveNow_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op15.ReserveNow_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -434,18 +429,13 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.ClearCache_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.ClearCache_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
         <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.ClearChargingProfile_jsp</servlet-name>
         <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.ClearChargingProfile_jsp</servlet-class>
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.ChangeConfiguration_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.ChangeConfiguration_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.ChangeAvailability_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.ChangeAvailability_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -454,13 +444,23 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.ClearCache_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.ClearCache_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
         <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.GetCompositeSchedule_jsp</servlet-name>
         <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.GetCompositeSchedule_jsp</servlet-class>
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.GetDiagnostics_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.GetDiagnostics_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.ChangeConfiguration_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.ChangeConfiguration_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.RemoteStartTransaction_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.RemoteStartTransaction_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -474,13 +474,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.signin_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.signin_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.Reset_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.Reset_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.GetDiagnostics_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.GetDiagnostics_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -489,13 +484,23 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.UnlockConnector_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.UnlockConnector_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.Reset_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.Reset_jsp</servlet-class>
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.SendLocalList_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.SendLocalList_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.signin_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.signin_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.TriggerMessage_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.TriggerMessage_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.UnlockConnector_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.UnlockConnector_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -509,33 +514,13 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.TriggerMessage_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.TriggerMessage_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.SendLocalList_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.SendLocalList_jsp</servlet-class>
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.UpdateFirmware_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.UpdateFirmware_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.RemoteStartTransaction_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.RemoteStartTransaction_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.settings_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.settings_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.taskResult_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.taskResult_jsp</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.tasks_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.tasks_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.websocket_002dlogs_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.websocket_002dlogs_jsp</servlet-class>
     </servlet>
 
     <servlet>
@@ -544,9 +529,29 @@ Automatically created by Apache Tomcat JspC.
     </servlet>
 
     <servlet>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.websocket_002dlogs_jsp</servlet-name>
-        <servlet-class>org.apache.jsp.WEB_002dINF.views.websocket_002dlogs_jsp</servlet-class>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.tasks_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.tasks_jsp</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.taskResult_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.taskResult_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.UpdateFirmware_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.op16.UpdateFirmware_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.settings_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.WEB_002dINF.views.settings_jsp</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002dfooter_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/00-footer.jsp</url-pattern>
+    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002dcontext_jsp</servlet-name>
@@ -559,13 +564,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002dheader_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/00-header.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002dcp_002dsingle_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/00-cp-single.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman._00_002docppTag_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/data-man/00-ocppTag.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -574,33 +574,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002dcp_002dmultiple_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/00-cp-multiple.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002dfooter_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/00-footer.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman._00_002dcp_002dmisc_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/data-man/00-cp-misc.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002derror_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/00-error.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.chargePointStatusList_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/chargePointStatusList.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.about_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/about.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002dcp_002dsingle_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/00-cp-single.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -609,13 +584,38 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman._00_002docppTag_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/data-man/00-ocppTag.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002derror_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/00-error.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002dcp_002dmultiple_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/00-cp-multiple.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views._00_002dheader_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/00-header.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.chargePointStatusList_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/chargePointStatusList.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>org.apache.jsp.WEB_002dINF.views.chargepointStatus_jsp</servlet-name>
         <url-pattern>/WEB-INF/views/chargepointStatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman._00_002dcp_002dmisc_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/data-man/00-cp-misc.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.about_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/about.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -639,23 +639,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfileAssignments_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/data-man/chargingProfileAssignments.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.ocppTagAdd_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/data-man/ocppTagAdd.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
         <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.transactionDetails_jsp</servlet-name>
         <url-pattern>/WEB-INF/views/data-man/transactionDetails.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargepoints_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/data-man/chargepoints.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -664,38 +649,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfileAdd_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/data-man/chargingProfileAdd.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.userAdd_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/data-man/userAdd.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
         <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.ocppTags_jsp</servlet-name>
         <url-pattern>/WEB-INF/views/data-man/ocppTags.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfiles_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/data-man/chargingProfiles.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.transactions_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/data-man/transactions.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfileDetails_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/data-man/chargingProfileDetails.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargepointDetails_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/data-man/chargepointDetails.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -704,13 +659,43 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargepointAdd_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/data-man/chargepointAdd.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.ocppTagAdd_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/data-man/ocppTagAdd.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.users_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/data-man/users.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfileAssignments_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/data-man/chargingProfileAssignments.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargepoints_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/data-man/chargepoints.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.transactions_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/data-man/transactions.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.userAdd_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/data-man/userAdd.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfiles_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/data-man/chargingProfiles.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfileDetails_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/data-man/chargingProfileDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargingProfileAdd_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/data-man/chargingProfileAdd.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -719,8 +704,13 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.CancelReservationForm_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op-forms/CancelReservationForm.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargepointDetails_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/data-man/chargepointDetails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.home_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/home.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -739,8 +729,13 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.DataTransferForm_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op-forms/DataTransferForm.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.ChangeConfigurationForm_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op-forms/ChangeConfigurationForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.users_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/data-man/users.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -749,18 +744,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.home_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/home.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.ChangeConfigurationForm_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op-forms/ChangeConfigurationForm.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.GetDiagnosticsForm_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op-forms/GetDiagnosticsForm.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.data_002dman.chargepointAdd_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/data-man/chargepointAdd.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -769,13 +754,13 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.ClearChargingProfileForm_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op-forms/ClearChargingProfileForm.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.DataTransferForm_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op-forms/DataTransferForm.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.GetLocalListForm_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op-forms/GetLocalListForm.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.ClearChargingProfileForm_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op-forms/ClearChargingProfileForm.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -784,8 +769,13 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.ResetForm_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op-forms/ResetForm.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.GetLocalListForm_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op-forms/GetLocalListForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.CancelReservationForm_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op-forms/CancelReservationForm.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -794,18 +784,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.SendLocalListForm_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op-forms/SendLocalListForm.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.RemoteStartTransactionForm_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op-forms/RemoteStartTransactionForm.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.UnlockConnectorForm_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op-forms/UnlockConnectorForm.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.GetDiagnosticsForm_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op-forms/GetDiagnosticsForm.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -819,8 +799,13 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.UpdateFirmwareForm_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op-forms/UpdateFirmwareForm.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.ResetForm_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op-forms/ResetForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.SendLocalListForm_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op-forms/SendLocalListForm.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -829,8 +814,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.RemoteStopTransaction_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op12/RemoteStopTransaction.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.RemoteStartTransactionForm_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op-forms/RemoteStartTransactionForm.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -839,18 +824,18 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.UpdateFirmwareForm_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op-forms/UpdateFirmwareForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op_002dforms.UnlockConnectorForm_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op-forms/UnlockConnectorForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
         <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.ChangeAvailability_jsp</servlet-name>
         <url-pattern>/WEB-INF/views/op12/ChangeAvailability.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.ChangeConfiguration_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op12/ChangeConfiguration.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.GetDiagnostics_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op12/GetDiagnostics.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -859,23 +844,13 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.UnlockConnector_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op12/UnlockConnector.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
         <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.RemoteStartTransaction_jsp</servlet-name>
         <url-pattern>/WEB-INF/views/op12/RemoteStartTransaction.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.CancelReservation_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op15/CancelReservation.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.UpdateFirmware_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op12/UpdateFirmware.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.ChangeConfiguration_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op12/ChangeConfiguration.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -884,8 +859,28 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.ClearCache_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op15/ClearCache.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.UnlockConnector_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op12/UnlockConnector.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.UpdateFirmware_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op12/UpdateFirmware.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.GetDiagnostics_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op12/GetDiagnostics.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.CancelReservation_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op15/CancelReservation.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op12.RemoteStopTransaction_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op12/RemoteStopTransaction.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -894,13 +889,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.DataTransfer_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op15/DataTransfer.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.GetDiagnostics_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op15/GetDiagnostics.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.ClearCache_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op15/ClearCache.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -919,28 +909,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.RemoteStartTransaction_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op15/RemoteStartTransaction.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.Reset_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op15/Reset.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.SendLocalList_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op15/SendLocalList.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.ReserveNow_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op15/ReserveNow.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.CancelReservation_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op16/CancelReservation.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.DataTransfer_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op15/DataTransfer.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -949,13 +919,38 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.Reset_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op15/Reset.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.RemoteStartTransaction_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op15/RemoteStartTransaction.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
         <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.UpdateFirmware_jsp</servlet-name>
         <url-pattern>/WEB-INF/views/op15/UpdateFirmware.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.ChangeAvailability_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op16/ChangeAvailability.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.GetDiagnostics_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op15/GetDiagnostics.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.SendLocalList_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op15/SendLocalList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.CancelReservation_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op16/CancelReservation.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op15.ReserveNow_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op15/ReserveNow.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -964,18 +959,13 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.ClearCache_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op16/ClearCache.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
         <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.ClearChargingProfile_jsp</servlet-name>
         <url-pattern>/WEB-INF/views/op16/ClearChargingProfile.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.ChangeConfiguration_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op16/ChangeConfiguration.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.ChangeAvailability_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op16/ChangeAvailability.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -984,13 +974,23 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.ClearCache_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op16/ClearCache.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
         <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.GetCompositeSchedule_jsp</servlet-name>
         <url-pattern>/WEB-INF/views/op16/GetCompositeSchedule.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.GetDiagnostics_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op16/GetDiagnostics.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.ChangeConfiguration_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op16/ChangeConfiguration.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.RemoteStartTransaction_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op16/RemoteStartTransaction.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -1004,13 +1004,8 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.signin_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/signin.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.Reset_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op16/Reset.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.GetDiagnostics_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op16/GetDiagnostics.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -1019,13 +1014,23 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.UnlockConnector_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op16/UnlockConnector.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.Reset_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op16/Reset.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.SendLocalList_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op16/SendLocalList.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.signin_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/signin.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.TriggerMessage_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op16/TriggerMessage.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.UnlockConnector_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op16/UnlockConnector.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -1039,33 +1044,13 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.TriggerMessage_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op16/TriggerMessage.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.SendLocalList_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op16/SendLocalList.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.UpdateFirmware_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op16/UpdateFirmware.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.RemoteStartTransaction_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/op16/RemoteStartTransaction.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.settings_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/settings.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.taskResult_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/taskResult.jsp</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.tasks_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/tasks.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.websocket_002dlogs_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/websocket-logs.jsp</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -1074,8 +1059,23 @@ Automatically created by Apache Tomcat JspC.
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>org.apache.jsp.WEB_002dINF.views.websocket_002dlogs_jsp</servlet-name>
-        <url-pattern>/WEB-INF/views/websocket-logs.jsp</url-pattern>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.tasks_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/tasks.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.taskResult_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/taskResult.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.op16.UpdateFirmware_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/op16/UpdateFirmware.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.WEB_002dINF.views.settings_jsp</servlet-name>
+        <url-pattern>/WEB-INF/views/settings.jsp</url-pattern>
     </servlet-mapping>
 
 <!--

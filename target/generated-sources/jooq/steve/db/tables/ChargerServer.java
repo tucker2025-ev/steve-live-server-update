@@ -58,11 +58,6 @@ public class ChargerServer extends TableImpl<ChargerServerRecord> {
     public final TableField<ChargerServerRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
-     * The column <code>stevedb.charger_server.mac</code>.
-     */
-    public final TableField<ChargerServerRecord, String> MAC = createField(DSL.name("mac"), SQLDataType.VARCHAR(255).nullable(false), this, "");
-
-    /**
      * The column <code>stevedb.charger_server.charger_box_id</code>.
      */
     public final TableField<ChargerServerRecord, String> CHARGER_BOX_ID = createField(DSL.name("charger_box_id"), SQLDataType.VARCHAR(255).nullable(false), this, "");
@@ -80,7 +75,7 @@ public class ChargerServer extends TableImpl<ChargerServerRecord> {
     /**
      * The column <code>stevedb.charger_server.connectorId</code>.
      */
-    public final TableField<ChargerServerRecord, Integer> CONNECTORID = createField(DSL.name("connectorId"), SQLDataType.INTEGER.defaultValue(DSL.inline("NULL", SQLDataType.INTEGER)), this, "");
+    public final TableField<ChargerServerRecord, Integer> CONNECTORID = createField(DSL.name("connectorId"), SQLDataType.INTEGER, this, "");
 
     private ChargerServer(Name alias, Table<ChargerServerRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);
@@ -128,7 +123,7 @@ public class ChargerServer extends TableImpl<ChargerServerRecord> {
 
     @Override
     public List<UniqueKey<ChargerServerRecord>> getUniqueKeys() {
-        return Arrays.asList(Keys.KEY_CHARGER_SERVER_CHARGER_QR_CODE);
+        return Arrays.asList(Keys.KEY_CHARGER_SERVER_UK_CHARGER_BOX_ID, Keys.KEY_CHARGER_SERVER_CHARGER_QR_CODE);
     }
 
     @Override

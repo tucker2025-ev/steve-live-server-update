@@ -34,25 +34,10 @@ public class ChargerServerRecord extends UpdatableRecordImpl<ChargerServerRecord
     }
 
     /**
-     * Setter for <code>stevedb.charger_server.mac</code>.
-     */
-    public ChargerServerRecord setMac(String value) {
-        set(1, value);
-        return this;
-    }
-
-    /**
-     * Getter for <code>stevedb.charger_server.mac</code>.
-     */
-    public String getMac() {
-        return (String) get(1);
-    }
-
-    /**
      * Setter for <code>stevedb.charger_server.charger_box_id</code>.
      */
     public ChargerServerRecord setChargerBoxId(String value) {
-        set(2, value);
+        set(1, value);
         return this;
     }
 
@@ -60,14 +45,14 @@ public class ChargerServerRecord extends UpdatableRecordImpl<ChargerServerRecord
      * Getter for <code>stevedb.charger_server.charger_box_id</code>.
      */
     public String getChargerBoxId() {
-        return (String) get(2);
+        return (String) get(1);
     }
 
     /**
      * Setter for <code>stevedb.charger_server.server_url</code>.
      */
     public ChargerServerRecord setServerUrl(String value) {
-        set(3, value);
+        set(2, value);
         return this;
     }
 
@@ -75,14 +60,14 @@ public class ChargerServerRecord extends UpdatableRecordImpl<ChargerServerRecord
      * Getter for <code>stevedb.charger_server.server_url</code>.
      */
     public String getServerUrl() {
-        return (String) get(3);
+        return (String) get(2);
     }
 
     /**
      * Setter for <code>stevedb.charger_server.charger_qr_code</code>.
      */
     public ChargerServerRecord setChargerQrCode(String value) {
-        set(4, value);
+        set(3, value);
         return this;
     }
 
@@ -90,14 +75,14 @@ public class ChargerServerRecord extends UpdatableRecordImpl<ChargerServerRecord
      * Getter for <code>stevedb.charger_server.charger_qr_code</code>.
      */
     public String getChargerQrCode() {
-        return (String) get(4);
+        return (String) get(3);
     }
 
     /**
      * Setter for <code>stevedb.charger_server.connectorId</code>.
      */
     public ChargerServerRecord setConnectorid(Integer value) {
-        set(5, value);
+        set(4, value);
         return this;
     }
 
@@ -105,7 +90,7 @@ public class ChargerServerRecord extends UpdatableRecordImpl<ChargerServerRecord
      * Getter for <code>stevedb.charger_server.connectorId</code>.
      */
     public Integer getConnectorid() {
-        return (Integer) get(5);
+        return (Integer) get(4);
     }
 
     // -------------------------------------------------------------------------
@@ -131,11 +116,10 @@ public class ChargerServerRecord extends UpdatableRecordImpl<ChargerServerRecord
     /**
      * Create a detached, initialised ChargerServerRecord
      */
-    public ChargerServerRecord(Integer id, String mac, String chargerBoxId, String serverUrl, String chargerQrCode, Integer connectorid) {
+    public ChargerServerRecord(Integer id, String chargerBoxId, String serverUrl, String chargerQrCode, Integer connectorid) {
         super(ChargerServer.CHARGER_SERVER);
 
         setId(id);
-        setMac(mac);
         setChargerBoxId(chargerBoxId);
         setServerUrl(serverUrl);
         setChargerQrCode(chargerQrCode);

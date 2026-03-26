@@ -1,21 +1,3 @@
-/*
- * SteVe - SteckdosenVerwaltung - https://github.com/steve-community/steve
- * Copyright (C) 2013-2026 SteVe Community Team
- * All Rights Reserved.
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 package de.rwth.idsg.steve.ocpp.ws.ocpp16;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -48,10 +30,10 @@ public class Ocpp16WebSocketEndpoint extends AbstractWebSocketEndpoint {
     private CentralSystemService16_SoapServer server;
 
     @Autowired
-    private OcppMessageStore messageStore;
+    private FutureResponseContextStore futureResponseContextStore;
 
     @Autowired
-    private FutureResponseContextStore futureResponseContextStore;
+    private OcppMessageStore messageStore;
 
     private static final ObjectMapper mapper = new ObjectMapper()
             .registerModule(new JodaModule())
@@ -59,7 +41,6 @@ public class Ocpp16WebSocketEndpoint extends AbstractWebSocketEndpoint {
 
     @PostConstruct
     public void init() {
-
         Deserializer deserializer =
                 new Deserializer(futureResponseContextStore, Ocpp16TypeStore.INSTANCE);
 
@@ -83,20 +64,14 @@ public class Ocpp16WebSocketEndpoint extends AbstractWebSocketEndpoint {
         @Override
         protected ResponseType dispatch(RequestType params, String chargeBoxId) {
 
-
             if (params instanceof BootNotificationRequest req) {
                 parent.sendToFlutter("BootNotification", chargeBoxId, req);
                 return server.bootNotificationWithTransport(req, chargeBoxId, OcppProtocol.V_16_JSON);
             }
 
-            if (params instanceof StatusNotificationRequest req) {
-                parent.sendToFlutter("StatusNotification", chargeBoxId, req);
-                return server.statusNotification(req, chargeBoxId);
-            }
-
-            if (params instanceof MeterValuesRequest req) {
-                parent.sendToFlutter("MeterValues", chargeBoxId, req);
-                return server.meterValues(req, chargeBoxId);
+            if (params instanceof AuthorizeRequest req) {
+                parent.sendToFlutter("Authorize", chargeBoxId, req);
+                return server.authorize(req, chargeBoxId);
             }
 
             if (params instanceof StartTransactionRequest req) {
@@ -109,28 +84,42 @@ public class Ocpp16WebSocketEndpoint extends AbstractWebSocketEndpoint {
                 return server.stopTransaction(req, chargeBoxId);
             }
 
+            if (params instanceof MeterValuesRequest req) {
+                parent.sendToFlutter("MeterValues", chargeBoxId, req);
+                return server.meterValues(req, chargeBoxId);
+            }
+
+            if (params instanceof StatusNotificationRequest req) {
+                parent.sendToFlutter("StatusNotification", chargeBoxId, req);
+                return server.statusNotification(req, chargeBoxId);
+            }
+
             if (params instanceof HeartbeatRequest req) {
                 parent.sendToFlutter("Heartbeat", chargeBoxId, req);
                 return server.heartbeat(req, chargeBoxId);
             }
 
-            if (params instanceof AuthorizeRequest req) {
-                parent.sendToFlutter("Authorize", chargeBoxId, req);
-                return server.authorize(req, chargeBoxId);
+            if (params instanceof FirmwareStatusNotificationRequest req) {
+                parent.sendToFlutter("FirmwareStatusNotification", chargeBoxId, req);
+                return server.firmwareStatusNotification(req, chargeBoxId);
             }
 
-            throw new IllegalArgumentException("Unknown request");
+            if (params instanceof DiagnosticsStatusNotificationRequest req) {
+                parent.sendToFlutter("DiagnosticsStatusNotification", chargeBoxId, req);
+                return server.diagnosticsStatusNotification(req, chargeBoxId);
+            }
+
+            if (params instanceof DataTransferRequest req) {
+                parent.sendToFlutter("DataTransfer", chargeBoxId, req);
+                return server.dataTransfer(req, chargeBoxId);
+            }
+
+            throw new IllegalArgumentException("Unexpected RequestType: " + params.getClass());
         }
     }
 
-    // =========================================================
-    // SEND TO FLUTTER
-    // =========================================================
-
     public void sendToFlutter(String event, String chargeBoxId, Object payload) {
-
         try {
-
             String json = mapper.writeValueAsString(
                     Map.of(
                             "event", event,
@@ -140,7 +129,6 @@ public class Ocpp16WebSocketEndpoint extends AbstractWebSocketEndpoint {
             );
 
             messageStore.add(chargeBoxId, json);
-
             FlutterWebSocketHandler.sendToChargePoint(chargeBoxId, json);
 
         } catch (Exception e) {

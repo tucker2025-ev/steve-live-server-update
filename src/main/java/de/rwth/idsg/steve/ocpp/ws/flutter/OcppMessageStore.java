@@ -40,11 +40,6 @@ public class OcppMessageStore {
 
     public void add(String chargeBoxId, String message) {
 
-//        history.computeIfAbsent(chargeBoxId, k -> new ArrayList<>()).add(message);
-//
-//        if (history.get(chargeBoxId).size() > 100) {
-//            history.get(chargeBoxId).remove(0);
-//        }
         dslContext.insertInto(TEST_BENCH_LOG)
                 .set(TEST_BENCH_LOG.CHARGE_BOX_ID, chargeBoxId)
                 .set(TEST_BENCH_LOG.MESSAGE, message)
@@ -53,9 +48,6 @@ public class OcppMessageStore {
 
     }
 
-//    public List<String> get(String chargeBoxId) {
-//        return history.getOrDefault(chargeBoxId, Collections.emptyList());
-//    }
 
     public List<String> getDataUseChargeBoxId(final String chargeBoxId) {
         return dslContext

@@ -63,12 +63,12 @@ public class OcppTagActivity extends TableImpl<OcppTagActivityRecord> {
     /**
      * The column <code>stevedb.ocpp_tag_activity.parent_id_tag</code>.
      */
-    public final TableField<OcppTagActivityRecord, String> PARENT_ID_TAG = createField(DSL.name("parent_id_tag"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<OcppTagActivityRecord, String> PARENT_ID_TAG = createField(DSL.name("parent_id_tag"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>stevedb.ocpp_tag_activity.expiry_date</code>.
      */
-    public final TableField<OcppTagActivityRecord, DateTime> EXPIRY_DATE = createField(DSL.name("expiry_date"), SQLDataType.TIMESTAMP(6).defaultValue(DSL.inline("NULL", SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
+    public final TableField<OcppTagActivityRecord, DateTime> EXPIRY_DATE = createField(DSL.name("expiry_date"), SQLDataType.TIMESTAMP(6), this, "", new DateTimeConverter());
 
     /**
      * The column
@@ -79,7 +79,7 @@ public class OcppTagActivity extends TableImpl<OcppTagActivityRecord> {
     /**
      * The column <code>stevedb.ocpp_tag_activity.note</code>.
      */
-    public final TableField<OcppTagActivityRecord, String> NOTE = createField(DSL.name("note"), SQLDataType.CLOB.defaultValue(DSL.inline("NULL", SQLDataType.CLOB)), this, "");
+    public final TableField<OcppTagActivityRecord, String> NOTE = createField(DSL.name("note"), SQLDataType.CLOB, this, "");
 
     /**
      * The column
@@ -102,7 +102,7 @@ public class OcppTagActivity extends TableImpl<OcppTagActivityRecord> {
     }
 
     private OcppTagActivity(Name alias, Table<OcppTagActivityRecord> aliased, Field<?>[] parameters, Condition where) {
-        super(alias, null, aliased, parameters, DSL.comment("VIEW"), TableOptions.view("create view `ocpp_tag_activity` as select `o`.`ocpp_tag_pk` AS `ocpp_tag_pk`,`o`.`id_tag` AS `id_tag`,`o`.`parent_id_tag` AS `parent_id_tag`,`o`.`expiry_date` AS `expiry_date`,`o`.`max_active_transaction_count` AS `max_active_transaction_count`,`o`.`note` AS `note`,count(`t`.`id_tag`) AS `active_transaction_count`,case when count(`t`.`id_tag`) > 0 then 1 else 0 end AS `in_transaction`,case when `o`.`max_active_transaction_count` = 0 then 1 else 0 end AS `blocked` from (`stevedb`.`ocpp_tag` `o` left join `stevedb`.`transaction` `t` on(`o`.`id_tag` = `t`.`id_tag` and `t`.`stop_timestamp` is null and `t`.`stop_value` is null)) group by `o`.`ocpp_tag_pk`,`o`.`parent_id_tag`,`o`.`expiry_date`,`o`.`max_active_transaction_count`,`o`.`note`"), where);
+        super(alias, null, aliased, parameters, DSL.comment("VIEW"), TableOptions.view("create view `ocpp_tag_activity` as select `o`.`ocpp_tag_pk` AS `ocpp_tag_pk`,`o`.`id_tag` AS `id_tag`,`o`.`parent_id_tag` AS `parent_id_tag`,`o`.`expiry_date` AS `expiry_date`,`o`.`max_active_transaction_count` AS `max_active_transaction_count`,`o`.`note` AS `note`,count(`stevedb`.`t`.`id_tag`) AS `active_transaction_count`,(case when (count(`stevedb`.`t`.`id_tag`) > 0) then 1 else 0 end) AS `in_transaction`,(case when (`o`.`max_active_transaction_count` = 0) then 1 else 0 end) AS `blocked` from (`stevedb`.`ocpp_tag` `o` left join `stevedb`.`transaction` `t` on(((`o`.`id_tag` = `stevedb`.`t`.`id_tag`) and (`stevedb`.`t`.`stop_timestamp` is null) and (`stevedb`.`t`.`stop_value` is null)))) group by `o`.`ocpp_tag_pk`,`o`.`parent_id_tag`,`o`.`expiry_date`,`o`.`max_active_transaction_count`,`o`.`note`"), where);
     }
 
     /**

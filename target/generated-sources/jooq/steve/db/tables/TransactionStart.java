@@ -15,6 +15,7 @@ import jooq.steve.db.Keys;
 import jooq.steve.db.Stevedb;
 import jooq.steve.db.tables.Connector.ConnectorPath;
 import jooq.steve.db.tables.ConnectorMeterValue.ConnectorMeterValuePath;
+import jooq.steve.db.tables.OcppTag.OcppTagPath;
 import jooq.steve.db.tables.Reservation.ReservationPath;
 import jooq.steve.db.tables.TransactionStop.TransactionStopPath;
 import jooq.steve.db.tables.records.TransactionStartRecord;
@@ -73,7 +74,7 @@ public class TransactionStart extends TableImpl<TransactionStartRecord> {
     /**
      * The column <code>stevedb.transaction_start.event_timestamp</code>.
      */
-    public final TableField<TransactionStartRecord, DateTime> EVENT_TIMESTAMP = createField(DSL.name("event_timestamp"), SQLDataType.TIMESTAMP(6).nullable(false).defaultValue(DSL.field(DSL.raw("current_timestamp(6)"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
+    public final TableField<TransactionStartRecord, DateTime> EVENT_TIMESTAMP = createField(DSL.name("event_timestamp"), SQLDataType.TIMESTAMP(6).nullable(false).defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP(6)"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     /**
      * The column <code>stevedb.transaction_start.connector_pk</code>.
@@ -88,32 +89,27 @@ public class TransactionStart extends TableImpl<TransactionStartRecord> {
     /**
      * The column <code>stevedb.transaction_start.start_timestamp</code>.
      */
-    public final TableField<TransactionStartRecord, DateTime> START_TIMESTAMP = createField(DSL.name("start_timestamp"), SQLDataType.TIMESTAMP(6).defaultValue(DSL.inline("NULL", SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
+    public final TableField<TransactionStartRecord, DateTime> START_TIMESTAMP = createField(DSL.name("start_timestamp"), SQLDataType.TIMESTAMP(6), this, "", new DateTimeConverter());
 
     /**
      * The column <code>stevedb.transaction_start.start_value</code>.
      */
-    public final TableField<TransactionStartRecord, String> START_VALUE = createField(DSL.name("start_value"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<TransactionStartRecord, String> START_VALUE = createField(DSL.name("start_value"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>stevedb.transaction_start.start_type</code>.
      */
-    public final TableField<TransactionStartRecord, String> START_TYPE = createField(DSL.name("start_type"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
-
-    /**
-     * The column <code>stevedb.transaction_start.chargerTxId</code>.
-     */
-    public final TableField<TransactionStartRecord, String> CHARGERTXID = createField(DSL.name("chargerTxId"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<TransactionStartRecord, String> START_TYPE = createField(DSL.name("start_type"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>stevedb.transaction_start.start_tag_id</code>.
      */
-    public final TableField<TransactionStartRecord, String> START_TAG_ID = createField(DSL.name("start_tag_id"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<TransactionStartRecord, String> START_TAG_ID = createField(DSL.name("start_tag_id"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>stevedb.transaction_start.start_server</code>.
      */
-    public final TableField<TransactionStartRecord, String> START_SERVER = createField(DSL.name("start_server"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<TransactionStartRecord, String> START_SERVER = createField(DSL.name("start_server"), SQLDataType.VARCHAR(255), this, "");
 
     private TransactionStart(Name alias, Table<TransactionStartRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);
@@ -204,7 +200,7 @@ public class TransactionStart extends TableImpl<TransactionStartRecord> {
 
     @Override
     public List<ForeignKey<TransactionStartRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.FK_CONNECTOR_PK_T);
+        return Arrays.asList(Keys.FK_CONNECTOR_PK_T, Keys.FK_TRANSACTION_OCPP_TAG_ID_TAG);
     }
 
     private transient ConnectorPath _connector;
@@ -217,6 +213,18 @@ public class TransactionStart extends TableImpl<TransactionStartRecord> {
             _connector = new ConnectorPath(this, Keys.FK_CONNECTOR_PK_T, null);
 
         return _connector;
+    }
+
+    private transient OcppTagPath _ocppTag;
+
+    /**
+     * Get the implicit join path to the <code>stevedb.ocpp_tag</code> table.
+     */
+    public OcppTagPath ocppTag() {
+        if (_ocppTag == null)
+            _ocppTag = new OcppTagPath(this, Keys.FK_TRANSACTION_OCPP_TAG_ID_TAG, null);
+
+        return _ocppTag;
     }
 
     private transient ConnectorMeterValuePath _connectorMeterValue;

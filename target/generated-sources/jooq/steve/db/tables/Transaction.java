@@ -69,32 +69,32 @@ public class Transaction extends TableImpl<TransactionRecord> {
     /**
      * The column <code>stevedb.transaction.start_event_timestamp</code>.
      */
-    public final TableField<TransactionRecord, DateTime> START_EVENT_TIMESTAMP = createField(DSL.name("start_event_timestamp"), SQLDataType.TIMESTAMP(6).nullable(false).defaultValue(DSL.field(DSL.raw("current_timestamp(6)"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
+    public final TableField<TransactionRecord, DateTime> START_EVENT_TIMESTAMP = createField(DSL.name("start_event_timestamp"), SQLDataType.TIMESTAMP(6).nullable(false).defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP(6)"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     /**
      * The column <code>stevedb.transaction.start_timestamp</code>.
      */
-    public final TableField<TransactionRecord, DateTime> START_TIMESTAMP = createField(DSL.name("start_timestamp"), SQLDataType.TIMESTAMP(6).defaultValue(DSL.inline("NULL", SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
+    public final TableField<TransactionRecord, DateTime> START_TIMESTAMP = createField(DSL.name("start_timestamp"), SQLDataType.TIMESTAMP(6), this, "", new DateTimeConverter());
 
     /**
      * The column <code>stevedb.transaction.start_value</code>.
      */
-    public final TableField<TransactionRecord, String> START_VALUE = createField(DSL.name("start_value"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<TransactionRecord, String> START_VALUE = createField(DSL.name("start_value"), SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>stevedb.transaction.stop_event_actor</code>.
      */
-    public final TableField<TransactionRecord, TransactionStopEventActor> STOP_EVENT_ACTOR = createField(DSL.name("stop_event_actor"), SQLDataType.VARCHAR(7).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)).asEnumDataType(TransactionStopEventActor.class), this, "");
+    public final TableField<TransactionRecord, TransactionStopEventActor> STOP_EVENT_ACTOR = createField(DSL.name("stop_event_actor"), SQLDataType.VARCHAR(7).asEnumDataType(TransactionStopEventActor.class), this, "");
 
     /**
      * The column <code>stevedb.transaction.stop_event_timestamp</code>.
      */
-    public final TableField<TransactionRecord, DateTime> STOP_EVENT_TIMESTAMP = createField(DSL.name("stop_event_timestamp"), SQLDataType.TIMESTAMP(6).defaultValue(DSL.field(DSL.raw("current_timestamp(6)"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
+    public final TableField<TransactionRecord, DateTime> STOP_EVENT_TIMESTAMP = createField(DSL.name("stop_event_timestamp"), SQLDataType.TIMESTAMP(6).defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP(6)"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     /**
      * The column <code>stevedb.transaction.stop_timestamp</code>.
      */
-    public final TableField<TransactionRecord, DateTime> STOP_TIMESTAMP = createField(DSL.name("stop_timestamp"), SQLDataType.TIMESTAMP(6).defaultValue(DSL.field(DSL.raw("current_timestamp(6)"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
+    public final TableField<TransactionRecord, DateTime> STOP_TIMESTAMP = createField(DSL.name("stop_timestamp"), SQLDataType.TIMESTAMP(6).defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP(6)"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     /**
      * The column <code>stevedb.transaction.stop_value</code>.
@@ -104,14 +104,14 @@ public class Transaction extends TableImpl<TransactionRecord> {
     /**
      * The column <code>stevedb.transaction.stop_reason</code>.
      */
-    public final TableField<TransactionRecord, String> STOP_REASON = createField(DSL.name("stop_reason"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
+    public final TableField<TransactionRecord, String> STOP_REASON = createField(DSL.name("stop_reason"), SQLDataType.VARCHAR(255), this, "");
 
     private Transaction(Name alias, Table<TransactionRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);
     }
 
     private Transaction(Name alias, Table<TransactionRecord> aliased, Field<?>[] parameters, Condition where) {
-        super(alias, null, aliased, parameters, DSL.comment("VIEW"), TableOptions.view("create view `transaction` as select `tx1`.`transaction_pk` AS `transaction_pk`,`tx1`.`connector_pk` AS `connector_pk`,`tx1`.`id_tag` AS `id_tag`,`tx1`.`event_timestamp` AS `start_event_timestamp`,`tx1`.`start_timestamp` AS `start_timestamp`,`tx1`.`start_value` AS `start_value`,`tx2`.`event_actor` AS `stop_event_actor`,`tx2`.`event_timestamp` AS `stop_event_timestamp`,`tx2`.`stop_timestamp` AS `stop_timestamp`,`tx2`.`stop_value` AS `stop_value`,`tx2`.`stop_reason` AS `stop_reason` from (`stevedb`.`transaction_start` `tx1` left join `stevedb`.`transaction_stop` `tx2` on(`tx1`.`transaction_pk` = `tx2`.`transaction_pk` and `tx2`.`event_timestamp` = (select max(`s2`.`event_timestamp`) from `stevedb`.`transaction_stop` `s2` where `tx2`.`transaction_pk` = `s2`.`transaction_pk`)))"), where);
+        super(alias, null, aliased, parameters, DSL.comment("VIEW"), TableOptions.view("create view `transaction` as select `tx1`.`transaction_pk` AS `transaction_pk`,`tx1`.`connector_pk` AS `connector_pk`,`tx1`.`id_tag` AS `id_tag`,`tx1`.`event_timestamp` AS `start_event_timestamp`,`tx1`.`start_timestamp` AS `start_timestamp`,`tx1`.`start_value` AS `start_value`,`tx2`.`event_actor` AS `stop_event_actor`,`tx2`.`event_timestamp` AS `stop_event_timestamp`,`tx2`.`stop_timestamp` AS `stop_timestamp`,`tx2`.`stop_value` AS `stop_value`,`tx2`.`stop_reason` AS `stop_reason` from (`stevedb`.`transaction_start` `tx1` left join `stevedb`.`transaction_stop` `tx2` on(((`tx1`.`transaction_pk` = `tx2`.`transaction_pk`) and (`tx2`.`event_timestamp` = (select max(`s2`.`event_timestamp`) from `stevedb`.`transaction_stop` `s2` where (`tx2`.`transaction_pk` = `s2`.`transaction_pk`))))))"), where);
     }
 
     /**
