@@ -19,8 +19,6 @@
 package de.rwth.idsg.steve.ocpp.ws.flutter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.rwth.idsg.steve.ocpp.ws.ocpp16.Ocpp16WebSocketEndpoint;
-import de.rwth.idsg.steve.repository.ChargePointRepository;
 import de.rwth.idsg.steve.service.TestAppService;
 import de.rwth.idsg.steve.service.remote.OcppRemoteCommandExecutor;
 import de.rwth.idsg.steve.service.testmobiledto.ResponseDTO;
@@ -34,243 +32,212 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 public class FlutterWebSocketHandler extends TextWebSocketHandler {
 
     @Autowired
+    private FlutterSessionManager sessionManager;
+
+    @Autowired
     private OcppMessageStore messageStore;
+
+    @Autowired
+    private OcppEventService eventService;
 
     @Autowired
     private OcppRemoteCommandExecutor commandExecutor;
 
     @Autowired
+    private ObjectMapper mapper;
+
+    @Autowired
     private TestAppService testAppService;
 
-    @Autowired
-    private Ocpp16WebSocketEndpoint ocpp16WebSocketEndpoint;
-
-    @Autowired
-    private ChargePointRepository chargePointRepository;
-
-    private static final Map<String, Set<WebSocketSession>> sessionsByChargePoint = new ConcurrentHashMap<>();
-    private static final ObjectMapper mapper = new ObjectMapper();
-
-    // ==========================
-    // CONNECTION
-    // ==========================
+    // =====================================================
+    // CONNECT
+    // =====================================================
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
-
-        String path = session.getUri().getPath();
-        String chargePointId = path.substring(path.lastIndexOf("/") + 1).trim();
-
         try {
-            Optional<String> statusOpt = chargePointRepository.getRegistrationStatus(chargePointId);
+            String cpId = extractCpId(session);
+            session.getAttributes().put("cpId", cpId);
 
-            if (statusOpt.isEmpty()) {
-                sendError(session, "CHARGEPOINT_NOT_FOUND", "ChargePoint not found", null);
-                return;
-            }
+            sessionManager.add(cpId, session);
 
-            if (!"Accepted".equalsIgnoreCase(statusOpt.get())) {
-                sendError(session, "CHARGEPOINT_NOT_ACCEPTED", "ChargePoint not accepted", null);
-                return;
-            }
-
-            sessionsByChargePoint
-                    .computeIfAbsent(chargePointId, k -> ConcurrentHashMap.newKeySet())
-                    .add(session);
-
-            session.getAttributes().put("chargeBoxId", chargePointId);
-
-            // Send history messages
-            List<String> history = messageStore.getDataUseChargeBoxId(chargePointId);
+            // ✅ Send history
+            List<String> history = messageStore.getRecent(cpId);
             for (String msg : history) {
                 session.sendMessage(new TextMessage(msg));
             }
 
-            // Send connected event
-            sendSuccess(session, Map.of(
-                    "event", "CONNECTED",
-                    "chargeBoxId", chargePointId
-            ));
+            // ✅ Notify connected
+            sendSafe(session, buildSuccess("CONNECTED", cpId, "Flutter Connected"));
 
         } catch (Exception e) {
-            sendError(session, "CONNECTION_ERROR", e.getMessage(), null);
+            sendSafe(session, buildError("CONNECTION_ERROR", e.getMessage()));
         }
     }
 
-    @Override
-    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
-
-        String chargePointId = (String) session.getAttributes().get("chargeBoxId");
-
-        if (chargePointId != null) {
-            Set<WebSocketSession> sessions = sessionsByChargePoint.get(chargePointId);
-            if (sessions != null) {
-                sessions.remove(session);
-            }
-        }
-    }
-
-    // ==========================
-    // MESSAGE HANDLING
-    // ==========================
+    // =====================================================
+    // MESSAGE HANDLING (SAFE)
+    // =====================================================
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) {
 
-        String payload = message.getPayload();
-        String chargeBoxId = (String) session.getAttributes().get("chargeBoxId");
-
         try {
-            Map<String, Object> data;
+            Map<String, Object> data = mapper.readValue(message.getPayload(), Map.class);
 
-            // 🔴 JSON Parse Handling
-            try {
-                data = mapper.readValue(payload, Map.class);
-            } catch (Exception e) {
-                sendError(session, "INVALID_JSON", "Malformed JSON", payload);
-                return;
-            }
-
-            String action = (String) data.get("action");
+            String action = getString(data.get("action"));
+            String cpId = (String) session.getAttributes().get("cpId");
 
             if (action == null) {
-                sendError(session, "MISSING_ACTION", "Action is required", payload);
+                sendSafe(session, buildError("MISSING_ACTION", "Action is required"));
                 return;
             }
 
-            String idTag = (String) data.get("idTag");
-            String connectorQrCode = (String) data.get("connectorQrCode");
-
-            Integer connectorId = parseInteger(data.get("connectorId"), "connectorId", session, payload);
-            if (connectorId == null && data.get("connectorId") != null) return;
-
-            Integer transactionId = parseInteger(data.get("transactionId"), "transactionId", session, payload);
-            if (transactionId == null && data.get("transactionId") != null) return;
-            ocpp16WebSocketEndpoint.sendToFlutter(action, chargeBoxId, payload);
             switch (action) {
 
-                case "RemoteStartTransaction":
+                // ===========================
+                // REMOTE START
+                // ===========================
+                case "RemoteStartTransaction" -> {
 
-                    if (idTag == null || connectorId == null) {
-                        sendError(session, "VALIDATION_FAILED",
-                                "idTag & connectorId required", payload);
+                    Integer connectorId = getInt(data.get("connectorId"));
+                    String idTag = getString(data.get("idTag"));
+
+                    if (connectorId == null || idTag == null) {
+                        sendSafe(session,
+                                buildError("VALIDATION_FAILED", "connectorId & idTag required"));
                         return;
                     }
 
-                    RemoteStartTransactionParams params = new RemoteStartTransactionParams();
-                    params.setIdTag(idTag);
-                    params.setConnectorId(connectorId);
+                    try {
+                        RemoteStartTransactionParams params = new RemoteStartTransactionParams();
+                        params.setIdTag(idTag);
+                        params.setConnectorId(connectorId);
 
-                    boolean started = commandExecutor
-                            .sendRemoteStart(chargeBoxId, connectorId, params, idTag)
-                            .join();
+                        final boolean started = commandExecutor
+                                .sendRemoteStart(cpId, connectorId, params, idTag)
+                                .join();
 
-                    ResponseDTO startResponse =
-                            testAppService.buildFinalStartResponse(
-                                    started, connectorQrCode, connectorId, chargeBoxId);
+                        ResponseDTO responseDTO = this.testAppService.buildFinalStartResponse(started, "c", connectorId, cpId);
 
-                    // ✅ FULL RESPONSE SEND
-                    //sendResponse(session, startResponse);
-                    ocpp16WebSocketEndpoint.sendToFlutter(action, chargeBoxId, payload);
-                    break;
+                        eventService.publish("RemoteStartTransactionResponse", cpId, responseDTO, "SERVER");
 
-                case "RemoteStopTransaction":
+
+                    } catch (Exception e) {
+                        sendSafe(session, buildError("START_FAILED", e.getMessage()));
+                    }
+                }
+
+                case "RemoteStopTransaction" -> {
+
+                    Integer transactionId = getInt(data.get("transactionId"));
 
                     if (transactionId == null) {
-                        sendError(session, "VALIDATION_FAILED",
-                                "transactionId required", payload);
+                        sendSafe(session,
+                                buildError("VALIDATION_FAILED", "transactionId required"));
                         return;
                     }
 
-                    ResponseDTO stopResponse =
-                            testAppService.stopTransaction(transactionId, "Mobile");
+                    try {
 
-                    //sendResponse(session, stopResponse);
-                    ocpp16WebSocketEndpoint.sendToFlutter(action, chargeBoxId, payload);
-                    break;
 
-                default:
-                    sendError(session, "UNKNOWN_ACTION",
-                            "Unsupported action: " + action, payload);
+                        ResponseDTO stopResponse =
+                                testAppService.stopTransaction(transactionId, "Mobile");
+                        eventService.publish("RemoteStopTransaction", cpId, stopResponse, "SERVER");
+
+                    } catch (Exception e) {
+                        sendSafe(session, buildError("STOP_FAILED", e.getMessage()));
+                    }
+                }
+
+                default -> sendSafe(session,
+                        buildError("UNKNOWN_ACTION", "Unsupported action: " + action));
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            sendError(session, "SERVER_ERROR", e.getMessage(), payload);
+
+            // ❗ NEVER THROW → Always respond
+            sendSafe(session, buildError("SERVER_ERROR", e.getMessage()));
         }
     }
 
-    // ==========================
-    // COMMON METHODS
-    // ==========================
+    // =====================================================
+    // DISCONNECT
+    // =====================================================
+    @Override
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
+        String cpId = (String) session.getAttributes().get("cpId");
+        sessionManager.remove(cpId, session);
+    }
 
-    private Integer parseInteger(Object value, String field,
-                                 WebSocketSession session, String payload) {
+    // =====================================================
+    // HANDLE TRANSPORT ERROR (IMPORTANT)
+    // =====================================================
+    @Override
+    public void handleTransportError(WebSocketSession session, Throwable exception) {
+        exception.printStackTrace();
+
+        sendSafe(session, buildError("WS_ERROR", exception.getMessage()));
+    }
+
+    // =====================================================
+    // SAFE HELPERS
+    // =====================================================
+
+    private void sendSafe(WebSocketSession session, String json) {
+        try {
+            if (session.isOpen()) {
+                session.sendMessage(new TextMessage(json));
+            }
+        } catch (Exception ignored) {
+        }
+    }
+
+    private String buildSuccess(String event, String cpId, Object data) {
+        try {
+            return mapper.writeValueAsString(Map.of(
+                    "status", true,
+                    "event", event,
+                    "chargeBoxId", cpId,
+                    "data", data
+            ));
+        } catch (Exception e) {
+            return "{\"status\":true}";
+        }
+    }
+
+    private String buildError(String code, String message) {
+        try {
+            return mapper.writeValueAsString(Map.of(
+                    "status", false,
+                    "error", Map.of(
+                            "code", code,
+                            "message", message
+                    )
+            ));
+        } catch (Exception e) {
+            return "{\"status\":false}";
+        }
+    }
+
+    private Integer getInt(Object value) {
         try {
             return value != null ? Integer.parseInt(value.toString()) : null;
         } catch (Exception e) {
-            sendError(session,
-                    "INVALID_" + field.toUpperCase(),
-                    field + " must be number",
-                    payload);
             return null;
         }
     }
 
-    private void sendResponse(WebSocketSession session, ResponseDTO dto) {
-        try {
-            session.sendMessage(new TextMessage(
-                    mapper.writeValueAsString(dto)
-            ));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    private String getString(Object value) {
+        return value != null ? value.toString() : null;
     }
 
-    private void sendSuccess(WebSocketSession session, Object data) {
-        ResponseDTO dto = new ResponseDTO();
-        dto.setStatus(true);
-        dto.setData(data);
-        sendResponse(session, dto);
-    }
-
-    private void sendError(WebSocketSession session,
-                           String code,
-                           String message,
-                           Object originalRequest) {
-
-        ErrorResponseDTO error = new ErrorResponseDTO();
-        error.setMessage(message);
-        ResponseDTO dto = new ResponseDTO();
-        dto.setStatus(false);
-        dto.setData(error);
-
-        sendResponse(session, dto);
-    }
-
-    // ==========================
-    // PUSH TO ALL FLUTTER CLIENTS
-    // ==========================
-    public static void sendToChargePoint(String chargePointId, String message) {
-
-        Set<WebSocketSession> sessions = sessionsByChargePoint.get(chargePointId);
-
-        if (sessions == null) return;
-
-        sessions.forEach(session -> {
-            try {
-                if (session.isOpen()) {
-                    session.sendMessage(new TextMessage(message));
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+    private String extractCpId(WebSocketSession session) {
+        String path = session.getUri().getPath();
+        return path.substring(path.lastIndexOf("/") + 1);
     }
 }

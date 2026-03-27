@@ -61,17 +61,27 @@ public class TestBenchLog extends TableImpl<TestBenchLogRecord> {
     /**
      * The column <code>stevedb.test_bench_log.charge_box_id</code>.
      */
-    public final TableField<TestBenchLogRecord, String> CHARGE_BOX_ID = createField(DSL.name("charge_box_id"), SQLDataType.VARCHAR(100).nullable(false), this, "");
+    public final TableField<TestBenchLogRecord, String> CHARGE_BOX_ID = createField(DSL.name("charge_box_id"), SQLDataType.VARCHAR(50), this, "");
+
+    /**
+     * The column <code>stevedb.test_bench_log.event</code>.
+     */
+    public final TableField<TestBenchLogRecord, String> EVENT = createField(DSL.name("event"), SQLDataType.VARCHAR(100), this, "");
+
+    /**
+     * The column <code>stevedb.test_bench_log.direction</code>.
+     */
+    public final TableField<TestBenchLogRecord, String> DIRECTION = createField(DSL.name("direction"), SQLDataType.VARCHAR(20), this, "");
+
+    /**
+     * The column <code>stevedb.test_bench_log.message</code>.
+     */
+    public final TableField<TestBenchLogRecord, String> MESSAGE = createField(DSL.name("message"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>stevedb.test_bench_log.time_stamp</code>.
      */
     public final TableField<TestBenchLogRecord, DateTime> TIME_STAMP = createField(DSL.name("time_stamp"), SQLDataType.TIMESTAMP(0).defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP"), SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
-
-    /**
-     * The column <code>stevedb.test_bench_log.message</code>.
-     */
-    public final TableField<TestBenchLogRecord, String> MESSAGE = createField(DSL.name("message"), SQLDataType.CLOB.nullable(false), this, "");
 
     private TestBenchLog(Name alias, Table<TestBenchLogRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);

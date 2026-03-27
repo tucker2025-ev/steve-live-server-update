@@ -18,45 +18,44 @@
  */
 package de.rwth.idsg.steve.ocpp.ws.flutter;
 
-import org.joda.time.DateTime;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import static jooq.steve.db.Tables.TEST_BENCH_LOG;
 
 @Component
 public class OcppMessageStore {
 
-    private final Map<String, List<String>> history = new ConcurrentHashMap<>();
-
     @Autowired
-    private DSLContext dslContext;
+    private DSLContext dsl;
 
-    public void add(String chargeBoxId, String message) {
+    public void add(String chargeBoxId, String event, String direction, String message) {
 
-        dslContext.insertInto(TEST_BENCH_LOG)
+        dsl.insertInto(TEST_BENCH_LOG)
                 .set(TEST_BENCH_LOG.CHARGE_BOX_ID, chargeBoxId)
+                .set(TEST_BENCH_LOG.EVENT, event)
+                .set(TEST_BENCH_LOG.DIRECTION, direction)
                 .set(TEST_BENCH_LOG.MESSAGE, message)
-                .set(TEST_BENCH_LOG.TIME_STAMP, DateTime.now())
                 .execute();
-
     }
 
+    public List<String> getRecent(String chargeBoxId) {
 
-    public List<String> getDataUseChargeBoxId(final String chargeBoxId) {
-        return dslContext
+        List<String> result = dsl
                 .select(TEST_BENCH_LOG.MESSAGE)
                 .from(TEST_BENCH_LOG)
                 .where(TEST_BENCH_LOG.CHARGE_BOX_ID.eq(chargeBoxId))
-                .orderBy(TEST_BENCH_LOG.TIME_STAMP.desc())   // Latest first
-                .limit(100)                           // Only 100 records
+                .orderBy(TEST_BENCH_LOG.TIME_STAMP.desc())
+                .limit(100)
                 .fetch(TEST_BENCH_LOG.MESSAGE);
+
+        Collections.reverse(result);
+
+        return result;
     }
 
 }

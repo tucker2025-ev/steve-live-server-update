@@ -50,25 +50,40 @@ public class TestBenchLogRecord extends UpdatableRecordImpl<TestBenchLogRecord> 
     }
 
     /**
-     * Setter for <code>stevedb.test_bench_log.time_stamp</code>.
+     * Setter for <code>stevedb.test_bench_log.event</code>.
      */
-    public TestBenchLogRecord setTimeStamp(DateTime value) {
+    public TestBenchLogRecord setEvent(String value) {
         set(2, value);
         return this;
     }
 
     /**
-     * Getter for <code>stevedb.test_bench_log.time_stamp</code>.
+     * Getter for <code>stevedb.test_bench_log.event</code>.
      */
-    public DateTime getTimeStamp() {
-        return (DateTime) get(2);
+    public String getEvent() {
+        return (String) get(2);
+    }
+
+    /**
+     * Setter for <code>stevedb.test_bench_log.direction</code>.
+     */
+    public TestBenchLogRecord setDirection(String value) {
+        set(3, value);
+        return this;
+    }
+
+    /**
+     * Getter for <code>stevedb.test_bench_log.direction</code>.
+     */
+    public String getDirection() {
+        return (String) get(3);
     }
 
     /**
      * Setter for <code>stevedb.test_bench_log.message</code>.
      */
     public TestBenchLogRecord setMessage(String value) {
-        set(3, value);
+        set(4, value);
         return this;
     }
 
@@ -76,7 +91,22 @@ public class TestBenchLogRecord extends UpdatableRecordImpl<TestBenchLogRecord> 
      * Getter for <code>stevedb.test_bench_log.message</code>.
      */
     public String getMessage() {
-        return (String) get(3);
+        return (String) get(4);
+    }
+
+    /**
+     * Setter for <code>stevedb.test_bench_log.time_stamp</code>.
+     */
+    public TestBenchLogRecord setTimeStamp(DateTime value) {
+        set(5, value);
+        return this;
+    }
+
+    /**
+     * Getter for <code>stevedb.test_bench_log.time_stamp</code>.
+     */
+    public DateTime getTimeStamp() {
+        return (DateTime) get(5);
     }
 
     // -------------------------------------------------------------------------
@@ -102,13 +132,15 @@ public class TestBenchLogRecord extends UpdatableRecordImpl<TestBenchLogRecord> 
     /**
      * Create a detached, initialised TestBenchLogRecord
      */
-    public TestBenchLogRecord(Long id, String chargeBoxId, DateTime timeStamp, String message) {
+    public TestBenchLogRecord(Long id, String chargeBoxId, String event, String direction, String message, DateTime timeStamp) {
         super(TestBenchLog.TEST_BENCH_LOG);
 
         setId(id);
         setChargeBoxId(chargeBoxId);
-        setTimeStamp(timeStamp);
+        setEvent(event);
+        setDirection(direction);
         setMessage(message);
+        setTimeStamp(timeStamp);
         resetChangedOnNotNull();
     }
 }

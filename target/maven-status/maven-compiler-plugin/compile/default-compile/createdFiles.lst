@@ -52,6 +52,7 @@ de\rwth\idsg\steve\ocpp\ws\pipeline\Serializer$1.class
 de\rwth\idsg\steve\ocpp\ws\custom\MeterValue15Mixin.class
 de\rwth\idsg\steve\service\ManuallyStopTransaction$1.class
 de\rwth\idsg\steve\ocpp\task\ChangeConfigurationTask.class
+de\rwth\idsg\steve\ocpp\ws\flutter\OcppEventService.class
 de\rwth\idsg\steve\ocpp\ws\SessionContextStore.class
 de\rwth\idsg\steve\repository\dto\ChargePoint$Overview.class
 de\rwth\idsg\steve\repository\dto\MailSettings$MailSettingsBuilder.class
@@ -577,6 +578,7 @@ de\rwth\idsg\steve\web\controller\OcppTagsController.class
 jooq\steve\db\tables\WebsocketLog.class
 de\rwth\idsg\steve\SteveConfiguration$DB$DBBuilder.class
 de\rwth\idsg\steve\ApplicationProfile.class
+de\rwth\idsg\steve\ocpp\ws\flutter\FlutterSessionManager.class
 de\rwth\idsg\steve\ocpp\ws\WebSocketLogger.class
 de\rwth\idsg\steve\repository\impl\TransactionRepositoryImpl$TransactionMapper.class
 jooq\steve\db\tables\Reservation$ReservationPath.class
