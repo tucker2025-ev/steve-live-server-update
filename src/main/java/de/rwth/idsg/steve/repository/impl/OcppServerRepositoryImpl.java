@@ -310,7 +310,7 @@ public class OcppServerRepositoryImpl implements OcppServerRepository {
                 UpdateTransactionRequest request = new UpdateTransactionRequest();
                 request.setTransaction_id(String.valueOf(transactionId));
                 request.setPayment_id(p.getIdTag());
-                request.setMode("Test");
+                request.setMode("Live");
 
                 HttpHeaders headers = new HttpHeaders();
                 headers.setContentType(MediaType.APPLICATION_JSON);
@@ -936,7 +936,7 @@ public class OcppServerRepositoryImpl implements OcppServerRepository {
         String testInvoiceURL = "http://15.207.37.132/new/inv.php?transid=" + transactionId;
 
         ctx.update(PAYMENT_REQUEST)
-                .set(PAYMENT_REQUEST.INVOICE_URL, testInvoiceURL)
+                .set(PAYMENT_REQUEST.INVOICE_URL, liveInvoiceURL)
                 .where(PAYMENT_REQUEST.RRNID.eq(payId))
                 .execute();
 
