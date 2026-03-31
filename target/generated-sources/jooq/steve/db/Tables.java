@@ -12,37 +12,66 @@ import jooq.steve.db.tables.ChargerStatusHistory;
 import jooq.steve.db.tables.ChargingFeeExemptChargebox;
 import jooq.steve.db.tables.ChargingProfile;
 import jooq.steve.db.tables.ChargingSchedulePeriod;
+import jooq.steve.db.tables.ChargingSessions;
 import jooq.steve.db.tables.Connector;
 import jooq.steve.db.tables.ConnectorChargingProfile;
+import jooq.steve.db.tables.ConnectorMeterSummaryExt;
 import jooq.steve.db.tables.ConnectorMeterValue;
 import jooq.steve.db.tables.ConnectorStatus;
+import jooq.steve.db.tables.CustomerTypes;
+import jooq.steve.db.tables.Getcmshistory;
+import jooq.steve.db.tables.Gethistory;
+import jooq.steve.db.tables.Getliveunit;
+import jooq.steve.db.tables.Getreservation;
+import jooq.steve.db.tables.Getstatus;
+import jooq.steve.db.tables.History;
+import jooq.steve.db.tables.LeadSources;
+import jooq.steve.db.tables.LeadStatuses;
+import jooq.steve.db.tables.Leads;
+import jooq.steve.db.tables.LiveSection;
 import jooq.steve.db.tables.OcppTag;
 import jooq.steve.db.tables.OcppTagActivity;
 import jooq.steve.db.tables.PaymentRequest;
+import jooq.steve.db.tables.RefundRequests;
 import jooq.steve.db.tables.Reservation;
 import jooq.steve.db.tables.RfidCard;
 import jooq.steve.db.tables.ScheduleCharging;
 import jooq.steve.db.tables.SchemaVersion;
 import jooq.steve.db.tables.Settings;
+import jooq.steve.db.tables.Sms;
+import jooq.steve.db.tables.Soc;
+import jooq.steve.db.tables.Summary;
+import jooq.steve.db.tables.SummarySoc;
+import jooq.steve.db.tables.SummaryText;
 import jooq.steve.db.tables.TestBenchLog;
+import jooq.steve.db.tables.TodStart;
+import jooq.steve.db.tables.TodTransactionDetails;
 import jooq.steve.db.tables.Transaction;
 import jooq.steve.db.tables.TransactionConnectorEnergy;
 import jooq.steve.db.tables.TransactionEnergyMismatchLog;
+import jooq.steve.db.tables.TransactionFareDetails;
 import jooq.steve.db.tables.TransactionMeterValues;
+import jooq.steve.db.tables.TransactionSocSummary;
 import jooq.steve.db.tables.TransactionStart;
 import jooq.steve.db.tables.TransactionStop;
 import jooq.steve.db.tables.TransactionStopFailed;
+import jooq.steve.db.tables.TransactionSummary;
+import jooq.steve.db.tables.TransactionTod;
+import jooq.steve.db.tables.Updates;
 import jooq.steve.db.tables.User;
 import jooq.steve.db.tables.UserSessionAudit;
 import jooq.steve.db.tables.VConnectorLast_10Status;
 import jooq.steve.db.tables.Vehicle;
+import jooq.steve.db.tables.WalletTrack;
+import jooq.steve.db.tables.WalletTrackOld;
+import jooq.steve.db.tables.Waltrackcheck;
 import jooq.steve.db.tables.WebsocketLog;
 
 
 /**
  * Convenience access to all tables in stevedb.
  */
-@SuppressWarnings({ "all", "unchecked", "rawtypes" })
+@SuppressWarnings({ "all", "unchecked", "rawtypes", "this-escape" })
 public class Tables {
 
     /**
@@ -86,6 +115,11 @@ public class Tables {
     public static final ChargingSchedulePeriod CHARGING_SCHEDULE_PERIOD = ChargingSchedulePeriod.CHARGING_SCHEDULE_PERIOD;
 
     /**
+     * The table <code>stevedb.charging_sessions</code>.
+     */
+    public static final ChargingSessions CHARGING_SESSIONS = ChargingSessions.CHARGING_SESSIONS;
+
+    /**
      * The table <code>stevedb.connector</code>.
      */
     public static final Connector CONNECTOR = Connector.CONNECTOR;
@@ -96,6 +130,11 @@ public class Tables {
     public static final ConnectorChargingProfile CONNECTOR_CHARGING_PROFILE = ConnectorChargingProfile.CONNECTOR_CHARGING_PROFILE;
 
     /**
+     * VIEW
+     */
+    public static final ConnectorMeterSummaryExt CONNECTOR_METER_SUMMARY_EXT = ConnectorMeterSummaryExt.CONNECTOR_METER_SUMMARY_EXT;
+
+    /**
      * The table <code>stevedb.connector_meter_value</code>.
      */
     public static final ConnectorMeterValue CONNECTOR_METER_VALUE = ConnectorMeterValue.CONNECTOR_METER_VALUE;
@@ -104,6 +143,61 @@ public class Tables {
      * The table <code>stevedb.connector_status</code>.
      */
     public static final ConnectorStatus CONNECTOR_STATUS = ConnectorStatus.CONNECTOR_STATUS;
+
+    /**
+     * The table <code>stevedb.customer_types</code>.
+     */
+    public static final CustomerTypes CUSTOMER_TYPES = CustomerTypes.CUSTOMER_TYPES;
+
+    /**
+     * VIEW
+     */
+    public static final Getcmshistory GETCMSHISTORY = Getcmshistory.GETCMSHISTORY;
+
+    /**
+     * VIEW
+     */
+    public static final Gethistory GETHISTORY = Gethistory.GETHISTORY;
+
+    /**
+     * VIEW
+     */
+    public static final Getliveunit GETLIVEUNIT = Getliveunit.GETLIVEUNIT;
+
+    /**
+     * VIEW
+     */
+    public static final Getreservation GETRESERVATION = Getreservation.GETRESERVATION;
+
+    /**
+     * VIEW
+     */
+    public static final Getstatus GETSTATUS = Getstatus.GETSTATUS;
+
+    /**
+     * The table <code>stevedb.history</code>.
+     */
+    public static final History HISTORY = History.HISTORY;
+
+    /**
+     * The table <code>stevedb.lead_sources</code>.
+     */
+    public static final LeadSources LEAD_SOURCES = LeadSources.LEAD_SOURCES;
+
+    /**
+     * The table <code>stevedb.lead_statuses</code>.
+     */
+    public static final LeadStatuses LEAD_STATUSES = LeadStatuses.LEAD_STATUSES;
+
+    /**
+     * The table <code>stevedb.leads</code>.
+     */
+    public static final Leads LEADS = Leads.LEADS;
+
+    /**
+     * The table <code>stevedb.live_section</code>.
+     */
+    public static final LiveSection LIVE_SECTION = LiveSection.LIVE_SECTION;
 
     /**
      * The table <code>stevedb.ocpp_tag</code>.
@@ -119,6 +213,11 @@ public class Tables {
      * The table <code>stevedb.payment_request</code>.
      */
     public static final PaymentRequest PAYMENT_REQUEST = PaymentRequest.PAYMENT_REQUEST;
+
+    /**
+     * The table <code>stevedb.refund_requests</code>.
+     */
+    public static final RefundRequests REFUND_REQUESTS = RefundRequests.REFUND_REQUESTS;
 
     /**
      * The table <code>stevedb.reservation</code>.
@@ -146,9 +245,44 @@ public class Tables {
     public static final Settings SETTINGS = Settings.SETTINGS;
 
     /**
+     * The table <code>stevedb.sms</code>.
+     */
+    public static final Sms SMS = Sms.SMS;
+
+    /**
+     * VIEW
+     */
+    public static final Soc SOC = Soc.SOC;
+
+    /**
+     * VIEW
+     */
+    public static final Summary SUMMARY = Summary.SUMMARY;
+
+    /**
+     * VIEW
+     */
+    public static final SummarySoc SUMMARY_SOC = SummarySoc.SUMMARY_SOC;
+
+    /**
+     * VIEW
+     */
+    public static final SummaryText SUMMARY_TEXT = SummaryText.SUMMARY_TEXT;
+
+    /**
      * The table <code>stevedb.test_bench_log</code>.
      */
     public static final TestBenchLog TEST_BENCH_LOG = TestBenchLog.TEST_BENCH_LOG;
+
+    /**
+     * The table <code>stevedb.tod_start</code>.
+     */
+    public static final TodStart TOD_START = TodStart.TOD_START;
+
+    /**
+     * The table <code>stevedb.tod_transaction_details</code>.
+     */
+    public static final TodTransactionDetails TOD_TRANSACTION_DETAILS = TodTransactionDetails.TOD_TRANSACTION_DETAILS;
 
     /**
      * VIEW
@@ -166,9 +300,19 @@ public class Tables {
     public static final TransactionEnergyMismatchLog TRANSACTION_ENERGY_MISMATCH_LOG = TransactionEnergyMismatchLog.TRANSACTION_ENERGY_MISMATCH_LOG;
 
     /**
+     * The table <code>stevedb.transaction_fare_details</code>.
+     */
+    public static final TransactionFareDetails TRANSACTION_FARE_DETAILS = TransactionFareDetails.TRANSACTION_FARE_DETAILS;
+
+    /**
      * The table <code>stevedb.transaction_meter_values</code>.
      */
     public static final TransactionMeterValues TRANSACTION_METER_VALUES = TransactionMeterValues.TRANSACTION_METER_VALUES;
+
+    /**
+     * VIEW
+     */
+    public static final TransactionSocSummary TRANSACTION_SOC_SUMMARY = TransactionSocSummary.TRANSACTION_SOC_SUMMARY;
 
     /**
      * The table <code>stevedb.transaction_start</code>.
@@ -184,6 +328,21 @@ public class Tables {
      * The table <code>stevedb.transaction_stop_failed</code>.
      */
     public static final TransactionStopFailed TRANSACTION_STOP_FAILED = TransactionStopFailed.TRANSACTION_STOP_FAILED;
+
+    /**
+     * The table <code>stevedb.transaction_summary</code>.
+     */
+    public static final TransactionSummary TRANSACTION_SUMMARY = TransactionSummary.TRANSACTION_SUMMARY;
+
+    /**
+     * The table <code>stevedb.transaction_tod</code>.
+     */
+    public static final TransactionTod TRANSACTION_TOD = TransactionTod.TRANSACTION_TOD;
+
+    /**
+     * The table <code>stevedb.updates</code>.
+     */
+    public static final Updates UPDATES = Updates.UPDATES;
 
     /**
      * The table <code>stevedb.user</code>.
@@ -204,6 +363,21 @@ public class Tables {
      * The table <code>stevedb.vehicle</code>.
      */
     public static final Vehicle VEHICLE = Vehicle.VEHICLE;
+
+    /**
+     * The table <code>stevedb.wallet_track</code>.
+     */
+    public static final WalletTrack WALLET_TRACK = WalletTrack.WALLET_TRACK;
+
+    /**
+     * The table <code>stevedb.wallet_track_old</code>.
+     */
+    public static final WalletTrackOld WALLET_TRACK_OLD = WalletTrackOld.WALLET_TRACK_OLD;
+
+    /**
+     * VIEW
+     */
+    public static final Waltrackcheck WALTRACKCHECK = Waltrackcheck.WALTRACKCHECK;
 
     /**
      * The table <code>stevedb.websocket_log</code>.

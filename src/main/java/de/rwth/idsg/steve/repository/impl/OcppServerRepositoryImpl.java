@@ -52,6 +52,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -62,6 +63,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.stream.Collectors;
 
+
 import static jooq.steve.db.Tables.*;
 import static jooq.steve.db.tables.ChargeBox.CHARGE_BOX;
 import static jooq.steve.db.tables.Connector.CONNECTOR;
@@ -71,6 +73,8 @@ import static jooq.steve.db.tables.TransactionStart.TRANSACTION_START;
 import static jooq.steve.db.tables.TransactionStop.TRANSACTION_STOP;
 import static jooq.steve.db.tables.TransactionStopFailed.TRANSACTION_STOP_FAILED;
 import static jooq.steve.db2.Tables.*;
+import static jooq.steve.db2.Tables.WALLET_TRACK;
+
 
 /**
  * This class has methods for database access that are used by the OCPP service.
@@ -112,7 +116,6 @@ public class OcppServerRepositoryImpl implements OcppServerRepository {
 
     @Autowired
     private RestTemplate restTemplate;
-
 
     @Override
     public void updateChargebox(UpdateChargeboxParams p) {
@@ -421,7 +424,7 @@ public class OcppServerRepositoryImpl implements OcppServerRepository {
                 updateQrPaymentActiveTransaction(p.getTransactionId(), retrieveChargedAmount(p.getTransactionId()));
             } else {
                 updateActiveTransaction(p.getTransactionId(), retrieveChargedAmount(p.getTransactionId()));
-                closeSettlementTransaction(p.getTransactionId(), retrieveChargedAmount(p.getTransactionId()));
+                closeSessionBillingTransaction(p.getTransactionId(), retrieveChargedAmount(p.getTransactionId()));
             }
 
             if (chargerFeeExceptUserService.testChargerFeeExceptUser(idTag, p.getChargeBoxId())) {
@@ -480,13 +483,16 @@ public class OcppServerRepositoryImpl implements OcppServerRepository {
         }
     }
 
-    private void closeSettlementTransaction(Integer transactionId, double consumedAMount) {
+    private void closeSessionBillingTransaction(Integer transactionId, double consumedAmount) {
 
-        secondary.update(WALLET_TRACK_SETTLEMENT)
-                .set(WALLET_TRACK_SETTLEMENT.IS_ACTIVE_TRANSACTION, false)
-                .set(WALLET_TRACK_SETTLEMENT.TOTAL_CONSUMED_AMOUNT, round2(consumedAMount))
-                .where(WALLET_TRACK_SETTLEMENT.TRANSACTION_ID.eq(transactionId))
-                .and(WALLET_TRACK_SETTLEMENT.IS_ACTIVE_TRANSACTION.eq(true))
+        BigDecimal sessionTotalAmountBD = BigDecimal.valueOf(consumedAmount)
+                .setScale(2, RoundingMode.HALF_UP);
+
+        secondary.update(SESSION_BILLING_DETAILS)
+                .set(SESSION_BILLING_DETAILS.SESSION_STATUS, false)
+                .set(SESSION_BILLING_DETAILS.SESSION_TOTAL_AMOUNT, sessionTotalAmountBD)
+                .where(SESSION_BILLING_DETAILS.TRANSACTION_ID.eq(transactionId))
+                .and(SESSION_BILLING_DETAILS.SESSION_STATUS.eq(true))
                 .execute();
     }
 

@@ -58,7 +58,7 @@ public class OcppEventService {
             sessionManager.broadcast(chargeBoxId, json);
 
         } catch (Exception e) {
-            e.printStackTrace();
+           // e.printStackTrace();
         }
     }
 }

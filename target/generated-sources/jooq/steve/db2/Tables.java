@@ -9,16 +9,17 @@ import jooq.steve.db2.tables.ChargerConnectorStatusLog;
 import jooq.steve.db2.tables.ChargerStatus;
 import jooq.steve.db2.tables.DealerSettlementSlab;
 import jooq.steve.db2.tables.LiveChargingData;
+import jooq.steve.db2.tables.LiveFullDetails;
 import jooq.steve.db2.tables.SchemaVersion2;
+import jooq.steve.db2.tables.SessionBillingDetails;
 import jooq.steve.db2.tables.TransactionEnergyValues;
 import jooq.steve.db2.tables.WalletTrack;
-import jooq.steve.db2.tables.WalletTrackSettlement;
 
 
 /**
  * Convenience access to all tables in ev_history.
  */
-@SuppressWarnings({ "all", "unchecked", "rawtypes" })
+@SuppressWarnings({ "all", "unchecked", "rawtypes", "this-escape" })
 public class Tables {
 
     /**
@@ -47,9 +48,19 @@ public class Tables {
     public static final LiveChargingData LIVE_CHARGING_DATA = LiveChargingData.LIVE_CHARGING_DATA;
 
     /**
+     * VIEW
+     */
+    public static final LiveFullDetails LIVE_FULL_DETAILS = LiveFullDetails.LIVE_FULL_DETAILS;
+
+    /**
      * The table <code>ev_history.schema_version2</code>.
      */
     public static final SchemaVersion2 SCHEMA_VERSION2 = SchemaVersion2.SCHEMA_VERSION2;
+
+    /**
+     * The table <code>ev_history.session_billing_details</code>.
+     */
+    public static final SessionBillingDetails SESSION_BILLING_DETAILS = SessionBillingDetails.SESSION_BILLING_DETAILS;
 
     /**
      * The table <code>ev_history.transaction_energy_values</code>.
@@ -60,9 +71,4 @@ public class Tables {
      * The table <code>ev_history.wallet_track</code>.
      */
     public static final WalletTrack WALLET_TRACK = WalletTrack.WALLET_TRACK;
-
-    /**
-     * The table <code>ev_history.wallet_track_settlement</code>.
-     */
-    public static final WalletTrackSettlement WALLET_TRACK_SETTLEMENT = WalletTrackSettlement.WALLET_TRACK_SETTLEMENT;
 }

@@ -32,7 +32,7 @@ import org.jooq.impl.TableImpl;
 /**
  * VIEW
  */
-@SuppressWarnings({ "all", "unchecked", "rawtypes" })
+@SuppressWarnings({ "all", "unchecked", "rawtypes", "this-escape" })
 public class VConnectorLast_10Status extends TableImpl<VConnectorLast_10StatusRecord> {
 
     private static final long serialVersionUID = 1L;
@@ -64,40 +64,40 @@ public class VConnectorLast_10Status extends TableImpl<VConnectorLast_10StatusRe
      * The column
      * <code>stevedb.v_connector_last_10_status.status_timestamp</code>.
      */
-    public final TableField<VConnectorLast_10StatusRecord, DateTime> STATUS_TIMESTAMP = createField(DSL.name("status_timestamp"), SQLDataType.TIMESTAMP(6), this, "", new DateTimeConverter());
+    public final TableField<VConnectorLast_10StatusRecord, DateTime> STATUS_TIMESTAMP = createField(DSL.name("status_timestamp"), SQLDataType.TIMESTAMP(6).defaultValue(DSL.inline("NULL", SQLDataType.TIMESTAMP)), this, "", new DateTimeConverter());
 
     /**
      * The column <code>stevedb.v_connector_last_10_status.status</code>.
      */
-    public final TableField<VConnectorLast_10StatusRecord, String> STATUS = createField(DSL.name("status"), SQLDataType.VARCHAR(255), this, "");
+    public final TableField<VConnectorLast_10StatusRecord, String> STATUS = createField(DSL.name("status"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>stevedb.v_connector_last_10_status.error_code</code>.
      */
-    public final TableField<VConnectorLast_10StatusRecord, String> ERROR_CODE = createField(DSL.name("error_code"), SQLDataType.VARCHAR(255), this, "");
+    public final TableField<VConnectorLast_10StatusRecord, String> ERROR_CODE = createField(DSL.name("error_code"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>stevedb.v_connector_last_10_status.error_info</code>.
      */
-    public final TableField<VConnectorLast_10StatusRecord, String> ERROR_INFO = createField(DSL.name("error_info"), SQLDataType.VARCHAR(255), this, "");
+    public final TableField<VConnectorLast_10StatusRecord, String> ERROR_INFO = createField(DSL.name("error_info"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>stevedb.v_connector_last_10_status.vendor_id</code>.
      */
-    public final TableField<VConnectorLast_10StatusRecord, String> VENDOR_ID = createField(DSL.name("vendor_id"), SQLDataType.VARCHAR(255), this, "");
+    public final TableField<VConnectorLast_10StatusRecord, String> VENDOR_ID = createField(DSL.name("vendor_id"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column
      * <code>stevedb.v_connector_last_10_status.vendor_error_code</code>.
      */
-    public final TableField<VConnectorLast_10StatusRecord, String> VENDOR_ERROR_CODE = createField(DSL.name("vendor_error_code"), SQLDataType.VARCHAR(255), this, "");
+    public final TableField<VConnectorLast_10StatusRecord, String> VENDOR_ERROR_CODE = createField(DSL.name("vendor_error_code"), SQLDataType.VARCHAR(255).defaultValue(DSL.inline("NULL", SQLDataType.VARCHAR)), this, "");
 
     private VConnectorLast_10Status(Name alias, Table<VConnectorLast_10StatusRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);
     }
 
     private VConnectorLast_10Status(Name alias, Table<VConnectorLast_10StatusRecord> aliased, Field<?>[] parameters, Condition where) {
-        super(alias, null, aliased, parameters, DSL.comment("VIEW"), TableOptions.view("create view `v_connector_last_10_status` as select `c`.`charge_box_id` AS `charge_box_id`,`c`.`connector_id` AS `connector_id`,`cs`.`status_timestamp` AS `status_timestamp`,`cs`.`status` AS `status`,`cs`.`error_code` AS `error_code`,`cs`.`error_info` AS `error_info`,`cs`.`vendor_id` AS `vendor_id`,`cs`.`vendor_error_code` AS `vendor_error_code` from ((select `cs`.`connector_pk` AS `connector_pk`,`cs`.`status_timestamp` AS `status_timestamp`,`cs`.`status` AS `status`,`cs`.`error_code` AS `error_code`,`cs`.`error_info` AS `error_info`,`cs`.`vendor_id` AS `vendor_id`,`cs`.`vendor_error_code` AS `vendor_error_code`,row_number() OVER (PARTITION BY `cs`.`connector_pk` ORDER BY `cs`.`status_timestamp` desc )  AS `rn` from `stevedb`.`connector_status` `cs`) `cs` join `stevedb`.`connector` `c` on((`c`.`connector_pk` = `cs`.`connector_pk`))) where (`cs`.`rn` <= 10) order by `c`.`charge_box_id`,`c`.`connector_id`,`cs`.`status_timestamp` desc"), where);
+        super(alias, null, aliased, parameters, DSL.comment("VIEW"), TableOptions.view("create view `v_connector_last_10_status` as select `c`.`charge_box_id` AS `charge_box_id`,`c`.`connector_id` AS `connector_id`,`cs`.`status_timestamp` AS `status_timestamp`,`cs`.`status` AS `status`,`cs`.`error_code` AS `error_code`,`cs`.`error_info` AS `error_info`,`cs`.`vendor_id` AS `vendor_id`,`cs`.`vendor_error_code` AS `vendor_error_code` from ((select `cs`.`connector_pk` AS `connector_pk`,`cs`.`status_timestamp` AS `status_timestamp`,`cs`.`status` AS `status`,`cs`.`error_code` AS `error_code`,`cs`.`error_info` AS `error_info`,`cs`.`vendor_id` AS `vendor_id`,`cs`.`vendor_error_code` AS `vendor_error_code`,row_number() over ( partition by `cs`.`connector_pk` order by `cs`.`status_timestamp` desc) AS `rn` from `stevedb`.`connector_status` `cs`) `cs` join `stevedb`.`connector` `c` on(`c`.`connector_pk` = `cs`.`connector_pk`)) where `cs`.`rn` <= 10 order by `c`.`charge_box_id`,`c`.`connector_id`,`cs`.`status_timestamp` desc"), where);
     }
 
     /**

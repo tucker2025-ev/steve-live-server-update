@@ -67,8 +67,9 @@ public class TariffAmountCalculation {
     @Autowired
     private ChargerFeeExceptUserService chargerFeeExceptUserService;
 
-    @Autowired
-    private WalletTrackSettlementService walletTrackSettlementService;
+//    @Autowired
+//    private WalletTrackSettlementService walletTrackSettlementService;
+    @Autowired private SessionBillingDetails sessionBillingDetails;
 
     @Autowired
     private PaymentController paymentController;
@@ -120,7 +121,7 @@ public class TariffAmountCalculation {
                 }
 
             } else if ((totalConsumedAmount + 30) >= walletBalance) {
-                if (!chargerFeeExceptUserService.liveChargerFeeExceptUser(idTag, chargeBoxId)) {
+                if (!chargerFeeExceptUserService.testChargerFeeExceptUser(idTag, chargeBoxId)) {
                     stopTransaction.manuallyStopTransaction(chargeBoxId, transactionId, "Low Wallet");
                 }
             }
@@ -161,8 +162,9 @@ public class TariffAmountCalculation {
                     latestTimestamp
             );
             try {
-                walletTrackSettlementService.startNewTariffInterval(transactionId, latestTimestamp);
-                walletTrackSettlementService.insertChargerTariffAmountSettlementService(transactionId, previousEnergy, lastEnergy, idTag, unitFare, walletBalance, consumedEnergy, consumedAmount, totalConsumedAmount, latestTimestamp, chargeBoxId, connectorPk);
+
+                sessionBillingDetails.startNewTariffInterval(transactionId, latestTimestamp);
+                sessionBillingDetails.insertChargerTariffAmountSettlementService(transactionId, previousEnergy, lastEnergy, idTag, unitFare, walletBalance, consumedEnergy, consumedAmount, totalConsumedAmount, latestTimestamp, chargeBoxId, connectorPk);
             } catch (Exception e) {
                 log.error("Exception Occur in WalletTrackSettlementService  class  insert Method {}", e.getMessage());
             }
@@ -179,7 +181,7 @@ public class TariffAmountCalculation {
                     latestTimestamp, walletBalance
             );
             try {
-                walletTrackSettlementService.updateSettlementService(transactionId, unitFare, lastEnergy, updateConsumedAmount, totalConsumedAmount, latestTimestamp, walletBalance);
+                sessionBillingDetails.updateSettlementService(transactionId, unitFare, lastEnergy, updateConsumedAmount, totalConsumedAmount, latestTimestamp, walletBalance);
             } catch (Exception e) {
                 log.error("Exception Occur in WalletTrackSettlementService  class  update  Method{}", e.getMessage());
             }

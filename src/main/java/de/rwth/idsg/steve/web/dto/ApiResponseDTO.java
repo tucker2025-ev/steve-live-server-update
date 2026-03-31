@@ -30,6 +30,6 @@ import java.util.List;
 public class ApiResponseDTO {
 
     private String status;
-    private List<WalletSettlementDTO> data;
+    private List<SessionBillingDTO> data;
 
 }

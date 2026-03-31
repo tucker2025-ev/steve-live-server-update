@@ -14,7 +14,7 @@ import org.jooq.impl.TableRecordImpl;
 /**
  * VIEW
  */
-@SuppressWarnings({ "all", "unchecked", "rawtypes" })
+@SuppressWarnings({ "all", "unchecked", "rawtypes", "this-escape" })
 public class TransactionRecord extends TableRecordImpl<TransactionRecord> {
 
     private static final long serialVersionUID = 1L;
