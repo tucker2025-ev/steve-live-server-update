@@ -121,7 +121,7 @@ public class TariffAmountCalculation {
                 }
 
             } else if ((totalConsumedAmount + 30) >= walletBalance) {
-                if (!chargerFeeExceptUserService.testChargerFeeExceptUser(idTag, chargeBoxId)) {
+                if (!chargerFeeExceptUserService.liveChargerFeeExceptUser(idTag, chargeBoxId)) {
                     stopTransaction.manuallyStopTransaction(chargeBoxId, transactionId, "Low Wallet");
                 }
             }
