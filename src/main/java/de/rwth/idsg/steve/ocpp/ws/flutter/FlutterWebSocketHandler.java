@@ -179,7 +179,7 @@ public class FlutterWebSocketHandler extends TextWebSocketHandler {
     // =====================================================
     @Override
     public void handleTransportError(WebSocketSession session, Throwable exception) {
-        exception.printStackTrace();
+        //exception.printStackTrace();
 
         sendSafe(session, buildError("WS_ERROR", exception.getMessage()));
     }
