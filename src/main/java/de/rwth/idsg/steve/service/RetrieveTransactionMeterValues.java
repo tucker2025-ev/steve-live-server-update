@@ -170,7 +170,7 @@ public class RetrieveTransactionMeterValues {
                 .execute();
         if (!ans) {
 
-            liveChargingData.liveChargingData(
+            testChargingData.liveChargingData(
                     chargeBoxId,
                     connectorId,
                     transactionId,
